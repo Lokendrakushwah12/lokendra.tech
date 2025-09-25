@@ -10,7 +10,7 @@ const Header = () => {
     const { name, profession, github, twitter } = userData.personalInfo;
 
     return (
-        <div className="border-b border-border border-dashed fixed w-full max-w-4xl top-0 bg-site-background/90 backdrop-blur-xl z-50">
+        <div className="border-b border-x border-border border-dashed fixed w-full max-w-4xl top-0 bg-site-background/90 backdrop-blur-xl z-50">
             <div className="p-4 w-full mx-auto border-border border-dashed xl:border-x">
                 <div className="flex items-center gap-4 justify-between h-8">
                     <Link href="/" className="flex items-center gap-2 justify-center">
