@@ -1,6 +1,6 @@
 import { PostHogProvider } from "@/components/PostHogProvider";
 import { siteConfig } from "@/config/site";
-import { ibmPlexMono } from "@/lib/fonts";
+import { ibmPlexMono, karstar } from "@/lib/fonts";
 import { ThemeProvider } from "@/providers/theme-provider";
 import type { Metadata } from "next";
 import Script from 'next/script';
@@ -66,7 +66,7 @@ export default function RootLayout({
           </Script>
         )}
       </head>
-      <body className={` ${ibmPlexMono.variable} font-sans antialiased bg-site-background noise-overlay min-h-svh`}>
+      <body className={`${ibmPlexMono.variable} ${karstar.variable} font-sans antialiased bg-site-background noise-overlay min-h-svh`}>
         <PostHogProvider>
           <ThemeProvider
             attribute="class"

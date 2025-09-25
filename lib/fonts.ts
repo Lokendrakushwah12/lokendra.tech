@@ -1,4 +1,5 @@
 import { IBM_Plex_Mono } from "next/font/google";
+import localFont from "next/font/local";
 
 const ibmPlexMono = IBM_Plex_Mono({
   subsets: ["latin"],
@@ -7,5 +8,11 @@ const ibmPlexMono = IBM_Plex_Mono({
   display: "swap",
 });
 
-export { ibmPlexMono };
+const karstar = localFont({
+  src: "../public/font/Karstar_Free.ttf",
+  variable: "--font-cursive",
+  display: "swap",
+});
+
+export { ibmPlexMono, karstar };
 
