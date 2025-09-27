@@ -38,12 +38,29 @@ const About = () => {
                   href="https://unolo.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="border-b border-dashed border-foreground/60 text-foreground hover:text-primary transition-colors"
+                  className="border-b cursor-pointer border-dashed border-foreground/60 text-foreground hover:text-primary transition-colors"
                 >
                   <TextButton text="Unolo" textSize={14} />
                 </Link>
               </span>
               &nbsp;as software engineer intern.
+            </div>
+          </div>
+
+          {/* proof of work */}
+          <div className="mt-6">
+            <div className="text-muted-foreground leading-relaxed">
+              Checkout my&nbsp;
+              {/* Proof of Work */}
+              <span className="inline-flex items-center gap-1.5">
+                <Link
+                  href="/work"
+                  rel="noopener noreferrer"
+                  className="border-b cursor-pointer border-dashed border-foreground/60 text-foreground hover:text-primary transition-colors"
+                >
+                  <TextButton text="Proof of Work" textSize={16} />
+                </Link>
+              </span>
             </div>
           </div>
         </div>
