@@ -5,8 +5,8 @@ const Projects = () => {
   const { projects } = userData;
 
   return (
-    <div className="border-b border-x border-border border-dashed">
-      <div className="xl:border-x border-border border-dashed p-4 max-w-screen-xl w-full mx-auto space-y-4 py-8 md:py-16">
+    <div className="border-b border-border border-dashed">
+      <div className="border-x border-border border-dashed p-4 max-w-screen-xl w-full mx-auto space-y-4 py-8 md:py-16">
         <div className="inline-flex items-center justify-center gap-1 font-normal tracking-tight text-xl">
           <h2 className="font-normal drop-shadow-xs text-xl md:text-3xl text-muted-foreground">
             PROJECTS

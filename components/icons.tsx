@@ -1,4 +1,4 @@
-import type { SVGProps } from 'react'
+import type { SVGProps } from "react";
 
 export function GithubIcon(props: SVGProps<SVGSVGElement>) {
   return (
@@ -14,7 +14,7 @@ export function GithubIcon(props: SVGProps<SVGSVGElement>) {
         d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5c.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34c-.46-1.16-1.11-1.47-1.11-1.47c-.91-.62.07-.6.07-.6c1 .07 1.53 1.03 1.53 1.03c.87 1.52 2.34 1.07 2.91.83c.09-.65.35-1.09.63-1.34c-2.22-.25-4.55-1.11-4.55-4.92c0-1.11.38-2 1.03-2.71c-.1-.25-.45-1.29.1-2.64c0 0 .84-.27 2.75 1.02c.79-.22 1.65-.33 2.5-.33s1.71.11 2.5.33c1.91-1.29 2.75-1.02 2.75-1.02c.55 1.35.2 2.39.1 2.64c.65.71 1.03 1.6 1.03 2.71c0 3.82-2.34 4.66-4.57 4.91c.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2"
       ></path>
     </svg>
-  )
+  );
 }
 
 export function PnpmIcon(props: SVGProps<SVGSVGElement>) {
@@ -35,7 +35,7 @@ export function PnpmIcon(props: SVGProps<SVGSVGElement>) {
         d="M43.996 44v39.996h40V44ZM0 87.996v40h39.996v-40Zm43.996 0v40h40v-40Zm44.008 0v40H128v-40Z"
       ></path>
     </svg>
-  )
+  );
 }
 
 export function NpmIcon(props: SVGProps<SVGSVGElement>) {
@@ -56,7 +56,7 @@ export function NpmIcon(props: SVGProps<SVGSVGElement>) {
         d="M25.105 65.52V26.512H40.96c8.72 0 26.274.034 39.008.075l23.153.075v77.866H83.645v-58.54H64.057v58.54H25.105z"
       ></path>
     </svg>
-  )
+  );
 }
 
 export function YarnIcon(props: SVGProps<SVGSVGElement>) {
@@ -73,7 +73,7 @@ export function YarnIcon(props: SVGProps<SVGSVGElement>) {
         d="M64 0a64 64 0 1 0 64 64A64 64 0 0 0 64 0m4.685 21.948a5.04 5.04 0 0 1 2.21.802c.671.444 1.528 1.032 4.026 6.194a4.84 4.84 0 0 1 2.942-.103a3.93 3.93 0 0 1 2.468 2.004c2.55 4.893 2.889 13.614 1.774 19.22a34.9 34.9 0 0 1-6.028 13.74a26.6 26.6 0 0 1 5.957 9.733a26.2 26.2 0 0 1 1.456 10.746a30 30 0 0 0 3.22-1.796c3.158-1.951 7.927-4.894 13.615-4.966a6.834 6.834 0 0 1 7.225 5.885a6.555 6.555 0 0 1-5.046 7.256c-3.458.836-5.069 1.486-9.714 4.5a69.2 69.2 0 0 1-16.062 7.412a9 9 0 0 1-3.758 1.828c-3.933.96-17.425 1.682-18.488 1.682h-.248c-4.13 0-6.47-1.28-7.73-2.621c-3.51 1.755-8.052 1.03-11.355-.714a5.73 5.73 0 0 1-3.097-4.024a6.2 6.2 0 0 1 0-2.127a7 7 0 0 1-.816-1.032a16.9 16.9 0 0 1-2.333-10.386c.3-3.85 2.964-7.287 4.698-9.114A29.5 29.5 0 0 1 35.726 64a27.7 27.7 0 0 1 7.04-9.29c-1.703-2.87-3.436-7.288-1.754-11.789c1.208-3.21 2.199-4.996 4.377-5.76a7.1 7.1 0 0 0 2.59-1.383a18.22 18.22 0 0 1 12.243-5.843c.196-.495.423-1.033.671-1.508c1.652-3.51 3.406-5.48 5.46-6.193a5.04 5.04 0 0 1 2.332-.286m-.558 3.697c-2.703.089-5.355 8.099-5.355 8.099a14.45 14.45 0 0 0-12.089 4.645a9.95 9.95 0 0 1-3.973 2.345c-.424.144-.94.122-2.22 3.58c-1.961 5.234 3.345 11.16 3.345 11.16s-6.328 4.47-8.672 10.034a25.6 25.6 0 0 0-1.806 12.057s-4.5 3.901-4.788 7.927a13.3 13.3 0 0 0 1.826 8.083a2.003 2.003 0 0 0 2.714.94s-2.993 3.487-.196 4.963c2.55 1.331 6.844 2.065 9.115-.196c1.652-1.651 1.982-5.335 2.591-6.842c.144-.351.64.588 1.115 1.032a10.3 10.3 0 0 0 1.403 1.032s-4.024 1.734-2.373 5.688c.547 1.31 2.498 2.145 5.688 2.125c1.187 0 14.203-.743 17.671-1.58a4.47 4.47 0 0 0 2.696-1.505a65 65 0 0 0 15.99-7.226c4.892-3.19 6.895-4.059 10.848-4.998c3.262-.774 3.045-5.83-1.28-5.758c-4.48.052-8.402 2.363-11.716 4.427c-6.193 3.83-9.29 3.583-9.29 3.583l-.105-.175c-.423-.692 1.983-6.896-.712-14.287c-2.91-8.082-7.534-10.033-7.163-10.653c1.58-2.673 5.534-6.917 7.113-14.824c.94-4.79.691-12.676-1.435-16.805c-.393-.764-3.902 1.28-3.902 1.28s-3.283-7.319-4.201-7.907a1.44 1.44 0 0 0-.839-.244"
       ></path>
     </svg>
-  )
+  );
 }
 
 export function BunIcon(props: SVGProps<SVGSVGElement>) {
@@ -123,7 +123,7 @@ export function BunIcon(props: SVGProps<SVGSVGElement>) {
         d="M38.4 61.902a3.4 3.4 0 0 0 1.844-.531c.547-.35.974-.847 1.227-1.43a3.1 3.1 0 0 0 .195-1.847a3.16 3.16 0 0 0-.902-1.639a3.35 3.35 0 0 0-1.696-.878a3.43 3.43 0 0 0-1.916.179a3.3 3.3 0 0 0-1.489 1.176a3.1 3.1 0 0 0-.559 1.776c0 .844.347 1.654.964 2.253a3.37 3.37 0 0 0 2.332.94zm39.632 0a3.4 3.4 0 0 0 1.844-.531c.547-.35.974-.847 1.227-1.43a3.1 3.1 0 0 0 .195-1.847a3.16 3.16 0 0 0-.902-1.639a3.35 3.35 0 0 0-1.696-.878a3.43 3.43 0 0 0-1.916.179a3.3 3.3 0 0 0-1.489 1.176a3.1 3.1 0 0 0-.559 1.776c0 .84.342 1.644.953 2.242c.61.598 1.44.94 2.311.952z"
       ></path>
     </svg>
-  )
+  );
 }
 
 export function XIcon(props: SVGProps<SVGSVGElement>) {
@@ -149,15 +149,34 @@ export function XIcon(props: SVGProps<SVGSVGElement>) {
         </defs>
       </g>
     </svg>
-  )
+  );
 }
 
 export function ThemeToggleIcon(props: SVGProps<SVGSVGElement>) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="size-4.5" opacity="1" filter="none"
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className="size-4.5"
+      opacity="1"
+      filter="none"
       {...props}
-    ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"></path><path d="M12 3l0 18"></path><path d="M12 9l4.65 -4.65"></path><path d="M12 14.3l7.37 -7.37"></path><path d="M12 19.6l8.85 -8.85"></path></svg>
-  )
+    >
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+      <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"></path>
+      <path d="M12 3l0 18"></path>
+      <path d="M12 9l4.65 -4.65"></path>
+      <path d="M12 14.3l7.37 -7.37"></path>
+      <path d="M12 19.6l8.85 -8.85"></path>
+    </svg>
+  );
 }
 
 export function ArrowLeftIcon(props: SVGProps<SVGSVGElement>) {
@@ -177,5 +196,81 @@ export function ArrowLeftIcon(props: SVGProps<SVGSVGElement>) {
       <path d="m12 19-7-7 7-7" />
       <path d="M19 12H5" />
     </svg>
-  )
+  );
+}
+
+export function InducedAIIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      width="28"
+      height="28"
+      viewBox="0 0 25 25"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
+      <path
+        d="M14.887 5.04053H10.113V5.83619H14.887V5.04053Z"
+        fill="white"
+      ></path>
+      <path
+        d="M14.887 6.14404H10.113V6.91981H14.887V6.14404Z"
+        fill="white"
+      ></path>
+      <path
+        d="M14.887 7.22803H10.113V8.02369H14.887V7.22803Z"
+        fill="white"
+      ></path>
+      <path
+        d="M14.887 9.41553H10.113V10.1515H14.887V9.41553Z"
+        fill="white"
+      ></path>
+      <path
+        d="M14.887 10.7222H10.113V11.3986H14.887V10.7222Z"
+        fill="white"
+      ></path>
+      <path
+        d="M14.887 11.9663H10.113V12.5829H14.887V11.9663Z"
+        fill="white"
+      ></path>
+      <path
+        d="M14.887 13.1519H10.113V13.7089H14.887V13.1519Z"
+        fill="white"
+      ></path>
+      <path
+        d="M14.887 14.2769H10.113V14.7742H14.887V14.2769Z"
+        fill="white"
+      ></path>
+      <path
+        d="M14.887 15.3452H10.113V15.7828H14.887V15.3452Z"
+        fill="white"
+      ></path>
+      <path
+        d="M14.887 16.3511H10.113V16.7291H14.887V16.3511Z"
+        fill="white"
+      ></path>
+      <path
+        d="M14.887 17.2983H10.113V17.6166H14.887V17.2983Z"
+        fill="white"
+      ></path>
+      <path
+        d="M14.887 18.1851H10.113V18.4437H14.887V18.1851Z"
+        fill="white"
+      ></path>
+      <path
+        d="M14.887 19.0112H10.113V19.23H14.887V19.0112Z"
+        fill="white"
+      ></path>
+      <path
+        d="M14.887 19.8003H10.113V19.9594H14.887V19.8003Z"
+        fill="white"
+      ></path>
+    </svg>
+  );
+}
+
+export function UnoloIcon(props: React.ImgHTMLAttributes<HTMLImageElement>) {
+  return (
+    <img src="/experience/unolo.png" alt="Unolo" {...props} />
+ );
 }

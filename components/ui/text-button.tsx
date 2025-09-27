@@ -52,7 +52,7 @@ const contentButton = (
         <motion.div
             whileHover="hover"
             initial="initial"
-            className={`relative cursor-pointer py-2 ${overrideClassName}`}
+            className={`relative py-2 ${overrideClassName}`}
         >
             <div className="relative">
                 <motion.div

@@ -25,7 +25,7 @@ const ProjectCard = ({
   working = false,
 }: ProjectCardProps) => {
   return (
-    <div className="flex flex-col justify-between gap-1 rounded-2xl bg-card-foreground/[1%] hover:bg-card-foreground/[0%] shadow-xs transition-all border border-border border-dashed p-2 sm:p-4">
+    <div className="flex z-20 flex-col justify-between gap-1 rounded-2xl bg-background/50 hover:bg-background/80 shadow-xs transition-all border border-border border-dashed p-2 sm:p-4">
       <Image
         src={imageSrc || "/projects/default.webp"}
         alt={title}
