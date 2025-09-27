@@ -9,40 +9,41 @@ const About = () => {
   // Split the about text into parts
   const beforeSoftwareEngineer = about.split("A software engineer")[0];
   const afterSoftwareEngineer = about.split("A software engineer")[1];
-  const previouslyWorkedPart = afterSoftwareEngineer.split("\nPreviously I worked")[1];
+  const previouslyWorkedPart = afterSoftwareEngineer.split(
+    "\nPreviously I worked"
+  )[1];
   const mainPart = afterSoftwareEngineer.split("\nPreviously I worked")[0];
 
   return (
     <div className="border-b border-border border-dashed pt-12">
       <div className="border-x border-border border-dashed p-4 w-full mx-auto space-y-4 py-8 md:py-16">
-        <div className="text-muted-foreground justify-between gap-8 rounded-2xl">
+        <div className="text-muted-foreground text-base tracking-tight">
           {beforeSoftwareEngineer}
           <div className="mt-4">
             A&nbsp;
-            <span className="border-b border-dashed inline-block border-foreground text-foreground">
+            <span className="border-b border-dashed inline-block border-foreground/60 text-foreground">
               <TextButton text="Software Engineer" textSize={16} />
             </span>
             &nbsp;{mainPart}
           </div>
-          
+
           {/* Previously I worked section */}
           <div className="mt-6">
-            <div className="flex items-center gap-4">
-              <span className="text-muted-foreground">Previously, I worked at</span>
-            
+            <div className="text-muted-foreground leading-relaxed">
+              Previously, I worked at&nbsp;
               {/* Unolo */}
-              <div className="inline-flex items-center gap-2 rounded-lg py-2">
+              <span className="inline-flex items-center gap-1.5 mx-1 translate-y-0.5">
                 <UnoloIcon className="size-4" />
-                <Link 
-                  href="https://unolo.com" 
-                  target="_blank" 
+                <Link
+                  href="https://unolo.com"
+                  target="_blank"
                   rel="noopener noreferrer"
-                  className="text-sm font-medium border-b text-foreground/80 transition-colors z-10"
+                  className="border-b border-dashed border-foreground/60 text-foreground hover:text-primary transition-colors"
                 >
-                  Unolo
+                  <TextButton text="Unolo" textSize={14} />
                 </Link>
-              </div>
-              as software engineer intern.
+              </span>
+              &nbsp;as software engineer intern.
             </div>
           </div>
         </div>

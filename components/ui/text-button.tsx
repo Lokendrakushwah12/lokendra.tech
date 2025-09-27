@@ -73,7 +73,7 @@ const contentButton = (
                         {characters.map((char, index) => (
                             <motion.span
                                 key={`white-${index}`}
-                                className="text-foreground"
+                                className="text-foreground/80"
                                 variants={{
                                     initial: { y: 0 },
                                     hover: { y: -textSize - 2 },
@@ -93,7 +93,7 @@ const contentButton = (
                         {characters.map((char, index) => (
                             <motion.span
                                 key={`black-${index}`}
-                                className="text-primary"
+                                className="text-foreground/80"
                                 variants={{
                                     initial: { y: textSize },
                                     hover: { y: 0 },
