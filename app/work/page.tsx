@@ -1,4 +1,4 @@
-import { ArrowLeftIcon } from "@/components/icons";
+import { ArrowLeftIcon, GithubIcon, XIcon } from "@/components/icons";
 import Footer from "@/components/sections/footer";
 import { Button } from "@/components/ui/button";
 import LinesBG from "@/components/ui/lines-bg";
@@ -12,6 +12,8 @@ import { notFound } from "next/navigation";
 import path from "path";
 import React from "react";
 import ClientDither from "@/components/Dither/ClientDither";
+import { ThemeToggle } from "@/components/theme-toggle";
+import userData from "@/config/userData";
 
 interface WorkMatter {
   title: string;
@@ -51,7 +53,9 @@ const components = {
     }
 
     return (
-      <p className="text-muted-foreground/80 mb-4 leading-relaxed">{children}</p>
+      <p className="text-muted-foreground/80 mb-4 leading-relaxed">
+        {children}
+      </p>
     );
   },
   ul: ({ children }: { children: React.ReactNode }) => (
@@ -65,16 +69,16 @@ const components = {
   strong: ({ children }: { children: React.ReactNode }) => (
     <strong className="font-medium text-foreground/70">{children}</strong>
   ),
-   img: ({ src, alt }: { src?: string; alt?: string }) => {
-     // Render as a fragment to avoid nesting issues
-     return (
-       <ImageModal
-         src={src || ""}
-         alt={alt || ""}
-         className="rounded-lg border my-6 w-full max-w-4xl mx-auto block"
-       />
-     );
-   },
+  img: ({ src, alt }: { src?: string; alt?: string }) => {
+    // Render as a fragment to avoid nesting issues
+    return (
+      <ImageModal
+        src={src || ""}
+        alt={alt || ""}
+        className="rounded-lg border my-6 w-full max-w-4xl mx-auto block"
+      />
+    );
+  },
   code: ({ children }: { children: React.ReactNode }) => (
     <code className="bg-muted px-2 py-1 rounded text-sm font-mono">
       {children}
@@ -124,33 +128,47 @@ export default async function WorkPage() {
   }
 
   const { frontmatter, content } = workData;
+  const { github, twitter } = userData.personalInfo;
 
   return (
     <div className="min-h-screen relative">
       <ClientDither />
-       <div className="max-w-4xl mx-auto py-8 border-x border-dashed relative z-10">
-        {/* Back Button */}
-        <Button size="sm" variant="outline" asChild>
-          <Link
-            href="/"
-            className="inline-flex items-center mx-4 gap-2 text-muted-foreground/80 hover:text-foreground/70 transition-colors mb-8"
-          >
-            <ArrowLeftIcon className="w-4 h-4" />
-            Back to Home
-          </Link>
-        </Button>
-
+      <div className="max-w-4xl mx-auto py-8 border-x border-dashed relative z-10">
         {/* Header */}
-        <div className="mb-8 mx-4">
-          <h1 className="text-2xl font-medium tracking-tight text-foreground/70 mb-2">
-            {frontmatter.title}
-          </h1>
+        <div className="flex justify-between items-center mb-4">
+          <div className="flex items-center">
+            <Button size="icon" variant="outline" asChild>
+              <Link
+                href="/"
+                className="inline-flex items-center mx-4 gap-2 text-muted-foreground/80 hover:text-foreground/70 transition-colors"
+              >
+                <ArrowLeftIcon className="w-4 h-4" />
+              </Link>
+            </Button>
+            <h1 className="text-2xl font-medium tracking-tight text-foreground/70">
+              {frontmatter.title}
+            </h1>
+          </div>
+
+          <div className="flex items-center">
+            <Button variant="ghost" size="icon" asChild>
+              <Link target="_blank" href={github}>
+                <GithubIcon className="size-5" />
+              </Link>
+            </Button>
+            <Button variant="ghost" size="icon" asChild>
+              <Link target="_blank" href={twitter}>
+                <XIcon className="size-4" />
+              </Link>
+            </Button>
+            <ThemeToggle />
+          </div>
         </div>
 
-         {/* Content */}
-         <div className="prose prose-gray mx-4 dark:prose-invert max-w-none border-t border-dashed pt-6 [&_img]:block [&_img]:my-6 [&_p]:my-4">
-           <MDXRemote source={content} components={components} />
-         </div>
+        {/* Content */}
+        <div className="prose prose-gray mx-4 dark:prose-invert max-w-none border-t border-dashed pt-6 [&_img]:block [&_img]:my-6 [&_p]:my-4">
+          <MDXRemote source={content} components={components} />
+        </div>
       </div>
       <Footer graph={false} />
     </div>

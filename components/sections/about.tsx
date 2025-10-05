@@ -31,6 +31,19 @@ const About = () => {
           <div className="mt-6">
             <div className="text-muted-foreground leading-relaxed">
               Previously, I worked at&nbsp;
+              {/* Induced AI */}
+              <span className="inline-flex items-center gap-1.5 mx-1 translate-y-1.5">
+                <InducedAIIcon className="size-5.5 border border-[#212121] rounded-sm bg-gradient-to-b from-black to-black/90" />
+                <Link
+                  href="https://www.induced.ai/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="border-b cursor-pointer border-dashed border-foreground/60 text-foreground hover:text-primary transition-colors"
+                >
+                  <TextButton text="Induced AI" textSize={14} />
+                </Link>
+              </span>
+              &nbsp;and&nbsp;
               {/* Unolo */}
               <span className="inline-flex items-center gap-1.5 mx-1 translate-y-0.5">
                 <UnoloIcon className="size-4" />
@@ -43,7 +56,7 @@ const About = () => {
                   <TextButton text="Unolo" textSize={14} />
                 </Link>
               </span>
-              &nbsp;as software engineer intern.
+              &nbsp;as software engineer.
             </div>
           </div>
 
