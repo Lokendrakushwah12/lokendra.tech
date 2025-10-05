@@ -1,8 +1,10 @@
+import ClientDither from "@/components/Dither/ClientDither";
 import { ArrowLeftIcon, GithubIcon, XIcon } from "@/components/icons";
 import Footer from "@/components/sections/footer";
+import { ThemeToggle } from "@/components/theme-toggle";
 import { Button } from "@/components/ui/button";
-import LinesBG from "@/components/ui/lines-bg";
 import ImageModal from "@/components/ui/image-modal";
+import userData from "@/config/userData";
 import fs from "fs";
 import matter from "gray-matter";
 import type { Metadata } from "next";
@@ -11,9 +13,6 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import path from "path";
 import React from "react";
-import ClientDither from "@/components/Dither/ClientDither";
-import { ThemeToggle } from "@/components/theme-toggle";
-import userData from "@/config/userData";
 
 interface WorkMatter {
   title: string;
@@ -73,9 +72,8 @@ const components = {
     // Render as a fragment to avoid nesting issues
     return (
       <ImageModal
-        src={src || ""}
-        alt={alt || ""}
-        className="rounded-lg border my-6 w-full max-w-4xl mx-auto block"
+        src={src ?? ""}
+        alt={alt ?? ""}
       />
     );
   },
@@ -135,12 +133,12 @@ export default async function WorkPage() {
       <ClientDither />
       <div className="max-w-4xl mx-auto py-8 border-x border-dashed relative z-10">
         {/* Header */}
-        <div className="flex justify-between items-center mb-4">
-          <div className="flex items-center">
+        <div className="flex justify-between items-center m-4 mt-0">
+          <div className="flex items-center gap-2">
             <Button size="icon" variant="outline" asChild>
               <Link
                 href="/"
-                className="inline-flex items-center mx-4 gap-2 text-muted-foreground/80 hover:text-foreground/70 transition-colors"
+                className="inline-flex items-center gap-2 text-muted-foreground/80 hover:text-foreground/70 transition-colors"
               >
                 <ArrowLeftIcon className="w-4 h-4" />
               </Link>
@@ -166,7 +164,7 @@ export default async function WorkPage() {
         </div>
 
         {/* Content */}
-        <div className="prose prose-gray mx-4 dark:prose-invert max-w-none border-t border-dashed pt-6 [&_img]:block [&_img]:my-6 [&_p]:my-4">
+        <div className="prose prose-gray mx-4 dark:prose-invert max-w-none border-t border-dashed mt-4 [&_img]:block [&_img]:my-6 [&_p]:my-4">
           <MDXRemote source={content} components={components} />
         </div>
       </div>
