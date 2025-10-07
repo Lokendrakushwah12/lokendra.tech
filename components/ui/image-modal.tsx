@@ -77,12 +77,11 @@ export default function ImageModal({ src, alt, className }: ImageModalProps) {
         ref={imageRef}
         src={src}
         alt={alt}
-        className={`cursor-zoom-in hover:opacity-90 transition-opacity block rounded-lg border my-6 w-full max-w-4xl mx-auto ${
+        className={`cursor-zoom-in block rounded-lg border my-6 w-full max-w-4xl mx-auto ${
           className || ""
         }`}
         onClick={handleImageClick}
         layoutId={`image-${src}`}
-        style={{ opacity: isOpen ? 0 : 1 }}
         transition={{ duration: 0.2, ease: "easeInOut" }}
       />
 

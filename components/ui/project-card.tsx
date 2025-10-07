@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { GithubIcon } from "../icons";
 import TextButton from "./text-button";
+import { getTechInfo } from "@/lib/utils";
 
 type ProjectCardProps = {
   title: string;
@@ -25,57 +26,68 @@ const ProjectCard = ({
   working = false,
 }: ProjectCardProps) => {
   return (
-    <div className="flex z-20 flex-col justify-between gap-1 rounded-2xl bg-background/50 hover:bg-background/80 shadow-xs transition-all border border-border border-dashed p-2 sm:p-4">
+    <div className="flex z-20 flex-col justify-between gap-1 rounded-2xl bg-background/50 hover:bg-background/80 shadow-xs transition-all border border-dashed p-2">
       <Image
         src={imageSrc || "/projects/default.webp"}
         alt={title}
         width={600}
         height={600}
-        className="w-full h-[11rem] object-cover object-top rounded-md"
+        className="w-full h-[13rem] object-cover object-top rounded-lg"
       />
-      <span className="inline-flex justify-start items-center -mb-2 gap-2">
-        <TextButton text={title} textSize={18} uppercase="capitalize" />
-        {working && (
-          <span className="ml-2 text-xs text-foreground border border-blue-400/20 bg-blue-100 dark:bg-blue-400/30 transition-all rounded-md px-2 py-0.5">
-            WIP
-          </span>
-        )}
-      </span>
+      <div className="flex items-center justify-between">
+        <span className="inline-flex justify-start items-center -mb-2 gap-2">
+          <TextButton text={title} textSize={18} uppercase="capitalize" />
+          {working && (
+            <span className="ml-2 text-xs text-foreground border border-blue-400/20 bg-blue-100 dark:bg-blue-400/30 transition-all rounded-md px-2 py-0.5">
+              WIP
+            </span>
+          )}
+        </span>
+        <span className="text-sm text-muted-foreground">{date}</span>
+      </div>
       <p className="text-sm text-muted-foreground">{description}</p>
       <div className="flex gap-2 flex-wrap">
-        {tags?.map((tag, index) => (
-          <span
-            key={index}
-            className="text-xs text-muted-foreground border bg-card-foreground/[2%] hover:bg-card-foreground/[4%] transition-all rounded-md px-2 py-0.5"
-          >
-            {tag}
-          </span>
-        ))}
+        {tags?.map((tag, index) => {
+          const techInfo = getTechInfo(tag);
+          return (
+            <span
+              key={index}
+              className="text-xs text-muted-foreground border bg-card-foreground/[2%] hover:bg-card-foreground/[4%] transition-all rounded-md px-2 py-0.5 flex items-center gap-1.5"
+            >
+              {techInfo?.logoUrl && (
+                <img
+                  src={techInfo.logoUrl}
+                  alt={tag}
+                  width={14}
+                  height={14}
+                  className={`object-contain ${techInfo.invertInDarkMode ? "dark:invert" : ""}`}
+                />
+              )}
+              {tag}
+            </span>
+          );
+        })}
       </div>
-      <div className="flex items-center justify-between mt-2">
-        <div className="flex justify-center items-center gap-2">
-          {
-            liveLink && (
-              <Link
-                href={liveLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-muted-foreground text-sm hover:underline transition-all"
-              >
-                Live link
-              </Link>
-            )
-          }
+      <div className="flex items-center justify-between mt-2 pt-2 border-t border-border border-dashed">
+        {liveLink && (
           <Link
-            href={gitHubLink}
+            href={liveLink}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-muted-foreground hover:text-foreground transition-all"
+            className="text-muted-foreground hover:text-foreground w-full text-sm text-center text-nowrap transition-all border-r border-dashed"
           >
-            <GithubIcon />
+            Live link
           </Link>
-        </div>
-        <span className="text-sm text-muted-foreground">{date}</span>
+        )}
+        <Link
+          href={gitHubLink}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-muted-foreground hover:text-foreground w-full text-sm flex items-center justify-center gap-2 transition-all"
+        >
+          GitHub
+          <GithubIcon />
+        </Link>
       </div>
     </div>
   );

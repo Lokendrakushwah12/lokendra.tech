@@ -1,43 +1,4 @@
-export interface PersonalInfo {
-  name: string;
-  profession: string;
-  email: string;
-  github: string;
-  twitter: string;
-}
-
-export interface Experience {
-  id: number;
-  role: string;
-  company: string;
-  startDate: string;
-  endDate: string;
-  link: string;
-}
-
-export interface Project {
-  title: string;
-  description: string;
-  tags: string[];
-  Livelink?: string;
-  gitHubLink: string;
-  imageSrc?: string;
-  date: string;
-  working?: boolean;
-}
-
-export interface LastUpdated {
-  date: string;
-  time: string;
-}
-
-export interface UserData {
-  personalInfo: PersonalInfo;
-  about: string;
-  experience: Experience[];
-  projects: Project[];
-  lastUpdated: LastUpdated;
-}
+import type { UserData } from "@/types";
 
 const userData: UserData = {
   personalInfo: {
@@ -55,7 +16,7 @@ const userData: UserData = {
       role: "Frontend Engineer",
       company: "Induced AI",
       startDate: "Apr 2025",
-      endDate: "Present",
+      endDate: "Sep 2025",
       link: "https://www.induced.ai/",
     },
     {
@@ -89,7 +50,7 @@ const userData: UserData = {
     {
       title: "MEET-BOT",
       description: "Real-Time Meeting Transcription Made Effortless",
-      tags: ["NODE.JS", "WebSocket", "Redis", "Puppeteer"],
+      tags: ["Node.js", "WebSocket", "Redis", "Puppeteer"],
       gitHubLink: "https://github.com/Lokendrakushwah12/meet-bot",
       imageSrc: "/projects/meet-bot.webp",
       date: "MAR 2025",
@@ -100,11 +61,11 @@ const userData: UserData = {
       description:
         "It is a web-based platform that offers articles and resources focused on college placements and interview experiences.",
       tags: [
-        "REACT.JS",
-        "TAILWIND CSS",
-        "FRAMER MOTION",
-        "NODE.JS",
-        "EXPRESS.JS",
+        "React.js",
+        "Tailwind CSS",
+        "Framer Motion",
+        "Node.js",
+        "Express.js",
       ],
       Livelink: "https://anubhav.aitoss.club",
       gitHubLink: "https://github.com/aitoss/Anubhav-frontend-23",
@@ -116,7 +77,7 @@ const userData: UserData = {
       title: "PIXA/UI",
       description:
         "Pixa/UI - Curated collection of versatile Next.js components.",
-      tags: ["NEXT.JS", "TAILWIND CSS", "FRAMER MOTION", "NPM PACKAGE"],
+      tags: ["Next.js", "Tailwind CSS", "Framer Motion", "NPM Package"],
       Livelink: "https://pixaui.com",
       gitHubLink: "https://github.com/Lokendrakushwah12/pixa-ui",
       imageSrc: "/projects/pixa.webp",

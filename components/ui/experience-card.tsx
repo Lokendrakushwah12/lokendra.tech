@@ -8,6 +8,8 @@ type ExperienceCardProps = {
   startDate: string;
   endDate: string;
   link: string;
+  isFirst: boolean;
+  isLast: boolean;
 };
 
 // Map company names to slugs
@@ -26,7 +28,9 @@ const ExperienceCard = ({
   role,
   startDate,
   endDate,
-  link
+  link,
+  isFirst,
+  isLast
 }: ExperienceCardProps) => {
   const slug = getExperienceSlug(companyName);
   
@@ -39,9 +43,9 @@ const ExperienceCard = ({
     >
       <div className="flex justify-center items-start gap-3">
         <div className="flex flex-col justify-center items-center">
-          <div className={`w-[1px] h-3 ${id === 1 ? "bg-transparent" : "bg-muted-foreground/30"}`} />
-          <div className={`${id === 1 ? "bg-muted-foreground" : "bg-muted-foreground/30"} rounded-full size-3 group-hover:bg-foreground transition-colors`} />
-          <div className={`w-[1px] bg-muted-foreground/30 ${id === 3 ? "h-0" : "h-12"}`} />
+          <div className={`w-[1px] h-3 ${isFirst ? "bg-transparent" : "bg-muted-foreground/30"}`} />
+          <div className={`${isFirst ? "bg-muted-foreground" : "bg-muted-foreground/30"} rounded-full size-3 group-hover:bg-foreground transition-colors`} />
+          <div className={`w-[1px] bg-muted-foreground/30 ${isLast ? "h-0" : "h-12"}`} />
         </div>
         <div className="size-full">
           <TextButton text={role} textSize={16} uppercase="capitalize" />
