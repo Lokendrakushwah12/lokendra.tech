@@ -1,17 +1,17 @@
-'use client'
+"use client";
 
-import { useTheme } from 'next-themes'
-import { ThemeToggleIcon } from './icons'
-import { Button } from './ui/button'
+import { useTheme } from "next-themes";
+import { ThemeToggleIcon } from "./icons";
+import { Button } from "./ui/button";
 
 export function ThemeToggle() {
-  const { theme, resolvedTheme, setTheme } = useTheme()
+  const { theme, resolvedTheme, setTheme } = useTheme();
 
   const toggleTheme = () => {
     // Use resolvedTheme to get the actual theme being displayed (handles 'system')
-    const currentTheme = theme === 'system' ? resolvedTheme : theme
-    setTheme(currentTheme === 'dark' ? 'light' : 'dark')
-  }
+    const currentTheme = theme === "system" ? resolvedTheme : theme;
+    setTheme(currentTheme === "dark" ? "light" : "dark");
+  };
 
   return (
     <Button
@@ -24,5 +24,5 @@ export function ThemeToggle() {
     >
       <ThemeToggleIcon />
     </Button>
-  )
+  );
 }

@@ -2,6 +2,7 @@ export interface TechStack {
   name: string;
   logoUrl: string;
   invertInDarkMode?: boolean;
+  invertInLightMode?: boolean;
 }
 
 export interface PersonalInfo {

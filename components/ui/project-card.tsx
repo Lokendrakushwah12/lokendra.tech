@@ -60,7 +60,7 @@ const ProjectCard = ({
                   alt={tag}
                   width={14}
                   height={14}
-                  className={`object-contain ${techInfo.invertInDarkMode ? "dark:invert" : ""}`}
+                  className={`object-contain ${techInfo.invertInDarkMode ? "dark:invert" : ""} ${techInfo.invertInLightMode ? "invert dark:invert-0" : ""}`}
                 />
               )}
               {tag}
