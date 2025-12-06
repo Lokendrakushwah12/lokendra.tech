@@ -14,6 +14,9 @@ export const siteConfig = {
 
   // Leave empty objects or comment out sections you don't want to use
   analytics: {
+    visitors: {
+      token: process.env.NEXT_PUBLIC_VISITORS_TOKEN,
+    },
     // Umami Analytics
     umami: {
       websiteId: process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID,

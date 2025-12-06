@@ -13,6 +13,14 @@ const userData: UserData = {
   experience: [
     {
       id: 1,
+      role: "FDE Intern",
+      company: "Keychain",
+      startDate: "Sep 2025",
+      endDate: "Present",
+      link: "https://www.keychain.com/",
+    },
+    {
+      id: 2,
       role: "Frontend Engineer",
       company: "Induced AI",
       startDate: "Apr 2025",
@@ -20,15 +28,15 @@ const userData: UserData = {
       link: "https://www.induced.ai/",
     },
     {
-      id: 2,
-      role: "Software developer Intern",
+      id: 3,
+      role: "SDE Intern",
       company: "Unolo",
       startDate: "Feb 2025",
       endDate: "Apr 2025",
       link: "https://unolo.com",
     },
     {
-      id: 3,
+      id: 4,
       role: "UI/UX Designer",
       company: "Snipe",
       startDate: "Aug 2024",

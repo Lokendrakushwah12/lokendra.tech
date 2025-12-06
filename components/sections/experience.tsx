@@ -12,7 +12,7 @@ const Experience = () => {
             EXPERIENCE
           </h2>
         </div>
-        <div className="flex flex-col justify-center gap4">
+        <div className="group/experience flex flex-col justify-center gap4">
           {experience.map((exp, index) => (
             <ExperienceCard
               key={index}

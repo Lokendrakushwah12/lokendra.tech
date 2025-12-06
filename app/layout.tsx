@@ -3,7 +3,7 @@ import { siteConfig } from "@/config/site";
 import { ibmPlexMono, karstar } from "@/lib/fonts";
 import { ThemeProvider } from "@/providers/theme-provider";
 import type { Metadata } from "next";
-import Script from 'next/script';
+import Script from "next/script";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -42,8 +42,18 @@ export default function RootLayout({
         <link rel="icon" type="image/svg+xml" href="/icon0.svg" />
         <link rel="apple-touch-icon" href="/apple-icon.png" />
         <link rel="manifest" href="/manifest.json" />
-        <link rel="icon" type="image/png" sizes="192x192" href="/web-app-manifest-192x192.png" />
-        <link rel="icon" type="image/png" sizes="512x512" href="/web-app-manifest-512x512.png" />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="192x192"
+          href="/web-app-manifest-192x192.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="512x512"
+          href="/web-app-manifest-512x512.png"
+        />
         {/* Umami Analytics - Only load if configured */}
         {siteConfig.analytics?.umami?.websiteId && (
           <Script
@@ -65,8 +75,17 @@ export default function RootLayout({
             `}
           </Script>
         )}
+        {/* Visitors.now - Only load if configured */}
+        {siteConfig.analytics?.visitors?.token && (
+          <Script
+            src="https://cdn.visitors.now/v.js"
+            data-token={siteConfig.analytics.visitors.token}
+          />
+        )}
       </head>
-      <body className={`${ibmPlexMono.variable} ${karstar.variable} font-sans antialiased bg-site-background noise-overlay min-h-svh`}>
+      <body
+        className={`${ibmPlexMono.variable} ${karstar.variable} font-sans antialiased bg-site-background noise-overlay min-h-svh`}
+      >
         <PostHogProvider>
           <ThemeProvider
             attribute="class"
