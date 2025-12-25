@@ -75,7 +75,7 @@ const userData: UserData = {
         "Node.js",
         "Express.js",
       ],
-      Livelink: "https://anubhav.aitoss.club",
+      Livelink: "https://anubhav.ossclub.in",
       gitHubLink: "https://github.com/aitoss/Anubhav-frontend-23",
       imageSrc: "/projects/anubhav.webp",
       date: "OCT 2024",
