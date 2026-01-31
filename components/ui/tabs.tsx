@@ -92,7 +92,7 @@ function TabsList({
   }, [children]);
 
   const hoverIndicatorClass = cn(
-    "pointer-events-none absolute left-0 rounded-md transition-transform duration-150 ease-out",
+    "pointer-events-none absolute left-0 rounded-md transition-transform duration-150 ease-out -translate-px",
     variant === "default" ? "z-0 bg-foreground/5" : "z-10 bg-muted/80"
   );
 
@@ -124,7 +124,7 @@ function TabsList({
           "absolute bottom-0 left-0 h-(--active-tab-height) w-(--active-tab-width) translate-x-(--active-tab-left) -translate-y-(--active-tab-bottom) transition-[width,translate] duration-200 ease-in-out",
           variant === "underline"
             ? "z-10 bg-primary data-[orientation=horizontal]:-bottom-[calc(--spacing(1)+1px)] data-[orientation=horizontal]:h-0.5 data-[orientation=vertical]:-start-[calc(--spacing(1)+1px)] data-[orientation=vertical]:w-0.5"
-            : "z-0 rounded-md border border-border/60 bg-background/90 shadow-sm dark:bg-accent/60"
+            : "z-0 rounded-md border border-border/60 bg-background/90 shadow-xs dark:bg-accent/60"
         )}
       />
     </TabsPrimitive.List>
@@ -165,7 +165,7 @@ function createHoverStyle(snapshot: HoverSnapshot): React.CSSProperties {
 
   style.top = snapshot.top
   style.height = snapshot.height
-
+  
   return style
 }
 

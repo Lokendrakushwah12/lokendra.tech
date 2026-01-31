@@ -115,7 +115,7 @@ const ExperienceCard = ({
           <div
             className={cn(
               "w-px bg-border flex-1",
-              isLast ? "h-0" : "min-h-6"
+              isLast ? "h-0 w-0" : "min-h-6"
             )}
           />
         </div>
