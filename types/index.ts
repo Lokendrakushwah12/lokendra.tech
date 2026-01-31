@@ -20,6 +20,7 @@ export interface Experience {
   startDate: string;
   endDate: string;
   link: string;
+  description: string;
 }
 
 export interface Project {

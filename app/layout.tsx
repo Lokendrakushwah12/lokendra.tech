@@ -10,7 +10,8 @@ export const metadata: Metadata = {
   title: siteConfig.name,
   description: siteConfig.description,
   icons: {
-    icon: "/pfp.png",
+    icon: "/icon.png",
+    apple: "/apple-icon.png",
   },
   openGraph: {
     title: siteConfig.name,
@@ -37,23 +38,9 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <head>
         {/* Favicons and App Icons */}
-        <link rel="icon" href="/favicon.ico" sizes="any" />
-        <link rel="icon" type="image/png" href="/icon1.png" />
-        <link rel="icon" type="image/svg+xml" href="/icon0.svg" />
-        <link rel="apple-touch-icon" href="/apple-icon.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/icon.png" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon.png" />
         <link rel="manifest" href="/manifest.json" />
-        <link
-          rel="icon"
-          type="image/png"
-          sizes="192x192"
-          href="/web-app-manifest-192x192.png"
-        />
-        <link
-          rel="icon"
-          type="image/png"
-          sizes="512x512"
-          href="/web-app-manifest-512x512.png"
-        />
         {/* Umami Analytics - Only load if configured */}
         {siteConfig.analytics?.umami?.websiteId && (
           <Script

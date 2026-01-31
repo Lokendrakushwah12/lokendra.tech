@@ -11,6 +11,7 @@
     "prepare": "husky"
   },
   "dependencies": {
+    "@base-ui/react": "^1.1.0",
     "@mdx-js/loader": "^3.1.1",
     "@mdx-js/react": "^3.1.1",
     "@next/mdx": "^16.0.7",
