@@ -22,6 +22,7 @@ const Experience = () => {
               startDate={exp.startDate}
               endDate={exp.endDate}
               link={exp.link}
+              description={exp.description}
               isFirst={index === 0}
               isLast={index === experience.length - 1}
             />

@@ -17,6 +17,7 @@ export default function Page() {
         blurIntensity={1}
       />
       <Header />
+      <LinesBG />
       <About />
       <LinesBG />
       <Experience />

@@ -16,7 +16,7 @@ const ClientDither = () => {
     : [1.0, 1.0, 1.0] as [number, number, number]; // White background for light theme
 
   return (
-    <div className="w-full h-screen fixed left-0 top-0 pointer-events-auto" style={{ zIndex: 0, opacity: 0.2}}>
+    <div className="w-full h-screen fixed left-0 top-0 pointer-events-none" style={{ zIndex: -1, opacity: 0.2}}>
       <Dither
         waveColor={waveColor}
         backgroundColor={backgroundColor}
