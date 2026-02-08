@@ -1,8 +1,9 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useId, useState, useEffect } from "react";
 import { createPortal } from "react-dom";
-import { motion, AnimatePresence } from "motion/react";
+import { motion, AnimatePresence, MotionConfig } from "motion/react";
+import { X } from "lucide-react"; 
 
 interface ImageModalProps {
   src: string;
@@ -12,59 +13,23 @@ interface ImageModalProps {
 
 export default function ImageModal({ src, alt, className }: ImageModalProps) {
   const [isOpen, setIsOpen] = useState(false);
-  const [imageRect, setImageRect] = useState<
-    (DOMRect & { offsetX: number; offsetY: number }) | null
-  >(null);
-  const imageRef = useRef<HTMLImageElement>(null);
+  const id = useId();
 
-  const handleImageClick = () => {
-    console.log("Image clicked, opening modal");
-    const rect = imageRef.current?.getBoundingClientRect();
-    if (rect && typeof window !== "undefined") {
-      // Calculate offset from image center to viewport center
-      const viewportCenterX = window.innerWidth / 2;
-      const viewportCenterY = window.innerHeight / 2;
-      const imageCenterX = rect.left + rect.width / 2;
-      const imageCenterY = rect.top + rect.height / 2;
-
-      setImageRect({
-        ...rect,
-        offsetX: imageCenterX - viewportCenterX,
-        offsetY: imageCenterY - viewportCenterY,
-        width: rect.width,
-        height: rect.height,
-      } as DOMRect & { offsetX: number; offsetY: number });
-    }
-    setIsOpen(true);
-  };
-
-  const handleClose = () => {
-    console.log("Closing modal");
-    setIsOpen(false);
-  };
+  const handleClose = () => setIsOpen(false);
 
   const handleBackdropClick = (e: React.MouseEvent) => {
-    if (e.target === e.currentTarget) {
-      handleClose();
-    }
+    if (e.target === e.currentTarget) handleClose();
   };
 
-  // Add keyboard support (ESC key to close)
   useEffect(() => {
     if (typeof window === "undefined") return;
-
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape" && isOpen) {
-        handleClose();
-      }
+      if (e.key === "Escape" && isOpen) handleClose();
     };
-
     if (isOpen) {
       document.addEventListener("keydown", handleKeyDown);
-      // Prevent body scroll when modal is open
       document.body.style.overflow = "hidden";
     }
-
     return () => {
       document.removeEventListener("keydown", handleKeyDown);
       document.body.style.overflow = "unset";
@@ -72,60 +37,69 @@ export default function ImageModal({ src, alt, className }: ImageModalProps) {
   }, [isOpen]);
 
   return (
-    <>
+    <MotionConfig transition={{ type: "spring", stiffness: 225, damping: 25 }}>
       <motion.img
-        ref={imageRef}
         src={src}
         alt={alt}
+        layoutId={id}
         className={`cursor-zoom-in block rounded-lg border my-6 w-full max-w-4xl mx-auto ${
           className || ""
         }`}
-        onClick={handleImageClick}
-        layoutId={`image-${src}`}
-        transition={{ duration: 0.2, ease: "easeInOut" }}
+        style={{ borderRadius: 12 }}
+        onClick={() => setIsOpen(true)}
+        whileTap={{ scale: 0.98, transition: { duration: 0.15 } }}
       />
 
       {typeof window !== "undefined" &&
         createPortal(
           <AnimatePresence>
             {isOpen && (
-              <motion.div
-                className="fixed inset-0 z-50 bg-black/50 flex items-center justify-center p-4"
-                onClick={handleBackdropClick}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.3, ease: "easeInOut" }}
+              <div
+                className="fixed inset-0 z-50 flex items-center justify-center p-4"
+                role="dialog"
+                aria-modal="true"
+                aria-label="Image modal"
               >
-                <motion.img
-                  src={src}
-                  alt={alt}
-                  className="max-w-6xl cursor-zoom-out w-full max-h-full object-contain rounded-lg border border-border/20 dark:border-border shadow-2xl"
-                  onClick={handleClose}
-                  layoutId={`image-${src}`}
-                  initial={{
-                    x: imageRect ? imageRect.offsetX : 0,
-                    y: imageRect ? imageRect.offsetY : 0,
-                  }}
-                  animate={{
-                    x: 0,
-                    y: 0,
-                  }}
-                  exit={{
-                    x: imageRect ? imageRect.offsetX : 0,
-                    y: imageRect ? imageRect.offsetY : 0,
-                  }}
-                  transition={{
-                    type: "spring",
-                    bounce: 0,
-                    duration: 0.6,
-                  }}
+                <motion.div
+                  className="absolute inset-0 bg-black/50"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  onClick={handleBackdropClick}
                 />
-              </motion.div>
+                <div className="relative z-10 flex items-center justify-center max-w-6xl max-h-full pointer-events-none">
+                  <div className="pointer-events-auto relative">
+                    <motion.button
+                      type="button"
+                      className="absolute -top-10 right-0 p-1 rounded-full bg-black/50 text-white hover:bg-black/70 transition-colors"
+                      initial={{ opacity: 0, scale: 0.5 }}
+                      animate={{
+                        scale: 1,
+                        opacity: 1,
+                        transition: { delay: 0.25 },
+                      }}
+                      exit={{ opacity: 0, transition: { duration: 0.05 } }}
+                      transition={{ duration: 0.1 }}
+                      onClick={handleClose}
+                      aria-label="Close"
+                    >
+                      <X className="w-6 h-6" />
+                    </motion.button>
+                    <motion.img
+                      layoutId={id}
+                      src={src}
+                      alt={alt}
+                      className="w-full max-h-[85vh] object-contain rounded-2xl border border-border/20 dark:border-border shadow-2xl cursor-zoom-out"
+                      style={{ borderRadius: 12 }}
+                      onClick={handleClose}
+                    />
+                  </div>
+                </div>
+              </div>
             )}
           </AnimatePresence>,
           document.body
         )}
-    </>
+    </MotionConfig>
   );
 }

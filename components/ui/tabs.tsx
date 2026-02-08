@@ -7,6 +7,8 @@ import { cn } from "@/lib/utils";
 
 type TabsVariant = "default" | "underline";
 
+const TabsVariantContext = React.createContext<TabsVariant>("default");
+
 function Tabs({ className, ...props }: TabsPrimitive.Root.Props) {
   return (
     <TabsPrimitive.Root
@@ -92,52 +94,56 @@ function TabsList({
   }, [children]);
 
   const hoverIndicatorClass = cn(
-    "pointer-events-none absolute left-0 rounded-md transition-transform duration-150 ease-out -translate-px",
+    "pointer-events-none absolute left-0 rounded-md transition-transform duration-150 ease-out -translate-px ",
     variant === "default" ? "z-0 bg-foreground/5" : "z-10 bg-muted/80"
   );
 
   return (
-    <TabsPrimitive.List
-      data-slot="tabs-list"
-      className={cn(
-        "relative z-0 flex w-fit items-center justify-center gap-x-0.5",
-        "data-[orientation=vertical]:flex-col",
-        variant === "default"
-          ? "rounded-lg border border-border/20 bg-muted/20 p-0.5 text-foreground"
-          : "data-[orientation=horizontal]:py-1 data-[orientation=vertical]:px-1",
-        className
-      )}
-      onPointerLeave={() => setHoverSnapshot(null)}
-      {...props}
-    >
-      {hoverSnapshot ? (
-        <span
-          className={cn(hoverIndicatorClass)}
-          data-orientation={hoverSnapshot.orientation}
-          style={createHoverStyle(hoverSnapshot)}
-        />
-      ) : null}
-      {wrappedChildren}
-      <TabsPrimitive.Indicator
-        data-slot="tab-indicator"
+    <TabsVariantContext.Provider value={variant}>
+      <TabsPrimitive.List
+        data-slot="tabs-list"
         className={cn(
-          "absolute bottom-0 left-0 h-(--active-tab-height) w-(--active-tab-width) translate-x-(--active-tab-left) -translate-y-(--active-tab-bottom) transition-[width,translate] duration-200 ease-in-out",
-          variant === "underline"
-            ? "z-10 bg-primary data-[orientation=horizontal]:-bottom-[calc(--spacing(1)+1px)] data-[orientation=horizontal]:h-0.5 data-[orientation=vertical]:-start-[calc(--spacing(1)+1px)] data-[orientation=vertical]:w-0.5"
-            : "z-0 rounded-md border border-border/60 bg-background/90 shadow-xs dark:bg-accent/60"
+          "relative z-0 flex w-fit items-center justify-center gap-x-0.5",
+          "data-[orientation=vertical]:flex-col",
+          variant === "default"
+            ? "rounded-lg border border-border/50 shadow-xs bg-white dark:bg-muted/20 p-0.5 text-foreground"
+            : "data-[orientation=horizontal]:py-[4.3px] data-[orientation=vertical]:px-1",
+          className
         )}
-      />
-    </TabsPrimitive.List>
+        onPointerLeave={() => setHoverSnapshot(null)}
+        {...props}
+      >
+        {hoverSnapshot ? (
+          <span
+            className={cn(hoverIndicatorClass)}
+            data-orientation={hoverSnapshot.orientation}
+            style={createHoverStyle(hoverSnapshot)}
+          />
+        ) : null}
+        {wrappedChildren}
+        <TabsPrimitive.Indicator
+          data-slot="tab-indicator"
+          className={cn(
+            "absolute bottom-0 left-0 h-(--active-tab-height) w-(--active-tab-width) translate-x-(--active-tab-left) -translate-y-(--active-tab-bottom) transition-[width,translate] duration-200 ease-in-out",
+            variant === "underline"
+              ? "z-10 bg-primary data-[orientation=horizontal]:-bottom-[calc(--spacing(1)+1px)] data-[orientation=horizontal]:h-0.5 data-[orientation=vertical]:-start-[calc(--spacing(1)+1px)] data-[orientation=vertical]:w-0.5"
+              : "z-0 rounded-md border border-border/60 bg-foreground shadow-xs dark:bg-accent"
+          )}
+        />
+      </TabsPrimitive.List>
+    </TabsVariantContext.Provider>
   );
 }
 
 function TabsTab({ className, ...props }: TabsPrimitive.Tab.Props) {
+  const variant = React.useContext(TabsVariantContext);
   return (
     <TabsPrimitive.Tab
       data-slot="tabs-trigger"
       className={cn(
         "relative z-10 flex flex-1 shrink-0 cursor-pointer items-center justify-center rounded-md border border-transparent text-sm font-medium whitespace-nowrap transition-[color,background-color,box-shadow] outline-none focus-visible:ring-2 focus-visible:ring-ring data-disabled:pointer-events-none data-disabled:opacity-64 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
-        "text-muted-foreground/80 hover:text-foreground data-[active]:text-foreground",
+        "text-muted-foreground/80 hover:text-foreground data-active:text-background dark:text-muted-foreground/80 dark:hover:text-foreground dark:data-active:text-foreground",
+        variant === "underline" ? "data-active:text-primary" : "",
         "gap-1.5 px-[calc(--spacing(2.5)-1px)] py-[calc(--spacing(1.5)-1px)]",
         "data-[orientation=vertical]:w-full data-[orientation=vertical]:justify-start",
         className
@@ -158,15 +164,12 @@ function TabsPanel({ className, ...props }: TabsPrimitive.Panel.Props) {
 }
 
 function createHoverStyle(snapshot: HoverSnapshot): React.CSSProperties {
-  const style: React.CSSProperties = {
+  return {
     width: snapshot.width,
     transform: `translate3d(${snapshot.left}px, 0, 0)`,
+    top: snapshot.top,
+    height: snapshot.height,
   }
-
-  style.top = snapshot.top
-  style.height = snapshot.height
-  
-  return style
 }
 
 export {

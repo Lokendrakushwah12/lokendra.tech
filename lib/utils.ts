@@ -15,3 +15,13 @@ export const getTechInfo = (tagName: string): TechStack | undefined => {
     tech.name.toLowerCase().replace(/\.js$/, "").replace(/\s+/g, "") === normalized
   );
 };
+
+export function reverseArray<T>(arr: T[]): T[] {
+  return [...arr].reverse();
+}
+
+export function playClickSound() {
+  const audio = new Audio("/sfx/click.wav");
+  audio.volume = 0.5;
+  audio.play().catch((e) => console.error("Audio play failed", e));
+}

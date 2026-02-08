@@ -26,7 +26,7 @@ const ProjectCard = ({
   working = false,
 }: ProjectCardProps) => {
   return (
-    <div className="flex z-20 flex-col justify-between gap-1 rounded-2xl bg-background/50 hover:bg-background/80 shadow-xs transition-all border border-dashed p-2 group">
+    <div className="flex z-20 flex-col justify-between gap-1 rounded-xl bg-white hover:bg-white/70 dark:bg-background/50 dark:hover:bg-background/80 shadow-xs transition-all border border-dashed p-2 group">
       <Image
         src={imageSrc || "/projects/default.webp"}
         alt={title}
@@ -52,7 +52,7 @@ const ProjectCard = ({
           return (
             <span
               key={index}
-              className="text-xs text-muted-foreground border bg-card-foreground/[2%] hover:bg-card-foreground/[4%] transition-all rounded-md px-2 py-0.5 flex items-center gap-1.5"
+              className="text-xs text-muted-foreground border bg-white dark:bg-card-foreground/2 hover:bg-white/70 dark:hover:bg-card-foreground/5 shadow-xs hover:shadow-none transition-all rounded-sm px-1.5 py-0.5 flex items-center gap-1.5"
             >
               {techInfo?.logoUrl && (
                 // eslint-disable-next-line @next/next/no-img-element

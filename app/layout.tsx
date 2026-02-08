@@ -1,6 +1,7 @@
 import { PostHogProvider } from "@/components/PostHogProvider";
+import { ToastProvider } from "@/components/ui/toast";
 import { siteConfig } from "@/config/site";
-import { ibmPlexMono, karstar } from "@/lib/fonts";
+import { ibmPlexMono, inter, karstar } from "@/lib/fonts";
 import { ThemeProvider } from "@/providers/theme-provider";
 import type { Metadata } from "next";
 import Script from "next/script";
@@ -71,7 +72,7 @@ export default function RootLayout({
         )}
       </head>
       <body
-        className={`${ibmPlexMono.variable} ${karstar.variable} font-sans antialiased bg-site-background noise-overlay min-h-svh`}
+        className={`${ibmPlexMono.variable} ${karstar.variable} ${inter.variable} font-sans antialiased bg-site-background noise-overlay min-h-svh`}
       >
         <PostHogProvider>
           <ThemeProvider
@@ -80,7 +81,9 @@ export default function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
-            {children}
+            <ToastProvider position="top-right">
+              {children}
+            </ToastProvider>
           </ThemeProvider>
         </PostHogProvider>
       </body>
