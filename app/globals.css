@@ -36,7 +36,7 @@
   --popover-foreground: oklch(20.81% 0.01 231.6);
   --primary: oklch(20.81% 0.01 231.6);
   --primary-foreground: oklch(96.1% 0.002 234.54);
-  --secondary: oklch(99.12% 0.003 228.33);
+  --secondary: oklch(99.12% 0 234.54);
   --secondary-foreground: oklch(30.82% 0.017 232.72);
   --muted: oklch(92.12% 0.003 228.33);
   --muted-foreground: oklch(48.99% 0.031 230.55);
@@ -245,6 +245,8 @@
 
   /* Hide scrollbar for Chrome, Safari and Opera */
   .no-scrollbar::-webkit-scrollbar {
+    width: 0;
+    height: 0;
     display: none;
   }
 
@@ -252,6 +254,23 @@
   .no-scrollbar {
     -ms-overflow-style: none; /* IE and Edge */
     scrollbar-width: none; /* Firefox */
+  }
+
+  /* Hide scrollbars inside Base UI ScrollArea */
+  .no-scrollbar [data-slot="scroll-area-viewport"]::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+    display: none;
+  }
+
+  .no-scrollbar [data-slot="scroll-area-viewport"] {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .no-scrollbar [data-slot="scroll-area-scrollbar"],
+  .no-scrollbar [data-slot="scroll-area-corner"] {
+    display: none;
   }
 }
 
