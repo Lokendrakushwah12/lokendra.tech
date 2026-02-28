@@ -37,7 +37,7 @@ const About = () => {
             <div className="text-muted-foreground leading-relaxed">
               Previously, I worked at&nbsp;
               {/* Induced AI */}
-              <Link href="https://www.induced.ai/?ref=loki" target="_blank" rel="noopener noreferrer" className="cursor-pointer inline-flex items-center gap-1.5 mx-1 translate-y-1.5">
+              <Link href="https://www.induced.ai/?utm_source=lokendra.tech" target="_blank" rel="noopener noreferrer" className="cursor-pointer inline-flex items-center gap-1.5 mx-1 translate-y-1.5">
                 <InducedAIIcon className="size-5.5 border border-[#212121] rounded-sm bg-gradient-to-b from-black to-black/90" />
                 <span
                   className="text-sm border-b cursor-pointer border-dashed border-foreground/60 text-foreground hover:text-primary transition-colors"
@@ -47,7 +47,7 @@ const About = () => {
               </Link>
               &nbsp;and&nbsp;
               {/* Unolo */}
-              <Link href="https://unolo.com?ref=loki" target="_blank" rel="noopener noreferrer" className="cursor-pointer inline-flex items-center gap-1.5 mx-1 translate-y-0.5">
+              <Link href="https://unolo.com?utm_source=lokendra.tech" target="_blank" rel="noopener noreferrer" className="cursor-pointer inline-flex items-center gap-1.5 mx-1 translate-y-0.5">
                 <UnoloIcon className="size-4" />
                 <span
                   className="text-sm border-b cursor-pointer border-dashed border-foreground/60 text-foreground hover:text-primary transition-colors"
@@ -80,7 +80,7 @@ const About = () => {
               <TooltipProvider>
                 <Tooltip>
                   <TooltipTrigger className="inline-flex">
-                    <Link href="https://engg.space/?ref=loki" target="_blank" rel="noopener noreferrer" className="cursor-pointer inline-flex items-center gap-1.5 mx-1 translate-y-0.5">
+                    <Link href="https://engg.space/?utm_source=lokendra.tech" target="_blank" rel="noopener noreferrer" className="cursor-pointer inline-flex items-center gap-1.5 mx-1 translate-y-0.5">
                       <EnggIcon className="size-4" />
                       <span
                         className="text-sm border-b cursor-pointer border-dashed border-foreground/60 text-foreground hover:text-primary transition-colors"
