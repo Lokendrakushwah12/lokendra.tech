@@ -171,7 +171,6 @@
     @apply bg-background text-foreground overscroll-none;
     font-synthesis-weight: none;
     text-rendering: optimizeLegibility;
-    user-select: none;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     font-family: var(--font-sans);
@@ -275,8 +274,15 @@
 }
 
 ::selection {
-  background: var(--color-primary);
-  color: var(--color-primary-foreground);
+  background-color: var(--color-accent);
+  color: var(--color-accent-foreground);
+}
+
+img {
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
 }
 
 @utility max-w-screen-* {

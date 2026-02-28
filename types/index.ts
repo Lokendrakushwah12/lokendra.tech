@@ -28,7 +28,7 @@ export interface Project {
   description: string;
   tags: string[];
   Livelink?: string;
-  gitHubLink: string;
+  gitHubLink: string | null;
   imageSrc?: string;
   date: string;
   working?: boolean;

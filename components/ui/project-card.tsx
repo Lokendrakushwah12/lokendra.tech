@@ -11,7 +11,7 @@ type ProjectCardProps = {
   liveLink?: string;
   imageSrc?: string;
   date: string;
-  gitHubLink: string;
+  gitHubLink: string | null;
   working?: boolean;
 };
 
@@ -80,15 +80,17 @@ const ProjectCard = ({
             Live link
           </Link>
         )}
-        <Link
-          href={gitHubLink}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-muted-foreground hover:text-foreground w-full text-sm flex items-center justify-center gap-2 transition-all"
-        >
-          GitHub
-          <GithubIcon />
-        </Link>
+        {gitHubLink && (
+          <Link
+            href={gitHubLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-muted-foreground hover:text-foreground w-full text-sm flex items-center justify-center gap-2 transition-all"
+          >
+            GitHub
+            <GithubIcon />
+          </Link>
+        )}
       </div>
     </div>
   );

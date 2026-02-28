@@ -53,10 +53,20 @@ const userData: UserData = {
   ],
   projects: [
     {
+      title: "Engg.space",
+      description: "A space for engineers to browse their next job from recently funded startups.",
+      tags: ["Next.js", "Playwright", "TypeScript", "PostgreSQL", "Drizzle ORM", "BetterAuth", "Vercel"],
+      Livelink: "https://engg.space/?ref=loki",
+      gitHubLink: null,
+      imageSrc: "https://lokendrakushwah12.github.io/cdn/engg.png",
+      date: "FEB 2026",
+      working: true,
+    },
+    {
       title: "STASHR",
       description: "Organize Your Bookmarks",
       tags: ["Next.js", "React Query", "Typescript", "Tailwind CSS", "MongoDB"],
-      Livelink: "https://stashr.in",
+      Livelink: "https://stashr.in/?ref=loki",
       gitHubLink: "https://github.com/Lokendrakushwah12/stashr",
       imageSrc: "https://lokendrakushwah12.github.io/cdn/stashr.webp",
       date: "AUG 2025",
@@ -93,7 +103,7 @@ const userData: UserData = {
       description:
         "Pixa/UI - Curated collection of versatile Next.js components.",
       tags: ["Next.js", "Tailwind CSS", "Framer Motion", "NPM Package"],
-      Livelink: "https://pixaui.com",
+      Livelink: "https://pixaui.com/?ref=loki",
       gitHubLink: "https://github.com/Lokendrakushwah12/pixa-ui",
       imageSrc: "https://lokendrakushwah12.github.io/cdn/pixa.png",
       date: "AUG 2024",

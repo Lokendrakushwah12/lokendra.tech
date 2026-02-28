@@ -307,6 +307,17 @@ export function KeychainIcon(props: SVGProps<SVGSVGElement>) {
   );
 }
 
+export function EnggIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg width="184" height="259" viewBox="0 0 184 259" fill="none" xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
+      <path d="M6.94365 -2.04326e-05C-7.23146 37.0106 2.41534 183.596 16.92 258.343L169.444 258.343C181.944 258.343 215.944 213 95.4436 186.5C173.944 164 91.4436 117 63.9436 113.5C135.944 88.5 24.1361 11.6044 6.94365 -2.04326e-05Z" fill="#378277" />
+    </svg>
+  );
+}
+
+
 export function SnipeIcon(props: SVGProps<SVGSVGElement>) {
   return (
     <svg
