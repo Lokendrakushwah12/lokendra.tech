@@ -77,7 +77,7 @@ const About = () => {
           <div className="mt-6">
             <div className="text-muted-foreground leading-relaxed">
               I am currently working on&nbsp;
-              <TooltipProvider>
+              <TooltipProvider delay={0}>
                 <Tooltip>
                   <TooltipTrigger className="inline-flex">
                     <Link href="https://engg.space/?utm_source=lokendra.tech" target="_blank" rel="noopener noreferrer" className="cursor-pointer inline-flex items-center gap-1.5 mx-1 translate-y-0.5">

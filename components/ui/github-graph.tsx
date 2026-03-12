@@ -10,6 +10,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "./tooltip";
+import { ScrollArea } from "./scroll-area";
 
 const githubTooltipHandle = TooltipCreateHandle<{ count: number; date: string }>();
 
@@ -43,24 +44,55 @@ const GitHubGraph = () => {
   };
 
   return (
-    <TooltipProvider>
+    <TooltipProvider delay={0}>
       <div className="flex justify-center max-w-4xl w-full">
-        <div className="w-full z-20 mx-auto border border-dashed rounded-lg bg-site-background p-2 overflow-x-auto">
-          <GitHubCalendar
-            username="Lokendrakushwah12"
-            theme={customTheme}
-            colorScheme={currentTheme}
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            renderBlock={(block: any, activity: any) => (
-              <TooltipTrigger
-                handle={githubTooltipHandle}
-                payload={{ count: activity.count, date: activity.date }}
-                render={(triggerProps) =>
-                  cloneElement(block, triggerProps as Record<string, unknown>)
-                }
+        <div className="w-full z-20 mx-auto border border-dashed rounded-lg bg-site-background p-2">
+          <ScrollArea>
+            <div style={{ minWidth: "max-content" }}>
+              <GitHubCalendar
+                username="Lokendrakushwah12"
+                theme={customTheme}
+                colorScheme={currentTheme}
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                renderBlock={(block: any, activity: any) => (
+                  <TooltipTrigger
+                    handle={githubTooltipHandle}
+                    payload={{ count: activity.count, date: activity.date }}
+                    render={(triggerProps) => {
+                      const rect = cloneElement(block, triggerProps as Record<string, unknown>);
+                      const { x, y, width, height } = block.props;
+                      return (
+                        <g>
+                          {rect}
+                          {activity.count > 0 && (
+                            <text
+                              x={x + width / 2}
+                              y={y + height / 2}
+                              textAnchor="middle"
+                              dominantBaseline="middle"
+                              fontSize={8}
+                              fill={
+                                currentTheme === "dark"
+                                  ? activity.level >= 3
+                                    ? "rgba(0,0,0,0.9)"
+                                    : "rgba(255,255,255,0.6)"
+                                  : activity.level >= 3
+                                    ? "rgba(255,255,255,0.8)"
+                                    : "rgba(0,0,0,0.6)"
+                              }
+                              style={{ pointerEvents: "none", userSelect: "none" }}
+                            >
+                              {activity.count}
+                            </text>
+                          )}
+                        </g>
+                      );
+                    }}
+                  />
+                )}
               />
-            )}
-          />
+            </div>
+          </ScrollArea>
 
           <Tooltip handle={githubTooltipHandle}>
             {({ payload }) => (

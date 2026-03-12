@@ -8,7 +8,7 @@ const Footer = ({ graph = true }: { graph?: boolean }) => {
   const { email } = userData.personalInfo;
 
   return (
-    <div className="max-w-4xl mx-auto border-dashed sm:pb-0 pb-8">
+    <div className="w-full max-w-4xl mx-auto border-dashed sm:pb-0 pb-8">
       <div className="border-x border-border border-dashed p-4 max-w-screen-xl w-full mx-auto space-y-4 py-8 md:py-16">
         {graph && <GitHubGraph />}
         <div className="flex flex-col md:flex-row w-full justify-between gap-2 md:gap-1 items-start md:items-end mt-8">
@@ -18,7 +18,7 @@ const Footer = ({ graph = true }: { graph?: boolean }) => {
           </p>
           <LastUpdated />
         </div>
-          <div className="md:flex-grow hidden border-b border-dashed border-border" />
+          <div className="md:grow hidden border-b border-dashed border-border" />
           <CopyButton email={email} />
         </div>
       </div>
