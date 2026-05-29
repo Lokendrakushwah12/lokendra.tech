@@ -1,7 +1,14 @@
+const getSiteUrl = () => {
+  if (process.env.NEXT_PUBLIC_SITE_URL) return process.env.NEXT_PUBLIC_SITE_URL;
+  if (process.env.NEXT_PUBLIC_VERCEL_URL)
+    return `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`;
+  return "https://lokendra-tech.vercel.app";
+};
+
 export const siteConfig = {
   name: "Lokendra Kushwah",
   description: "A software engineer who codes and designs with purpose.",
-  url: "https://lokendra.tech",
+  url: getSiteUrl(),
 
   // Personal Information
   author: {
