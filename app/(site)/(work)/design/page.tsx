@@ -82,6 +82,12 @@ const data: WorkItem[] = [
     title: "Bounce Daily",
     description: "Vehicle rental platform",
   },
+  {
+    src: "/work/os-white.webp",
+    alt: "OpenSight dashboard - Watch how AI talks about your brand",
+    title: "OpenSight dashboard",
+    description: "Watch how AI talks about your brand",
+  },
 ];
 
 export default function DesignPage() {
