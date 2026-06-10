@@ -4,6 +4,21 @@ import { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Design Work",
   description: "Selected design and frontend engineering work.",
+  openGraph: {
+    title: "Design Work",
+    description: "Selected design and frontend engineering work.",
+    images: [
+      {
+        url: "/openGraph-design.png",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Design Work",
+    description: "Selected design and frontend engineering work.",
+    images: ["/openGraph-design.png"],
+  },
 };
 
 const data: WorkItem[] = [
@@ -24,6 +39,12 @@ const data: WorkItem[] = [
     alt: "Kalyxa - Transform your style with AI & Expert Stylist",
     title: "Kalyxa",
     description: "Transform your style with AI & Expert Stylist",
+  },
+  {
+    src: "/work/opensight.png",
+    alt: "OpenSight - Watch how AI talks about your brand",
+    title: "OpenSight",
+    description: "Watch how AI talks about your brand",
   },
   {
     src: "/work/cauldron.png",

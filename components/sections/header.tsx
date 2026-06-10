@@ -4,7 +4,6 @@ import Link from "next/link";
 import { GithubIcon, XIcon } from "../icons";
 import { ThemeToggle } from "../theme-toggle";
 import { Button } from "../ui/button";
-import TextButton from "../ui/text-button";
 
 const Header = () => {
   const { name, profession, github, twitter } = userData.personalInfo;

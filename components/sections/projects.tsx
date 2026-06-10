@@ -9,8 +9,7 @@ import ProjectCard from "../ui/project-card";
 import { Tabs, TabsList, TabsPanel, TabsTab } from "../ui/tabs";
 import ToastExample from "../crafts/toast-example";
 
-const TAB_VALUES = ["projects", "crafts"] as const;
-type TabValue = (typeof TAB_VALUES)[number];
+type TabValue = "projects" | "crafts";
 
 function isValidTab(tab: string | null): tab is TabValue {
   return tab === "projects" || tab === "crafts";

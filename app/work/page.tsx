@@ -96,7 +96,7 @@ async function getWorkContent() {
       frontmatter: data as WorkMatter,
       content,
     };
-  } catch (error) {
+  } catch {
     return null;
   }
 }

@@ -14,9 +14,6 @@ const About = () => {
   // Split the about text into parts
   const beforeSoftwareEngineer = about.split("A software engineer")[0];
   const afterSoftwareEngineer = about.split("A software engineer")[1];
-  const previouslyWorkedPart = afterSoftwareEngineer.split(
-    "\nPreviously I worked"
-  )[1];
   const mainPart = afterSoftwareEngineer.split("\nPreviously I worked")[0];
 
   return (
