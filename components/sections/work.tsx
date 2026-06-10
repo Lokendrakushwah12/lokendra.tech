@@ -46,7 +46,7 @@ export function Work({
                       src={project.src}
                       alt={project.alt ?? project.title ?? ""}
                       title={project.description}
-                      className="my-0 max-w-none border-0 rounded-xs object-cover bg-accent"
+                      className="my-0 max-w-none border-0 rounded-xs object-cover bg-background"
                     />
                     {project.title && (
                       <meta itemProp="name" content={project.title} />

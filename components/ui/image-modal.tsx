@@ -53,7 +53,7 @@ export default function ImageModal({
         title={title}
         layoutId={id}
         className={cn(
-          "cursor-zoom-in block rounded-xl border my-6 w-full max-w-4xl mx-auto",
+          "cursor-zoom-in block rounded-sm border my-6 w-full max-w-4xl mx-auto",
           className
         )}
         onClick={() => setIsOpen(true)}
@@ -82,7 +82,7 @@ export default function ImageModal({
                   <div className="pointer-events-auto relative">
                     <motion.button
                       type="button"
-                      className="absolute -top-10 right-0 p-1 rounded-full bg-black/50 text-white hover:bg-black/70 transition-colors"
+                      className="absolute -top-10 right-0 p-1 rounded-sm bg-black/50 text-white hover:bg-black/70 transition-colors"
                       initial={{ opacity: 0, scale: 0.5 }}
                       animate={{
                         scale: 1,
@@ -100,8 +100,7 @@ export default function ImageModal({
                       layoutId={id}
                       src={src}
                       alt={alt}
-                      className="w-full max-h-[85vh] object-contain rounded-2xl border border-border/20 dark:border-border shadow-2xl cursor-zoom-out"
-                      style={{ borderRadius: 12 }}
+                      className="bg-sidebar w-full max-h-[85vh] object-contain rounded-sm shadow-2xl cursor-zoom-out"
                       onClick={handleClose}
                     />
                   </div>
