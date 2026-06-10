@@ -47,6 +47,7 @@
     "@types/node": "^24",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "baseline-browser-mapping": "^2.10.35",
     "eslint": "^9.39.1",
     "eslint-config-next": "^16.0.7",
     "husky": "^9.1.7",
