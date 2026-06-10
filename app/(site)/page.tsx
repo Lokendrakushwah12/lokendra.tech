@@ -1,5 +1,5 @@
 import About from "@/components/sections/about";
-import Blogs from "@/components/sections/blogs";
+// import Blogs from "@/components/sections/blogs";
 import Experience from "@/components/sections/experience";
 import Projects from "@/components/sections/projects";
 import LinesBG from "@/components/ui/lines-bg";
@@ -16,8 +16,8 @@ export default function Page() {
       <Suspense fallback={<ProjectsFallback />}>
         <Projects />
       </Suspense>
-      <LinesBG />
-      <Blogs />
+      {/* <LinesBG />
+      <Blogs /> */}
       <LinesBG />
     </>
   );
