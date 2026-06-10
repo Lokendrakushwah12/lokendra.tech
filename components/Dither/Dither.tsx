@@ -61,7 +61,7 @@ float cnoise(vec2 P) {
   return 2.3 * mix(n_x.x, n_x.y, fade_xy.y);
 }
 
-const int OCTAVES = 4;
+const int OCTAVES = 2;
 float fbm(vec2 p) {
   float value = 0.0;
   float amp = 1.0;
@@ -190,6 +190,7 @@ interface DitheredWavesProps {
   disableAnimation: boolean;
   enableMouseInteraction: boolean;
   mouseRadius: number;
+  fps: number;
 }
 
 function DitheredWaves({
@@ -202,11 +203,32 @@ function DitheredWaves({
   pixelSize,
   disableAnimation,
   enableMouseInteraction,
-  mouseRadius
+  mouseRadius,
+  fps
 }: DitheredWavesProps) {
   const mesh = useRef<THREE.Mesh>(null);
   const mouseRef = useRef(new THREE.Vector2());
-  const { viewport, size, gl } = useThree();
+  const { viewport, size, gl, invalidate } = useThree();
+
+  // When fps > 0 the Canvas runs in "demand" mode (no automatic per-rAF render).
+  // We drive renders ourselves at the capped rate via invalidate(), and skip
+  // entirely while the tab is hidden so the GPU isn't cooked in the background.
+  useEffect(() => {
+    if (fps <= 0) return;
+    let raf = 0;
+    let last = performance.now();
+    const interval = 1000 / fps;
+    const loop = (now: number) => {
+      raf = requestAnimationFrame(loop);
+      if (document.hidden) return;
+      if (now - last >= interval) {
+        last = now - ((now - last) % interval);
+        invalidate();
+      }
+    };
+    raf = requestAnimationFrame(loop);
+    return () => cancelAnimationFrame(raf);
+  }, [fps, invalidate]);
 
   // Created once and mutated imperatively in useFrame (three.js uniforms pattern);
   // initial prop values are captured intentionally, hence the empty dependency list.
@@ -311,6 +333,8 @@ interface DitherProps {
   disableAnimation?: boolean;
   enableMouseInteraction?: boolean;
   mouseRadius?: number;
+  dpr?: number;
+  fps?: number;
 }
 
 export default function Dither({
@@ -323,14 +347,17 @@ export default function Dither({
   pixelSize = 2,
   disableAnimation = false,
   enableMouseInteraction = true,
-  mouseRadius = 1
+  mouseRadius = 1,
+  dpr = 1,
+  fps = 0
 }: DitherProps) {
   return (
     <Canvas
       className="w-full h-full relative"
       camera={{ position: [0, 0, 6] }}
-      dpr={1}
-      gl={{ antialias: true, preserveDrawingBuffer: true }}
+      dpr={dpr}
+      frameloop={fps > 0 ? "demand" : "always"}
+      gl={{ antialias: false, powerPreference: "high-performance" }}
     >
       <DitheredWaves
         waveSpeed={waveSpeed}
@@ -343,6 +370,7 @@ export default function Dither({
         disableAnimation={disableAnimation}
         enableMouseInteraction={enableMouseInteraction}
         mouseRadius={mouseRadius}
+        fps={fps}
       />
     </Canvas>
   );

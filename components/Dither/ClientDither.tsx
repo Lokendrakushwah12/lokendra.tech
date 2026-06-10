@@ -20,12 +20,14 @@ const ClientDither = () => {
         waveColor={waveColor}
         backgroundColor={backgroundColor}
         disableAnimation={false}
-        enableMouseInteraction={true}
+        enableMouseInteraction={false}
         mouseRadius={0.15}
         colorNum={3}
         waveAmplitude={0.3}
         waveFrequency={1}
         waveSpeed={0.06}
+        dpr={1}
+        fps={30}
       />
     </div>
   );
