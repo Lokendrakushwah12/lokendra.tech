@@ -19,7 +19,7 @@ const userData: UserData = {
       endDate: "Present",
       link: "https://www.keychain.com/",
       description:
-        "Working on KeychainOS — a smart operating system for CPG manufacturers.\nShipping features like internal PO approval, lot number configuration, dynamic titles for food safety forms, form field type changes, and Keychain AI search.\nWorked in the FDE team, solving bugs and shipping customer enhancements quickly.\nFrom understanding to PRD to writing TRDs, collaborating with peer engineers and product managers daily.",
+        "Shipped 20+ features across Food Safety, Inventory, Procurement, and Forms modules — including vendor items mapping, automatic lot numbering, dynamic form titles, global tagging system, bulk form actions, and storage location improvements.\nBuilt a demo account automation system reducing provisioning time from 1 full engineering day to under 30 minutes, directly accelerating sales velocity.\nImplemented the ability to change form field types in the Form Builder with dependency-aware safeguards (conditions, automations, dynamic titles, ERP links), reducing form rebuild cycles during setup.\nDrove epoch time migration across the Documents module, eliminating timezone-related date bugs and standardizing time handling across the codebase.\nWorking in the onboarding team to ingest customer data into the ERP platform, including items and SKUs, inventory data, data translation, and validation error resolution.",
     },
     {
       id: 2,

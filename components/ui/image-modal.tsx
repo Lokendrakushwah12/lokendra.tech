@@ -3,15 +3,22 @@
 import { useId, useState, useEffect } from "react";
 import { createPortal } from "react-dom";
 import { motion, AnimatePresence, MotionConfig } from "motion/react";
-import { X } from "lucide-react"; 
+import { X } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 interface ImageModalProps {
   src: string;
   alt: string;
+  title?: string;
   className?: string;
 }
 
-export default function ImageModal({ src, alt, className }: ImageModalProps) {
+export default function ImageModal({
+  src,
+  alt,
+  title,
+  className,
+}: ImageModalProps) {
   const [isOpen, setIsOpen] = useState(false);
   const id = useId();
 
@@ -37,15 +44,18 @@ export default function ImageModal({ src, alt, className }: ImageModalProps) {
   }, [isOpen]);
 
   return (
-    <MotionConfig transition={{ type: "spring", stiffness: 225, damping: 25 }}>
+    <MotionConfig
+      transition={{ type: "spring", stiffness: 550, damping: 35, mass: 0.6 }}
+    >
       <motion.img
         src={src}
         alt={alt}
+        title={title}
         layoutId={id}
-        className={`cursor-zoom-in block rounded-lg border my-6 w-full max-w-4xl mx-auto ${
-          className || ""
-        }`}
-        style={{ borderRadius: 12 }}
+        className={cn(
+          "cursor-zoom-in block rounded-xl border my-6 w-full max-w-4xl mx-auto",
+          className
+        )}
         onClick={() => setIsOpen(true)}
         whileTap={{ scale: 0.98, transition: { duration: 0.15 } }}
       />
@@ -65,6 +75,7 @@ export default function ImageModal({ src, alt, className }: ImageModalProps) {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
+                  transition={{ duration: 0.15 }}
                   onClick={handleBackdropClick}
                 />
                 <div className="relative z-10 flex items-center justify-center max-w-6xl max-h-full pointer-events-none">
@@ -76,7 +87,7 @@ export default function ImageModal({ src, alt, className }: ImageModalProps) {
                       animate={{
                         scale: 1,
                         opacity: 1,
-                        transition: { delay: 0.25 },
+                        transition: { delay: 0.1 },
                       }}
                       exit={{ opacity: 0, transition: { duration: 0.05 } }}
                       transition={{ duration: 0.1 }}

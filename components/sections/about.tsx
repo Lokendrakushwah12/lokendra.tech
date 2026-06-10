@@ -1,6 +1,6 @@
 import userData from "@/config/userData";
 import Link from "next/link";
-import { EnggIcon, InducedAIIcon, UnoloIcon } from "../icons";
+import { HBIcon, InducedAIIcon, UnoloIcon, XIcon } from "../icons";
 import {
   Tooltip,
   TooltipPopup,
@@ -21,6 +21,14 @@ const About = () => {
 
   return (
     <div className="border-b border-border border-dashed">
+      {/* preload the tooltip avatar so it never shows a loading flash on hover */}
+      <img
+        src="https://lokendrakushwah12.github.io/cdn/amogh.webp"
+        alt=""
+        aria-hidden="true"
+        className="hidden"
+        decoding="async"
+      />
       <div className="border-x border-border border-dashed p-4 w-full mx-auto space-y-4 py-8 md:py-16">
         <div className="text-muted-foreground text-base tracking-tight">
           {beforeSoftwareEngineer}
@@ -73,34 +81,86 @@ const About = () => {
               </Link>
             </div>
           </div>
-          {/* what i am building */}
+          {/* whom i have worked with */}
           <div className="mt-6">
             <div className="text-muted-foreground leading-relaxed">
-              I am currently working on&nbsp;
+              I have worked with&nbsp;
               <TooltipProvider delay={0}>
                 <Tooltip>
                   <TooltipTrigger className="inline-flex">
-                    <Link href="https://engg.space/?utm_source=lokendra.tech" target="_blank" rel="noopener noreferrer" className="cursor-pointer inline-flex items-center gap-1.5 mx-1 translate-y-0.5">
-                      <EnggIcon className="size-4" />
+                    <Link href="https://x.com/OfficialAmogh" target="_blank" rel="noopener noreferrer" className="cursor-pointer inline-flex items-center gap-1.5 mx-1 translate-y-0.5">
+                      <XIcon className="size-3.5" />
                       <span
                         className="text-sm border-b cursor-pointer border-dashed border-foreground/60 text-foreground hover:text-primary transition-colors"
                       >
-                        Engg.space
+                        Amogh
                       </span>
                     </Link>
                   </TooltipTrigger>
-                  <TooltipPopup side="top" className="w-72 p-0 overflow-hidden">
+                  <TooltipPopup
+                    side="top"
+                    className="overflow-hidden p-0 **:data-[slot=tooltip-viewport]:p-0"
+                  >
                     <img
-                      src="https://lokendrakushwah12.github.io/cdn/engg.png"
-                      alt="Engg.space"
-                      className="w-full h-32 rounded object-cover mt-0.5"
+                      src="https://lokendrakushwah12.github.io/cdn/amogh.webp"
+                      alt="Amogh"
+                      decoding="async"
+                      className="block shrink-0 w-60 object-cover"
                     />
-                    <p className="px-0.5 py-1.5 text-xs text-muted-foreground">
-                      Its a space for engineers to browse their next job from recently funded startups.
-                    </p>
                   </TooltipPopup>
                 </Tooltip>
               </TooltipProvider>
+              &nbsp;to revamp the entire dashboard of&nbsp;
+
+
+              <TooltipProvider delay={0}>
+                <Tooltip>
+                  <TooltipTrigger className="inline-flex">
+                    <Link href="https://www.humanbehavior.co/" target="_blank" rel="noopener noreferrer" className="cursor-pointer inline-flex items-center gap-1.5 mx-1 translate-y-0.5">
+                      <HBIcon className="size-3.5" />
+                      <span
+                        className="text-sm border-b cursor-pointer border-dashed border-foreground/60 text-foreground hover:text-primary transition-colors"
+                      >
+                        Human Behavior
+                      </span>
+                    </Link>
+                  </TooltipTrigger>
+                  <TooltipPopup
+                    side="top"
+                    className="overflow-hidden p-0 **:data-[slot=tooltip-viewport]:p-0"
+                  >
+                    <img
+                      src="https://lokendrakushwah12.github.io/cdn/hb.webp"
+                      alt="Amogh"
+                      decoding="async"
+                      className="block shrink-0 w-60 object-cover"
+                    />
+                  </TooltipPopup>
+                </Tooltip>
+              </TooltipProvider>
+              .&nbsp;Check the whole work&nbsp;
+              <Link
+                href="/humanbehavior-work"
+                rel="noopener noreferrer"
+                className="border-b cursor-pointer border-dashed border-foreground/60 text-foreground hover:text-primary transition-colors"
+              >
+                here
+              </Link>
+              .
+            </div>
+          </div>
+          {/* proof of work */}
+          <div className="mt-6">
+            <div className="text-muted-foreground leading-relaxed">
+              Checkout my&nbsp;
+              {/* Proof of Work */}
+              <Link
+                href="/design"
+                rel="noopener noreferrer"
+                className="border-b cursor-pointer border-dashed border-foreground/60 text-foreground hover:text-primary transition-colors"
+              >
+                Design Work.
+              </Link>
             </div>
           </div>
         </div>

@@ -1,3 +1,4 @@
+import { cn } from "@/lib/utils";
 import type { SVGProps } from "react";
 
 export function GithubIcon(props: SVGProps<SVGSVGElement>) {
@@ -347,5 +348,18 @@ export function SnipeIcon(props: SVGProps<SVGSVGElement>) {
         />
       </defs>
     </svg>
+  );
+}
+
+export function HBIcon(props: { className?: string }) {
+  return (
+    <svg
+      width="24"
+      height="24"
+      viewBox="0 0 100 100"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className={cn("text-[#2C8956]", props.className)}
+    ><rect x="0" y="0" width="30" height="100" fill="currentColor"></rect><rect x="35" y="0" width="30" height="100" fill="currentColor"></rect><rect x="70" y="0" width="30" height="47.5" fill="currentColor"></rect><rect x="70" y="53" width="30" height="47.5" fill="currentColor"></rect></svg>
   );
 }
