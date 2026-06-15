@@ -27,7 +27,7 @@ export function Work({
           </header>
 
           <section
-            className="w-full flex flex-col xl:flex-row justify-start gap-2"
+            className="w-full flex flex-col sm:flex-row justify-start gap-2"
             aria-label="Portfolio gallery of projects and design work"
           >
             {[
