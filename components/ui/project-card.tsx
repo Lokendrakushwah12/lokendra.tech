@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { GithubIcon } from "../icons";
 import TextButton from "./text-button";
-import { getTechInfo } from "@/lib/utils";
+import { cn, getTechInfo } from "@/lib/utils";
 
 type ProjectCardProps = {
   title: string;
@@ -75,7 +75,9 @@ const ProjectCard = ({
             href={liveLink}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-muted-foreground hover:text-foreground w-full text-sm text-center text-nowrap transition-all border-r border-dashed"
+            className={cn("text-muted-foreground hover:text-foreground w-full text-sm text-center text-nowrap transition-all border-dashed",
+              gitHubLink ? "border-r border-dashed" : "border-none"
+            )}
           >
             Live link
           </Link>
