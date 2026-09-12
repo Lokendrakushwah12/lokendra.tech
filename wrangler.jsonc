@@ -4,6 +4,10 @@
   "name": "lokendra-tech",
   "compatibility_date": "2025-09-23",
   "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
+  "routes": [
+    { "pattern": "lokiii.me", "custom_domain": true },
+    { "pattern": "www.lokiii.me", "custom_domain": true }
+  ],
   "assets": {
     "directory": ".open-next/assets",
     "binding": "ASSETS"
