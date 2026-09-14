@@ -1,56 +1,28 @@
-import { formatDate, formatTime, getRepoLastUpdate } from "@/lib/repo-utils";
-import { unstable_cache } from "next/cache";
+import { formatDate, formatTime } from "@/lib/repo-utils";
 
-const getCachedPortfolioUpdate = unstable_cache(
-    async () => {
-        try {
-            const lastUpdate = await getRepoLastUpdate({
-                owner: 'lokendrakushwah12',
-                repo: 'lokendra.tech',
-                token: process.env.GITHUB_TOKEN
-            });
+/**
+ * Resolved at build time from the build commit's date (see next.config.ts).
+ *
+ * ponytail: this used to fetch the GitHub API at request time behind a 1h
+ * unstable_cache. That cannot work on Workers — outbound fetches share
+ * Cloudflare egress IPs and GitHub allows 60 unauthenticated requests/hour per
+ * IP, so it rate-limited and silently fell back to a hardcoded 2023 date. The
+ * value only changes on rebuild anyway, so a build-time constant is both
+ * correct and free. If it ever needs to update without a deploy, the fix is a
+ * GITHUB_TOKEN secret, not a re-fetch.
+ */
+const LastUpdated = () => {
+  const iso = process.env.NEXT_PUBLIC_LAST_UPDATED;
+  const updatedAt = iso ? new Date(iso) : null;
 
-            return {
-                lastUpdated: lastUpdate.lastUpdated,
-                lastCommit: lastUpdate.lastCommit,
-                // Add formatted date and time
-                date: lastUpdate.lastUpdated ? formatDate(lastUpdate.lastUpdated) : null,
-                time: lastUpdate.lastUpdated ? formatTime(lastUpdate.lastUpdated) : null
-            };
-        } catch (error) {
-            console.error('Error fetching portfolio update:', error);
-            return null;
-        }
-    },
-    ['portfolio-last-update'],
-    {
-        revalidate: 3600,
-        tags: ['portfolio-update']
-    }
-);
+  if (!updatedAt || Number.isNaN(updatedAt.getTime())) return null;
 
-const LastUpdated = async () => {
-    // Change from single string to separate date and time variables
-    let date = '28th October 2023';
-    let time = '10:00 AM';
+  return (
+    <p className="text-xs font-normal text-muted-foreground">
+      Last updated by Lokendra on {formatDate(updatedAt)},{" "}
+      {formatTime(updatedAt)}
+    </p>
+  );
+};
 
-    if (process.env.NODE_ENV === 'development') {
-        date = 'Development';
-        time = 'mode';
-    } else {
-        const portfolioUpdate = await getCachedPortfolioUpdate();
-        // Use the formatted date and time from the cached function
-        if (portfolioUpdate?.date && portfolioUpdate?.time) {
-            date = portfolioUpdate.date;
-            time = portfolioUpdate.time;
-        }
-    }
-
-    return (
-        <p className="text-xs font-normal text-muted-foreground">
-            Last updated by Lokendra on {date}, {time}
-        </p>
-    )
-}
-
-export default LastUpdated
+export default LastUpdated;

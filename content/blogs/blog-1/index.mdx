@@ -1,0 +1,115 @@
+---
+title: "Common Backend Pitfalls"
+description: "A placeholder first blog post."
+date: "2026-02-12"
+excerpt: "Notes from my first blog entry."
+---
+
+## 1. N+1 Query Problem
+One query for parent records + N queries for related records.
+**Fix:** Eager loading, joins, batch fetching.
+
+---
+
+## 2. Missing Indexes
+Queries cause full table scans.
+**Fix:** Add proper indexes, use `EXPLAIN`.
+
+---
+
+## 3. Over-Indexing
+Too many indexes slow down writes and increase storage.
+
+---
+
+## 4. Unbounded Queries (No Pagination)
+Fetching millions of rows at once.
+**Fix:** LIMIT/OFFSET or cursor-based pagination.
+
+---
+
+## 5. Race Conditions
+Concurrent updates corrupt data.
+**Fix:** Transactions, row locks, optimistic locking.
+
+---
+
+## 6. Transaction Isolation Issues
+Dirty reads, non-repeatable reads.
+Understand isolation levels:
+- Read Committed
+- Repeatable Read
+- Serializable
+
+---
+
+## 7. Thundering Herd Problem
+Cache expires → traffic spike hits DB.
+**Fix:** Cache jitter, locking, background refresh.
+
+---
+
+## 8. Cache Invalidation Bugs
+DB updated but cache not invalidated → stale data.
+
+---
+
+## 9. Memory Leaks
+Unreleased objects, global references, unclosed connections.
+
+---
+
+## 10. Connection Pool Exhaustion
+Connections not released → timeouts.
+
+---
+
+## 11. Blocking I/O in Async Systems
+Sync operations block event loop.
+
+---
+
+## 12. Large Transactions
+Long-running transactions cause locks & deadlocks.
+
+---
+
+## 13. Deadlocks
+Two transactions wait on each other → DB kills one.
+
+---
+
+## 14. Over-fetching Data
+Using `SELECT *` when only few columns needed.
+
+---
+
+## 15. Serialization Bottlenecks
+Huge JSON responses slow CPU & network.
+
+---
+
+## 16. Missing Timeouts
+External service calls without timeouts → cascading failures.
+
+---
+
+## 17. Retry Storms
+Multiple services retry simultaneously → overload.
+
+---
+
+## 18. Non-Idempotent APIs
+Retries create duplicate charges/orders.
+
+---
+
+## 19. Slow Logging
+Synchronous logging slows request handling.
+
+---
+
+## 20. No Rate Limiting
+System vulnerable to abuse or accidental overload.
+
+---

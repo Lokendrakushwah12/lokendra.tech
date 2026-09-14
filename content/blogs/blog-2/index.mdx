@@ -1,0 +1,114 @@
+---
+title: "Frontend Anti-Patterns"
+description: "A placeholder second blog post."
+date: "2026-02-11"
+excerpt: "Notes from my second blog entry."
+---
+
+---
+
+## 1. Excessive Re-renders
+Unnecessary renders degrade performance.
+**Fix:** `React.memo`, `useMemo`, `useCallback`.
+
+---
+
+## 2. Expensive Computation in Render
+Heavy filtering/mapping runs every render.
+**Fix:** Memoization.
+
+---
+
+## 3. Missing or Incorrect Keys in Lists
+Causes DOM instability & bugs.
+
+---
+
+## 4. Memory Leaks
+Uncleared intervals, listeners, subscriptions.
+**Fix:** Cleanup in `useEffect`.
+
+---
+
+## 5. Stale Closures
+Effects using outdated state due to missing dependencies.
+
+---
+
+## 6. Infinite useEffect Loops
+State updates inside effect trigger endless rerenders.
+
+---
+
+## 7. Duplicate API Calls
+Multiple components fetching same data.
+**Fix:** Centralized fetching (React Query, SWR).
+
+---
+
+## 8. Large Bundle Size
+Importing entire libraries.
+**Fix:** Tree-shaking, selective imports.
+
+---
+
+## 9. Blocking Main Thread
+Heavy computation freezes UI.
+**Fix:** Web Workers, chunk processing.
+
+---
+
+## 10. Controlled vs Uncontrolled Input Bugs
+Improper state management in forms.
+
+---
+
+## 11. Prop Drilling / State Explosion
+Deeply nested prop passing.
+**Fix:** Context, state managers.
+
+---
+
+## 12. Layout Thrashing
+Repeated DOM reads & writes force reflow.
+
+---
+
+## 13. Unoptimized Images
+Large images without compression or lazy loading.
+
+---
+
+## 14. UI Race Conditions
+Out-of-order API responses overwrite newer state.
+**Fix:** AbortController, request tracking.
+
+---
+
+## 15. Poor Loading/Error Handling
+Broken UX due to missing states.
+
+---
+
+## 16. Overusing Global State
+Unnecessary global state causes large re-renders.
+
+---
+
+## 17. CSS Specificity Conflicts
+Overuse of `!important` and complex selectors.
+
+---
+
+## 18. Hydration Mismatch (SSR Apps)
+Server and client render differently → UI glitches.
+
+---
+
+## 19. No Debounce/Throttle
+API calls triggered on every keystroke.
+
+---
+
+## 20. Accessibility Issues
+Missing ARIA labels, poor keyboard support, low contrast.

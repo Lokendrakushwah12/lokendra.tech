@@ -2,6 +2,28 @@ import type { TechStack } from "@/types";
 
 export const techStack: TechStack[] = [
   {
+    name: "Turso",
+    logoUrl: "/tech/turso.svg"
+  },
+  {
+    name: "Drizzle ORM",
+    logoUrl: "/tech/drizzle-orm.svg",
+    invertInDarkMode: true
+  },
+  {
+    name: "BetterAuth",
+    logoUrl: "/tech/better-auth.svg",
+    invertInDarkMode: true
+  },
+  {
+    name: "Cloudflare Workers",
+    logoUrl: "/tech/cloudflare-workers.svg"
+  },
+  {
+    name: "Chrome Extension",
+    logoUrl: "/tech/chrome.svg"
+  },
+  {
     name: "React.js",
     logoUrl: "https://d26c7l40gvbbg2.cloudfront.net/tool_icons/reactjs.svg"
   },
