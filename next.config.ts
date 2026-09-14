@@ -1,6 +1,21 @@
+import { execSync } from "node:child_process";
 import type { NextConfig } from "next";
 
+// The site only changes when it is rebuilt, so the build commit's date IS the
+// "last updated" time. Resolving it here avoids a runtime GitHub API call:
+// Workers egress from Cloudflare IPs shared across customers, and GitHub's
+// unauthenticated limit is 60 requests/hour per IP, so that call fails far more
+// often than it succeeds.
+const lastUpdated = (() => {
+  try {
+    return execSync("git log -1 --format=%cI", { encoding: "utf8" }).trim();
+  } catch {
+    return new Date().toISOString();
+  }
+})();
+
 const nextConfig: NextConfig = {
+  env: { NEXT_PUBLIC_LAST_UPDATED: lastUpdated },
   transpilePackages: ["next-mdx-remote"],
   images: {
     remotePatterns: [
