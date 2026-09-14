@@ -55,7 +55,7 @@ const userData: UserData = {
     {
       title: "Engg.space",
       description: "A space for engineers to browse their next job from recently funded startups.",
-      tags: ["Next.js", "Playwright", "TypeScript", "PostgreSQL", "Drizzle ORM", "BetterAuth", "Vercel"],
+      tags: ["Next.js", "TypeScript", "Turso", "Drizzle ORM", "BetterAuth", "Cloudflare Workers", "Chrome Extension"],
       Livelink: "https://engg.space/?utm_source=lokendra.tech",
       gitHubLink: null,
       imageSrc: "https://lokendrakushwah12.github.io/cdn/engg.png",
