@@ -5,6 +5,26 @@ description: "A comprehensive overview of my professional journey and experience
 
 I do my best work when given the complex technical challenges to solve. My strength is taking messy, complicated things and making them simple and clean through iteration and learning.
 
+### Software Engineer at Keychain (current)
+
+Keychain is an ERP for food & beverage manufacturers. I work across the frontend, the ERP data layer and production incidents — the work has been less "ship a feature" and more "find out why the number is wrong".
+
+**Splitting the monolith.** I migrated operator-mode, workflow and production routes out of the monolithic dashboard app into a standalone Next.js app — 34 commits, new route groups, dashboard kept as a rollback target. CI build times went from 16-18 minutes down to 7-9.
+
+**Owning releases.** I run frontend releases end to end: sequencing dependent FE/BE merges across three services, resolving release-branch conflicts, verifying on production and writing the release notes. The largest shipped 10 features and fixes in a single release with zero rollbacks.
+
+**AI extraction.** I built Customer AI extraction — the shared platform data layer plus the review, approval and bulk error-resolution UI — and fixed false DUPLICATE flagging in document ingestion, load-tested against a 4,500-row customer file.
+
+**Root-cause work.** Traced 119 of 326 sales orders with null address foreign keys back to a single ERP migration batch. Bounded 11 vendor billing-address overwrites to one integration window using Postgres audit tables. Fixed multi-page dispatch PDFs rendering overlapping text, work-order quantities silently zeroed by 2-decimal rounding, and delivery dates shifting a day because date-only values were stored as epoch timestamps.
+
+**The demo platform.** I own the sales demo environments: provisioning went from a full engineering day to under 30 minutes, I re-synced environments that had drifted ~2 months behind production, and caught a 40s+ Start Production regression by benchmarking accounts before it reached a live customer call.
+
+**Design work.** A full UI overhaul of the internal AI platform — 261 files, +9.2K/-2.5K LOC — putting a design token behind every colour utility, a shared Base UI component library, dagre-routed workflow graphs (18 edges, 0 crossings) and WCAG 4.5:1 text contrast.
+
+**Technologies:** Next.js, TypeScript, Tailwind CSS, Zustand, React Query, PostgreSQL, Trino/Metabase, Sentry, PostHog.
+
+---
+
 ### Frontend Engineer at Induced AI (6 months)
 
 Worked as a Frontend Engineer at Induced AI, where I built user interfaces for multiple projects that solve real-world problems using AI and AI agents.
@@ -15,10 +35,11 @@ Worked as a Frontend Engineer at Induced AI, where I built user interfaces for m
 
 I have ownership of multiple Induced projects:
 
-- **Induced Docs** - A unified doc system using MDX, OpenAPI, with live API playground
-- **Induced Admin** - Administrative dashboard for developer to manage users and projects
+- **Induced Docs** - A unified doc system using MDX, OpenAPI, with a live API playground over 50+ endpoints
+- **Induced Admin** - Administrative dashboard for developers to manage users and projects
 - **Rexair Academy** - Educational platform and learning management system
-- **Insure Gather** - Insurance data collection and processing platform
+- **Insure Gather** - Extracts fields from driving licences, Emirates IDs and vehicle documents to auto-fill insurance portals via iframe, cutting per-policy entry from 1-2 hours to under 2 minutes
+- **Validex** - A rule-based document validation engine with configurable compliance presets, validating 2,000+ documents at 94% accuracy
 
 ![Venus Codebase](/experience/induced-ai.png)
 My work at Induced is considered highly valuable, and I majorly work on the frontend aspects of these projects, ensuring seamless user experiences across complex, multi-agent systems.
@@ -31,9 +52,9 @@ My work at Induced is considered highly valuable, and I majorly work on the fron
 
 During my internship at Unolo, I gained valuable hands-on experience in software development and contributed to Unolo panel dashboard projects. My responsibilities included:
 
-- Assisting in the development of web dashboard and features
-- Contributing to bug fixes and feature enhancements
-- Integration of custom fields to employee table for enhanced data management
+- Delivered custom fields for employee management end to end, adopted by 4+ client organisations (50-1,000 employees each) to define their own employee schema without engineering involvement
+- Shipped automated punch-out detection and attendance timeline visualization, eliminating manual attendance entry in favour of fully digital tracking
+- Added confirmation dialogs, filters and permission attributes on destructive actions
 
 **Technologies:** Next.js, Redux, MUI Library, Tailwind CSS, GraphqL, Git, GitHub
 
@@ -43,7 +64,7 @@ Throughout my career, I've worked on various projects that have helped me grow a
 
 - **STASHR**: A bookmark organization tool built with Next.js and MongoDB
 - **MEET-BOT**: Real-time meeting transcription service using Node.js and WebSocket
-- **ANUBHAV**: Web platform for college placement resources and interview experiences
+- **ANUBHAV**: Web platform for college placement resources and interview experiences, used by 200+ students
 - **PIXA/UI**: Curated collection of versatile Next.js components
 
 ---

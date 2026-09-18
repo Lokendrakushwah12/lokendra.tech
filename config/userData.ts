@@ -13,13 +13,13 @@ const userData: UserData = {
   experience: [
     {
       id: 1,
-      role: "Frontend Engineer",
+      role: "Software Engineer",
       company: "Keychain",
       startDate: "Sep 2025",
       endDate: "Present",
       link: "https://www.keychain.com/",
       description:
-        "Shipped 20+ features across Food Safety, Inventory, Procurement, and Forms modules — including vendor items mapping, automatic lot numbering, dynamic form titles, global tagging system, bulk form actions, and storage location improvements.\nBuilt a demo account automation system reducing provisioning time from 1 full engineering day to under 30 minutes, directly accelerating sales velocity.\nImplemented the ability to change form field types in the Form Builder with dependency-aware safeguards (conditions, automations, dynamic titles, ERP links), reducing form rebuild cycles during setup.\nDrove epoch time migration across the Documents module, eliminating timezone-related date bugs and standardizing time handling across the codebase.\nWorking in the onboarding team to ingest customer data into the ERP platform, including items and SKUs, inventory data, data translation, and validation error resolution.",
+        "Migrated operator-mode, workflow and production routes out of the monolithic dashboard into a standalone Next.js app (34 commits, rollback path retained), cutting CI build times from 16-18 min to 7-9 min.\nOwned frontend releases end to end: sequenced dependent FE/BE merges across three services and resolved release-branch conflicts — 10 features shipped in one release with zero rollbacks.\nBuilt Customer AI extraction (data layer, review/approval and bulk error-resolution UI) and fixed false DUPLICATE flagging in ingestion, load-tested against a 4,500-row customer file.\nRoot-caused production incidents: traced 119 of 326 sales orders with null address foreign keys to one ERP migration batch and bounded 11 vendor address overwrites via Postgres audit tables.\nOwned the sales demo platform: cut provisioning from 1 engineering day to under 30 minutes, re-synced environments ~2 months behind production, and caught a 40s+ Start Production regression before live demos.\nLed a UI overhaul of the internal AI platform (261 files, +9.2K LOC): design tokens behind every colour utility, a shared Base UI library, dagre-routed workflow graphs.",
     },
     {
       id: 2,
@@ -29,7 +29,7 @@ const userData: UserData = {
       endDate: "Sep 2025",
       link: "https://www.induced.ai/",
       description:
-        "Worked on the Venus codebase to ship features like AI chat, the screener page, and citations in markdown content, plus bug fixes.\nBuilt and maintained internal platforms like Tmhcc, enabling multi-agent data processing workflows.\nWorked on Validex, a rule-based document validation engine supporting custom presets for compliance checking.\nBuilt Docs, a unified documentation system using MDX, OpenAPI, and Fuma Docs with a live API playground.\nLeveraged Zustand, React Query, Next.js, and Tailwind CSS across projects to ensure state management, responsive UIs, and efficient data fetching.",
+        "Worked on the Venus codebase to ship features like AI chat, the screener page, and citations in markdown content, plus bug fixes.\nBuilt Validex, a rule-based document validation engine with configurable compliance presets, validating 2,000+ documents at 94% accuracy.\nBuilt Insure-Gather, extracting fields from driving licences, Emirates IDs and vehicle documents to auto-fill insurance portals via iframe — cutting per-policy entry from 1-2 hours to under 2 minutes.\nShipped Tmhcc, a multi-agent data-processing platform for underwriting, and Docs, a unified documentation system (MDX, OpenAPI, Fuma Docs) with a live API playground over 50+ endpoints.\nLeveraged Zustand, React Query, Next.js, and Tailwind CSS across projects to ensure state management, responsive UIs, and efficient data fetching.",
     },
     {
       id: 3,
@@ -39,7 +39,7 @@ const userData: UserData = {
       endDate: "Apr 2025",
       link: "https://unolo.com",
       description:
-        "Led end-to-end development of a custom field feature for employee management, improving flexibility.\nIntegrated automated punch-out status functionality and timeline visualization, reducing manual tracking time.\nEnhanced UX by adding confirmation dialogs, filters, and permission attributes for improved security.",
+        "Delivered custom fields for employee management end to end, adopted by 4+ client organisations (50-1,000 employees each) to define their own employee schema without engineering involvement.\nShipped automated punch-out detection and attendance timeline visualization, eliminating manual attendance entry in favour of fully digital tracking.\nEnhanced UX by adding confirmation dialogs, filters, and permission attributes for improved security.",
     },
     {
       id: 4,
@@ -54,7 +54,7 @@ const userData: UserData = {
   projects: [
     {
       title: "Engg.space",
-      description: "A space for engineers to browse their next job from recently funded startups.",
+      description: "A space for engineers to browse their next job from recently funded startups. 50 daily active users.",
       tags: ["Next.js", "TypeScript", "Turso", "Drizzle ORM", "BetterAuth", "Cloudflare Workers", "Chrome Extension"],
       Livelink: "https://engg.space/?utm_source=lokendra.tech",
       gitHubLink: null,
@@ -84,7 +84,7 @@ const userData: UserData = {
     {
       title: "ANUBHAV",
       description:
-        "It is a web-based platform that offers articles and resources focused on college placements and interview experiences.",
+        "A web-based platform offering articles and resources focused on college placements and interview experiences. Used by 200+ students.",
       tags: [
         "React.js",
         "Tailwind CSS",
@@ -111,8 +111,8 @@ const userData: UserData = {
     },
   ],
   lastUpdated: {
-    date: "JUNE 11, 2025",
-    time: "23:12 PM IST",
+    date: "SEPTEMBER 19, 2026",
+    time: "00:18 AM IST",
   },
 };
 
