@@ -3,33 +3,43 @@ title: "Proof of work"
 description: "A comprehensive overview of my professional journey and experiences"
 ---
 
-I do my best work when given the complex technical challenges to solve. My strength is taking messy, complicated things and making them simple and clean through iteration and learning.
+> I do my best work when given the complex technical challenges to solve. My strength is taking messy, complicated things and making them simple and clean through iteration and learning.
 
-### Software Engineer at Keychain (current)
+<RoleHeading title="Software Engineer at Keychain" date="Sep 2025 - Present" />
 
-Keychain is an ERP for food & beverage manufacturers. I work across the frontend, the ERP data layer and production incidents — the work has been less "ship a feature" and more "find out why the number is wrong".
+Keychain is an ERP for food & beverage manufacturers. I work across the frontend, the ERP data layer and production incidents - the work has been less "ship a feature" and more "find out why the number is wrong".
 
-**Splitting the monolith.** I migrated operator-mode, workflow and production routes out of the monolithic dashboard app into a standalone Next.js app — 34 commits, new route groups, dashboard kept as a rollback target. CI build times went from 16-18 minutes down to 7-9.
+**Splitting the monolith.** I migrated operator-mode, workflow and production routes out of the monolithic dashboard app into a standalone Next.js app - 34 commits, new route groups, dashboard kept as a rollback target. CI build times went from 16-18 minutes down to 7-9.
+
+<MonolithSplit />
 
 **Owning releases.** I run frontend releases end to end: sequencing dependent FE/BE merges across three services, resolving release-branch conflicts, verifying on production and writing the release notes. The largest shipped 10 features and fixes in a single release with zero rollbacks.
 
-**AI extraction.** I built Customer AI extraction — the shared platform data layer plus the review, approval and bulk error-resolution UI — and fixed false DUPLICATE flagging in document ingestion, load-tested against a 4,500-row customer file.
+**AI extraction.** I built Customer AI extraction - the shared platform data layer plus the review, approval and bulk error-resolution UI - and fixed false DUPLICATE flagging in document ingestion, load-tested against a 4,500-row customer file.
+
+<ExtractionPipeline />
 
 **Root-cause work.** Traced 119 of 326 sales orders with null address foreign keys back to a single ERP migration batch. Bounded 11 vendor billing-address overwrites to one integration window using Postgres audit tables. Fixed multi-page dispatch PDFs rendering overlapping text, work-order quantities silently zeroed by 2-decimal rounding, and delivery dates shifting a day because date-only values were stored as epoch timestamps.
 
+<IncidentTrace />
+
 **The demo platform.** I own the sales demo environments: provisioning went from a full engineering day to under 30 minutes, I re-synced environments that had drifted ~2 months behind production, and caught a 40s+ Start Production regression by benchmarking accounts before it reached a live customer call.
 
-**Design work.** A full UI overhaul of the internal AI platform — 261 files, +9.2K/-2.5K LOC — putting a design token behind every colour utility, a shared Base UI component library, dagre-routed workflow graphs (18 edges, 0 crossings) and WCAG 4.5:1 text contrast.
+**Design work.** A full UI overhaul of the internal AI platform - 261 files, +9.2K/-2.5K LOC - putting a design token behind every colour utility, a shared Base UI component library, dagre-routed workflow graphs (18 edges, 0 crossings) and WCAG 4.5:1 text contrast.
 
-**Technologies:** Next.js, TypeScript, Tailwind CSS, Zustand, React Query, PostgreSQL, Trino/Metabase, Sentry, PostHog.
+<TechStack items="Next.js, TypeScript, Tailwind CSS, Zustand, React Query, PostgreSQL, Trino, Metabase, Sentry, PostHog" />
 
----
+<GitHubGraph username="lokendra-keychain" profileSrc="/experience/lokendra-keychain-gh.webp" scrollFade />
 
-### Frontend Engineer at Induced AI (6 months)
+![Keychain contributions - 336 commits, 288,997 additions, 70,798 deletions](/experience/lokendra-keychain-contr.png)
+
+<LinesBG />
+
+<RoleHeading title="Frontend Engineer at Induced AI" date="Apr 2025 - Sep 2025" />
 
 Worked as a Frontend Engineer at Induced AI, where I built user interfaces for multiple projects that solve real-world problems using AI and AI agents.
 
-### 🛠 Top 2 Contributor to the Venus Codebase of Induced (Backed by Sam Altman)
+#### Top 2 Contributor to the Venus Codebase
 
 ![Venus Codebase](/experience/venus.png)
 
@@ -44,11 +54,11 @@ I have ownership of multiple Induced projects:
 ![Venus Codebase](/experience/induced-ai.png)
 My work at Induced is considered highly valuable, and I majorly work on the frontend aspects of these projects, ensuring seamless user experiences across complex, multi-agent systems.
 
-**Technologies:** Next.js, Tailwind CSS, Zustand, React Query across projects to ensure state management, responsive UIs, and efficient data fetching.
+<TechStack items="Next.js, Tailwind CSS, Zustand, React Query" />
 
----
+<LinesBG />
 
-## Previous Experience
+<RoleHeading title="SDE Intern at Unolo" date="Feb 2025 - Apr 2025" />
 
 During my internship at Unolo, I gained valuable hands-on experience in software development and contributed to Unolo panel dashboard projects. My responsibilities included:
 
@@ -56,9 +66,9 @@ During my internship at Unolo, I gained valuable hands-on experience in software
 - Shipped automated punch-out detection and attendance timeline visualization, eliminating manual attendance entry in favour of fully digital tracking
 - Added confirmation dialogs, filters and permission attributes on destructive actions
 
-**Technologies:** Next.js, Redux, MUI Library, Tailwind CSS, GraphqL, Git, GitHub
+<TechStack items="Next.js, Redux, MUI, Tailwind CSS, GraphQL, Git, GitHub" />
 
----
+<LinesBG />
 
 Throughout my career, I've worked on various projects that have helped me grow as a developer and designer:
 
@@ -67,10 +77,8 @@ Throughout my career, I've worked on various projects that have helped me grow a
 - **ANUBHAV**: Web platform for college placement resources and interview experiences, used by 200+ students
 - **PIXA/UI**: Curated collection of versatile Next.js components
 
----
+<LinesBG />
 
 ## Let's Connect
 
 If you're interested in learning more about my experience or discussing potential opportunities, feel free to reach out! I'm always excited to talk about technology, design, and the projects I'm working on.
-
----

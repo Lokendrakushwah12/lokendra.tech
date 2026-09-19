@@ -65,8 +65,7 @@ export const techStack: TechStack[] = [
     logoUrl: "https://d26c7l40gvbbg2.cloudfront.net/tool_icons/mongodb.svg"
   },
   {
-    name: "Zustand",
-    logoUrl: "https://d26c7l40gvbbg2.cloudfront.net/tool_icons/zustand.svg"
+    name: "Zustand"
   },
   {
     name: "Framer Motion",
@@ -105,6 +104,34 @@ export const techStack: TechStack[] = [
   {
     name: "NPM Package",
     logoUrl: "https://d26c7l40gvbbg2.cloudfront.net/tool_icons/npm.svg"
+  },
+  {
+    name: "PostgreSQL",
+    logoUrl: "https://d26c7l40gvbbg2.cloudfront.net/tool_icons/postgresql.svg"
+  },
+  {
+    name: "Trino",
+    logoUrl: "/tech/trino.svg"
+  },
+  {
+    name: "Metabase",
+    logoUrl: "https://d26c7l40gvbbg2.cloudfront.net/tool_icons/metabase.svg"
+  },
+  {
+    name: "Sentry",
+    logoUrl: "/tech/sentry.svg"
+  },
+  {
+    name: "PostHog",
+    logoUrl: "https://d26c7l40gvbbg2.cloudfront.net/tool_icons/posthog.svg"
+  },
+  {
+    name: "GitHub",
+    logoUrl: "https://d26c7l40gvbbg2.cloudfront.net/tool_icons/github.svg",
+    invertInDarkMode: true
+  },
+  {
+    name: "MUI",
+    logoUrl: "/tech/mui.svg"
   }
 ];
-

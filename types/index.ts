@@ -1,6 +1,6 @@
 export interface TechStack {
   name: string;
-  logoUrl: string;
+  logoUrl?: string;
   invertInDarkMode?: boolean;
   invertInLightMode?: boolean;
 }

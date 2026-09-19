@@ -40,5 +40,5 @@ const data: WorkItem[] = images.map((src, index) => ({
 }));
 
 export default function HumanBehaviorWorkPage() {
-  return <Work title="Human Behavior Design Engineering Work" data={data} />;
+  return <Work title="Human Behavior Design Engineering Work" slug="human-behavior" data={data} />;
 }

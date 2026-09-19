@@ -32,8 +32,8 @@ const Projects = () => {
   );
 
   return (
-    <div className="border-b border-border border-dashed">
-      <div className="border-x border-border border-dashed p-4 max-w-screen-xl w-full mx-auto space-y-4 py-8 md:py-16">
+    <div>
+      <div className="p-4 max-w-screen-xl w-full mx-auto space-y-4 py-8 md:py-16">
         <div className="w-full inline-flex items-center justify-center gap-1 font-normal tracking-tight text-xl">
           <Tabs
             className="gap-6 w-full"

@@ -9,7 +9,7 @@ const Footer = ({ graph = true }: { graph?: boolean }) => {
 
   return (
     <div className="w-full max-w-4xl mx-auto border-dashed sm:pb-0 pb-8">
-      <div className="border-x border-border border-dashed p-4 max-w-screen-xl w-full mx-auto space-y-4 py-8 md:py-16">
+      <div className="p-4 max-w-screen-xl w-full mx-auto space-y-4 py-8 md:py-16">
         {graph && <GitHubGraph />}
         <div className="flex flex-col md:flex-row w-full justify-between gap-2 md:gap-1 items-start md:items-end mt-8">
         <div className="flex-col text-start text-muted-foreground">

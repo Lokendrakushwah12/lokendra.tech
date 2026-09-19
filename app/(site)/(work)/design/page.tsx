@@ -91,5 +91,5 @@ const data: WorkItem[] = [
 ];
 
 export default function DesignPage() {
-  return <Work title="Design Work" data={data} />;
+  return <Work title="Design Work" slug="design-work" data={data} />;
 }
