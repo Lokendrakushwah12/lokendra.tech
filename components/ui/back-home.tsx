@@ -1,11 +1,6 @@
 import Link from "next/link";
 import { ReturnIcon } from "../icons";
 
-/**
- * Sits inline above the content by default. The reference pins into the
- * gutter, but our columns are wide (max-w-4xl / 87em) so there is no room
- * until the viewport is very wide - hence it only pins past 1500px.
- */
 const BackHome = ({
   label = "Home",
   current,
@@ -15,7 +10,7 @@ const BackHome = ({
   current?: string;
 }) => {
   return (
-    <aside className="static w-fit my-4 left-8 top-28 min-[1500px]:fixed min-[1500px]:mb-0 min-[1500px]:z-50">
+    <aside className="w-fit my-4">
       <Link
         href="/"
         className="flex w-fit select-none items-center text-foreground outline-none duration-200 hover:opacity-60 focus-visible:ring-1 focus-visible:ring-foreground rounded-[10px]"
