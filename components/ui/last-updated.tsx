@@ -4,7 +4,7 @@ import { formatDate, formatTime } from "@/lib/repo-utils";
  * Resolved at build time from the build commit's date (see next.config.ts).
  *
  * ponytail: this used to fetch the GitHub API at request time behind a 1h
- * unstable_cache. That cannot work on Workers — outbound fetches share
+ * unstable_cache. That cannot work on Workers - outbound fetches share
  * Cloudflare egress IPs and GitHub allows 60 unauthenticated requests/hour per
  * IP, so it rate-limited and silently fell back to a hardcoded 2023 date. The
  * value only changes on rebuild anyway, so a build-time constant is both

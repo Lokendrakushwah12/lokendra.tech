@@ -1,4 +1,4 @@
-import ClientDither from "@/components/Dither/ClientDither";
+import AsciiDither from "@/components/Dither/AsciiDither";
 import { ArrowLeftIcon, GithubIcon, XIcon } from "@/components/icons";
 import Footer from "@/components/sections/footer";
 import { ThemeToggle } from "@/components/theme-toggle";
@@ -128,8 +128,8 @@ export default async function BlogPostPage({ params }: PageProps) {
 
   return (
     <div className="min-h-screen relative font-inter">
-      <ClientDither />
-      <div className="max-w-4xl mx-auto py-8 border-x border-dashed relative z-10">
+      <AsciiDither />
+      <div className="max-w-4xl mx-auto py-8 relative z-10">
         <PageHeader title={blog.frontmatter.title} />
         <div className="mx-4 text-xs text-muted-foreground border-t border-dashed pt-4">
           {blog.frontmatter.date ?? "No date"}

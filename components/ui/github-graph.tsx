@@ -22,35 +22,77 @@ const GitHubCalendar = dynamic(
   { ssr: false }
 );
 
-const GitHubGraph = () => {
+const GitHubGraph = ({
+  username = "Lokendrakushwah12",
+  profileSrc,
+  scrollFade = true,
+}: {
+  username?: string;
+  profileSrc?: string;
+  scrollFade?: boolean;
+}) => {
+
   const { resolvedTheme } = useTheme();
   const currentTheme = resolvedTheme === "light" ? "light" : "dark";
 
   const customTheme = {
+    // even lightness steps up to the cream peak (L* 10 / 22 / 40 / 68 / 91)
     dark: [
-      "#0F1A1780", // level 0 - very dark slate green
-      "#2A3F3A", // level 1 - low
-      "#45665E", // level 2 - medium-low
-      "#6F9188", // level 3 - medium
-      "#A7C8BD", // level 4 - high
+      "#1a1918", // stone-1000 - empty
+      "#363533", // stone-900
+      "#625d58", // stone-700
+      "#aba69d", // stone-550
+      "#eae6d7", // cream - high
     ],
+    // mirrored: same steps running light to dark (L* 94 / 82 / 68 / 40 / 22)
     light: [
-      "#E9F4F0", // level 0 - very light slate green
-      "#BFD6CD", // level 1 - low
-      "#8FB4A8", // level 2 - medium-low
-      "#52786E", // level 3 - medium
-      "#195446", // level 4 - high
+      "#f1ece5", // stone-200 - empty
+      "#d4cfc6", // stone-400
+      "#aba69d", // stone-550
+      "#625d58", // stone-700
+      "#363533", // stone-900 - high
     ],
   };
 
   return (
     <TooltipProvider delay={0}>
       <div className="flex justify-center max-w-4xl w-full">
-        <div className="w-full z-20 mx-auto border border-dashed rounded-lg bg-site-background p-2">
-          <ScrollArea>
+        <div className="w-full z-20 mx-auto border border-dashed rounded-lg bg-site-background p-2 [&_[data-slot=scroll-area-viewport]]:overflow-y-hidden [&_[data-slot=scroll-area-viewport]]:overscroll-y-auto">
+          {profileSrc && (
+            <div className="px-1 pt-1 pb-2">
+              <Tooltip>
+                <TooltipTrigger
+                  render={(triggerProps) => (
+                    <a
+                      {...triggerProps}
+                      href={`https://github.com/${username}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-sm text-muted-foreground border-b border-dashed border-foreground/60 hover:text-foreground transition-colors"
+                    >
+                      @{username}
+                    </a>
+                  )}
+                />
+                <TooltipPopup
+                  side="top"
+                  className="overflow-hidden p-0 **:data-[slot=tooltip-viewport]:p-0"
+                >
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={profileSrc}
+                    alt={`${username} on GitHub`}
+                    decoding="async"
+                    className="block shrink-0 w-[28rem] max-w-[80vw] object-cover"
+                  />
+                </TooltipPopup>
+              </Tooltip>
+            </div>
+          )}
+          <ScrollArea scrollFade={scrollFade}>
             <div style={{ minWidth: "max-content" }}>
               <GitHubCalendar
-                username="Lokendrakushwah12"
+                username={username}
                 theme={customTheme}
                 colorScheme={currentTheme}
                 // eslint-disable-next-line @typescript-eslint/no-explicit-any

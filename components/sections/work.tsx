@@ -1,3 +1,5 @@
+import BackHome from "../ui/back-home";
+import Enter from "../ui/enter";
 import ImageModal from "../ui/image-modal";
 import { Card } from "../ui/card";
 import { Container } from "../ui/container";
@@ -11,21 +13,25 @@ export type WorkItem = {
 
 export function Work({
   title = "Design Work",
+  slug,
   data,
 }: {
   title?: string;
+  /** breadcrumb segment; defaults to a slugified title */
+  slug?: string;
   data: WorkItem[];
 }) {
+  const crumb =
+    slug ?? title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
   return (
     <main className="relative flex-1 font-inter">
       <Card className="w-full h-full mx-auto sm:pb-8 bg-transparent border-none before:shadow-[0_1px_--theme(--color-black/0%)] dark:before:shadow-[0_-1px_--theme(--color-white/0%)]">
         <Container className="relative px-2! h-full flex flex-col items-start justify-start">
-          <header className="mx-auto max-w-4xl text-center">
-            <h1 className="my-6 text-foreground tracking-[-0.05em] max-w-2xl mx-auto font-medium leading-[105%] text-4xl">
-              {title}
-            </h1>
-          </header>
+          <Enter stagger={1}>
+            <BackHome current={crumb} />
+          </Enter>
 
+          <Enter stagger={2} className="w-full">
           <section
             className="w-full flex flex-col sm:flex-row justify-start gap-2"
             aria-label="Portfolio gallery of projects and design work"
@@ -62,6 +68,7 @@ export function Work({
               </div>
             ))}
           </section>
+          </Enter>
         </Container>
       </Card>
     </main>

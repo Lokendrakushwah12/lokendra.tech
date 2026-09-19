@@ -1,6 +1,6 @@
-import userData from "@/config/userData";
 import Link from "next/link";
-import { HBIcon, InducedAIIcon, UnoloIcon, XIcon } from "../icons";
+import TechBadge from "../ui/tech-badge";
+import { ArrowUpRightIcon, HBIcon, InducedAIIcon, KeychainIcon, UnoloIcon, XIcon } from "../icons";
 import {
   Tooltip,
   TooltipPopup,
@@ -9,15 +9,9 @@ import {
 } from "../ui/tooltip";
 
 const About = () => {
-  const { about } = userData;
-
-  // Split the about text into parts
-  const beforeSoftwareEngineer = about.split("A software engineer")[0];
-  const afterSoftwareEngineer = about.split("A software engineer")[1];
-  const mainPart = afterSoftwareEngineer.split("\nPreviously I worked")[0];
 
   return (
-    <div className="border-b border-border border-dashed">
+    <div>
       {/* preload the tooltip avatar so it never shows a loading flash on hover */}
       <img
         src="https://lokendrakushwah12.github.io/cdn/amogh.webp"
@@ -26,15 +20,20 @@ const About = () => {
         className="hidden"
         decoding="async"
       />
-      <div className="border-x border-border border-dashed p-4 w-full mx-auto space-y-4 py-8 md:py-16">
+      <div className="p-4 w-full mx-auto space-y-4 pb-8">
         <div className="text-muted-foreground text-base tracking-tight">
-          {beforeSoftwareEngineer}
-          <div className="mt-4">
-            A&nbsp;
+          <div className="">
+            I&rsquo;m a&nbsp;
             <h1 className="inline-block border-foreground/60 text-foreground">
               Software Engineer
             </h1>
-            &nbsp;{mainPart}
+            &nbsp;at&nbsp;
+            <TechBadge
+              tag="Keychain"
+              href="https://www.keychain.com/?utm_source=lokendra.tech"
+              icon={<KeychainIcon className="size-3.5" />}
+            />
+            , where we&apos;re building the AI Operating System for food &amp; beverage manufacturers. I care deeply about the details, and I like building products people can trust to get things right.
           </div>
 
           {/* Previously I worked section */}
@@ -42,57 +41,49 @@ const About = () => {
             <div className="text-muted-foreground leading-relaxed">
               Previously, I worked at&nbsp;
               {/* Induced AI */}
-              <Link href="https://www.induced.ai/?utm_source=lokendra.tech" target="_blank" rel="noopener noreferrer" className="cursor-pointer inline-flex items-center gap-1.5 mx-1 translate-y-1.5">
-                <InducedAIIcon className="size-5.5 border border-[#212121] rounded-sm bg-gradient-to-b from-black to-black/90" />
-                <span
-                  className="text-sm border-b cursor-pointer border-dashed border-foreground/60 text-foreground hover:text-primary transition-colors"
-                >
-                  Induced AI
-                </span>
-              </Link>
+              <TechBadge
+                tag="Induced AI"
+                href="https://www.induced.ai/?utm_source=lokendra.tech"
+                icon={<InducedAIIcon className="size-3.5 rounded-[2px] bg-gradient-to-b from-black to-black/90" />}
+              />
               &nbsp;and&nbsp;
               {/* Unolo */}
-              <Link href="https://unolo.com?utm_source=lokendra.tech" target="_blank" rel="noopener noreferrer" className="cursor-pointer inline-flex items-center gap-1.5 mx-1 translate-y-0.5">
-                <UnoloIcon className="size-4" />
-                <span
-                  className="text-sm border-b cursor-pointer border-dashed border-foreground/60 text-foreground hover:text-primary transition-colors"
-                >
-                  Unolo
-                </span>
-              </Link>
-              &nbsp;as Frontend Engineer.
+              <TechBadge
+                tag="Unolo"
+                href="https://unolo.com?utm_source=lokendra.tech"
+                icon={<UnoloIcon className="size-3.5" />}
+              />
+              &nbsp;as a Frontend Engineer.
             </div>
           </div>
 
           {/* proof of work */}
-          <div className="mt-6 hidden">
+          <div className="mt-6">
             <div className="text-muted-foreground leading-relaxed">
               Checkout my&nbsp;
               {/* Proof of Work */}
               <Link
                 href="/work"
                 rel="noopener noreferrer"
-                className="border-b cursor-pointer border-dashed border-foreground/60 text-foreground hover:text-primary transition-colors"
+                className="border-b cursor-pointer border-dashed border-foreground/60 text-foreground hover:text-primary transition-colors inline-flex items-center gap-0.5"
               >
                 Proof of Work
+                <ArrowUpRightIcon className="size-2.5 shrink-0" />
               </Link>
             </div>
           </div>
           {/* whom i have worked with */}
           <div className="mt-6">
             <div className="text-muted-foreground leading-relaxed">
-              I have worked with&nbsp;
+              Worked with&nbsp;
               <TooltipProvider delay={0}>
                 <Tooltip>
                   <TooltipTrigger className="inline-flex">
-                    <Link href="https://x.com/OfficialAmogh" target="_blank" rel="noopener noreferrer" className="cursor-pointer inline-flex items-center gap-1.5 mx-1 translate-y-0.5">
-                      <XIcon className="size-3.5" />
-                      <span
-                        className="text-sm border-b cursor-pointer border-dashed border-foreground/60 text-foreground hover:text-primary transition-colors"
-                      >
-                        Amogh
-                      </span>
-                    </Link>
+                      <TechBadge
+                        tag="Amogh"
+                        href="https://x.com/OfficialAmogh"
+                        icon={<XIcon className="size-3" />}
+                      />
                   </TooltipTrigger>
                   <TooltipPopup
                     side="top"
@@ -113,14 +104,11 @@ const About = () => {
               <TooltipProvider delay={0}>
                 <Tooltip>
                   <TooltipTrigger className="inline-flex">
-                    <Link href="https://www.humanbehavior.co/" target="_blank" rel="noopener noreferrer" className="cursor-pointer inline-flex items-center gap-1.5 mx-1 translate-y-0.5">
-                      <HBIcon className="size-3.5" />
-                      <span
-                        className="text-sm border-b cursor-pointer border-dashed border-foreground/60 text-foreground hover:text-primary transition-colors"
-                      >
-                        Human Behavior
-                      </span>
-                    </Link>
+                      <TechBadge
+                        tag="Human Behavior"
+                        href="https://www.humanbehavior.co/"
+                        icon={<HBIcon className="size-3.5" />}
+                      />
                   </TooltipTrigger>
                   <TooltipPopup
                     side="top"
@@ -139,24 +127,25 @@ const About = () => {
               <Link
                 href="/humanbehavior-work"
                 rel="noopener noreferrer"
-                className="border-b cursor-pointer border-dashed border-foreground/60 text-foreground hover:text-primary transition-colors"
+                className="border-b cursor-pointer border-dashed border-foreground/60 text-foreground hover:text-primary transition-colors inline-flex items-center gap-0.5"
               >
                 here
+                <ArrowUpRightIcon className="size-2.5 shrink-0" />
               </Link>
               .
             </div>
           </div>
-          {/* proof of work */}
+          {/* design work */}
           <div className="mt-6">
             <div className="text-muted-foreground leading-relaxed">
               Checkout my&nbsp;
-              {/* Proof of Work */}
               <Link
                 href="/design"
                 rel="noopener noreferrer"
-                className="border-b cursor-pointer border-dashed border-foreground/60 text-foreground hover:text-primary transition-colors"
+                className="border-b cursor-pointer border-dashed border-foreground/60 text-foreground hover:text-primary transition-colors inline-flex items-center gap-0.5"
               >
                 Design Work.
+                <ArrowUpRightIcon className="size-2.5 shrink-0" />
               </Link>
             </div>
           </div>

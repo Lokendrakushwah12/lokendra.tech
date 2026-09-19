@@ -8,7 +8,7 @@ export default function WorkLayout({
   return (
     <>
       <LinesBG />
-      <div className="min-h-screen border-x border-b border-dashed flex justify-start lg:flex-row flex-col">
+      <div className="min-h-screen flex justify-start lg:flex-row flex-col">
         {children}
       </div>
       <LinesBG />

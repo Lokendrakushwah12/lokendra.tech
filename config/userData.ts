@@ -3,13 +3,13 @@ import type { UserData } from "@/types";
 const userData: UserData = {
   personalInfo: {
     name: "LOKENDRA KUSHWAH",
-    profession: "SOFTWARE ENGINEER",
+    profession: "Software Engineer at Keychain",
     email: "Lokendrakushwah8051@gmail.com",
     github: "https://github.com/lokendrakushwah12",
     twitter: "https://x.com/lokendratwt",
   },
   about:
-    "Hello, I'm Lokendra. A software engineer who codes and designs with purpose. I build standout products by blending problem-solving with design thinking — getting 1% better every day.",
+    "I'm a Software Engineer at Keychain, where we're building the AI Operating System for food & beverage manufacturers. I care deeply about the details, and I like building products people can trust to get things right.",
   experience: [
     {
       id: 1,

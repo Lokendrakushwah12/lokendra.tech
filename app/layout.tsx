@@ -2,6 +2,7 @@ import { PostHogProvider } from "@/components/PostHogProvider";
 import { ToastProvider } from "@/components/ui/toast";
 import { siteConfig } from "@/config/site";
 import { ibmPlexMono, inter, karstar } from "@/lib/fonts";
+import { SoundProvider } from "@/components/sound-provider";
 import { ThemeProvider } from "@/providers/theme-provider";
 import type { Metadata } from "next";
 import Script from "next/script";
@@ -82,9 +83,11 @@ export default function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
+            <SoundProvider>
             <ToastProvider position="top-right">
               {children}
             </ToastProvider>
+            </SoundProvider>
           </ThemeProvider>
         </PostHogProvider>
       </body>

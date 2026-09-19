@@ -1,4 +1,5 @@
-import ClientDither from "@/components/Dither/ClientDither";
+import AsciiDither from "@/components/Dither/AsciiDither";
+import Enter from "@/components/ui/enter";
 import Footer from "@/components/sections/footer";
 import Header from "@/components/sections/header";
 import { ProgressiveBlur } from "@/components/ui/progressive-blur";
@@ -9,14 +10,16 @@ export default function SiteLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="flex flex-col h-full select-none lg:max-w-4xl overflow-clip mx-auto relative">
-      <ClientDither />
+    <div className="flex flex-col h-full max-w-3xl mx-auto relative pt-8">
+      <AsciiDither />
       <ProgressiveBlur
         className="pointer-events-none z-500 fixed bottom-0 w-full h-20"
         direction="bottom"
         blurIntensity={1}
       />
-      <Header />
+      <Enter stagger={0}>
+        <Header />
+      </Enter>
       {children}
       <Footer />
     </div>

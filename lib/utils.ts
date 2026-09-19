@@ -25,3 +25,40 @@ export function playClickSound() {
   audio.volume = 0.5;
   audio.play().catch((e) => console.error("Audio play failed", e));
 }
+export function slugify(text: string) {
+  return text
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
+export function tocFromMdx(source: string) {
+  const items: { title: string; url: string; depth: number }[] = [];
+
+  for (const line of source.split("\n")) {
+    const role = line.match(/<RoleHeading\s+title="([^"]+)"/);
+    if (role) {
+      items.push({ title: role[1], url: `#${slugify(role[1])}`, depth: 2 });
+      continue;
+    }
+    const heading = line.match(/^(#{2,4})\s+(.+?)\s*$/);
+    if (heading) {
+      const title = heading[2].replace(/[*_`]/g, "");
+      items.push({
+        title,
+        url: `#${slugify(title)}`,
+        depth: heading[1].length,
+      });
+      continue;
+    }
+
+    // bold lead-ins ("**Splitting the monolith.** …") are the real sub-topics
+    const lead = line.match(/^\*\*([^*]+)\*\*/);
+    if (lead) {
+      const title = lead[1].replace(/\.$/, "").trim();
+      items.push({ title, url: `#${slugify(title)}`, depth: 3 });
+    }
+  }
+
+  return items;
+}
