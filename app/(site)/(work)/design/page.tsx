@@ -9,7 +9,9 @@ export const metadata: Metadata = {
     description: "Selected design and frontend engineering work.",
     images: [
       {
-        url: "/openGraph-design.png",
+        url: "/og-design.jpg",
+        width: 1200,
+        height: 678,
       },
     ],
   },
@@ -17,7 +19,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Design Work",
     description: "Selected design and frontend engineering work.",
-    images: ["/openGraph-design.png"],
+    images: ["/og-design.jpg"],
   },
 };
 

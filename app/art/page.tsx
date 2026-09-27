@@ -41,7 +41,7 @@ const INITIAL_PADDING = 100;
 
 const MY_PHOTOGRAPHY: PhotographyAsset[] = reverseArray([
   { url: "/pfp.png" },
-  { url: "/apple-icon.png" },
+  { url: "/art-pfp-2.png" },
   { url: "/images/ai/0003.webp" },
   { url: "/images/ai/0004.webp" },
   { url: "/images/ai/0005.webp" },

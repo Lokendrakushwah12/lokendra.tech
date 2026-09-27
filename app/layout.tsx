@@ -12,25 +12,28 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: siteConfig.name,
   description: siteConfig.description,
-  icons: {
-    icon: "/icon.png",
-    apple: "/apple-icon.png",
-  },
+  // favicon.ico, icon.png and apple-icon.png come from the app/ file conventions (hashed URLs, so browsers refresh them)
   openGraph: {
+    type: "website",
+    siteName: siteConfig.name,
     title: siteConfig.name,
     description: siteConfig.description,
     url: siteConfig.url,
     images: [
       {
-        url: "/openGraph.png?v=3",
+        url: "/og.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Lokendra Kushwah, Software Engineer at Keychain",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
+    creator: siteConfig.author.twitter,
     title: siteConfig.name,
     description: siteConfig.description,
-    images: ["/openGraph.png?v=3"],
+    images: ["/og.jpg"],
   },
 };
 
@@ -40,9 +43,6 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        {/* Favicons and App Icons */}
-        <link rel="icon" type="image/png" sizes="32x32" href="/icon.png" />
-        <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon.png" />
         <link rel="manifest" href="/manifest.json" />
         {/* Umami Analytics - Only load if configured */}
         {siteConfig.analytics?.umami?.websiteId && (
