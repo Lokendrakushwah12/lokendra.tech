@@ -198,8 +198,8 @@ export default async function WorkPage() {
         />
 
         {/* Content */}
-        <Enter stagger={3}>
-          <div className="prose prose-gray dark:prose-invert max-w-none border-t border-dashed mt-4 [&_img]:block [&_img]:my-6 [&_p]:my-4">
+        <Enter stagger={3} list>
+          <div className="enter-list prose prose-gray dark:prose-invert max-w-none border-t border-dashed mt-4 [&_img]:block [&_img]:my-6 [&_p]:my-4">
             <MDXRemote source={content} components={components} />
           </div>
         </Enter>

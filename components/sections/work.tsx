@@ -31,7 +31,7 @@ export function Work({
             <BackHome current={crumb} />
           </Enter>
 
-          <Enter stagger={2} className="w-full">
+          <Enter stagger={2} list className="w-full">
           <section
             className="w-full flex flex-col sm:flex-row justify-start gap-2"
             aria-label="Portfolio gallery of projects and design work"
@@ -40,7 +40,7 @@ export function Work({
               data.slice(0, Math.ceil(data.length / 2)),
               data.slice(Math.ceil(data.length / 2)),
             ].map((column, columnIndex) => (
-              <div key={columnIndex} className="flex flex-1 flex-col gap-2">
+              <div key={columnIndex} className="enter-list flex flex-1 flex-col gap-2">
                 {column.map((project, index) => (
                   <article
                     key={`${project.src}-${index}`}

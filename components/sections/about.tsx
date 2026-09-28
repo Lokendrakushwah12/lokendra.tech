@@ -21,7 +21,7 @@ const About = () => {
         decoding="async"
       />
       <div className="p-4 w-full mx-auto space-y-4 pb-8">
-        <div className="text-muted-foreground text-base tracking-tight">
+        <div className="enter-list text-muted-foreground text-base tracking-tight">
           <div className="">
             I&rsquo;m a&nbsp;
             <h1 className="inline-block border-foreground/60 text-foreground">

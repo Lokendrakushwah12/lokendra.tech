@@ -358,8 +358,54 @@ img {
   animation-delay: calc(var(--delay, 0ms) * var(--stagger, 0));
 }
 
+/* cascade a container's direct children; the first twelve step in and the
+   rest land together, so a long list never keeps content waiting */
+.enter-list > * {
+  animation: stagger-enter 600ms cubic-bezier(0.22, 0.75, 0.3, 1) backwards;
+  animation-delay: calc(
+    var(--delay, 70ms) * (var(--stagger, 0) + var(--list-offset, 0) + var(--i, 0))
+  );
+}
+.enter-list > :nth-child(2) {
+  --i: 1;
+}
+.enter-list > :nth-child(3) {
+  --i: 2;
+}
+.enter-list > :nth-child(4) {
+  --i: 3;
+}
+.enter-list > :nth-child(5) {
+  --i: 4;
+}
+.enter-list > :nth-child(6) {
+  --i: 5;
+}
+.enter-list > :nth-child(7) {
+  --i: 6;
+}
+.enter-list > :nth-child(8) {
+  --i: 7;
+}
+.enter-list > :nth-child(9) {
+  --i: 8;
+}
+.enter-list > :nth-child(10) {
+  --i: 9;
+}
+.enter-list > :nth-child(11) {
+  --i: 10;
+}
+.enter-list > :nth-child(12) {
+  --i: 11;
+}
+.enter-list > :nth-child(n + 13) {
+  --i: 12;
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .animate-enter {
+  .animate-enter,
+  .enter-list > * {
     animation: none;
   }
 }

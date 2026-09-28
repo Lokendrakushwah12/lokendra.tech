@@ -10,15 +10,15 @@ export default function Page() {
   return (
     <>
       {/* <LinesBG /> */}
-      <Enter stagger={1}>
+      <Enter stagger={1} list>
         <About />
       </Enter>
       <LinesBG />
-      <Enter stagger={2}>
+      <Enter stagger={6} list>
         <Experience />
       </Enter>
       <LinesBG />
-      <Enter stagger={3}>
+      <Enter stagger={10} list>
         <Suspense fallback={<ProjectsFallback />}>
           <Projects />
         </Suspense>

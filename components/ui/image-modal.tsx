@@ -1,6 +1,6 @@
 "use client";
 
-import { useId, useState, useEffect } from "react";
+import { useCallback, useId, useState, useEffect } from "react";
 import { createPortal } from "react-dom";
 import { motion, AnimatePresence, MotionConfig } from "motion/react";
 import { X } from "lucide-react";
@@ -20,7 +20,13 @@ export default function ImageModal({
   className,
 }: ImageModalProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const [loaded, setLoaded] = useState(false);
   const id = useId();
+
+  // a cached image can finish before hydration, so onLoad never fires for it
+  const imgRef = useCallback((img: HTMLImageElement | null) => {
+    if (img?.complete && img.naturalWidth > 0) setLoaded(true);
+  }, []);
 
   const handleClose = () => setIsOpen(false);
 
@@ -48,13 +54,19 @@ export default function ImageModal({
       transition={{ type: "spring", stiffness: 550, damping: 35, mass: 0.6 }}
     >
       <motion.img
+        ref={imgRef}
         src={src}
         alt={alt}
         title={title}
         layoutId={id}
+        onLoad={() => setLoaded(true)}
+        onError={() => setLoaded(true)}
         className={cn(
-          "cursor-zoom-in block rounded-sm border my-6 w-full max-w-4xl mx-auto",
-          className
+          "cursor-zoom-in block rounded-sm border my-6 w-full max-w-4xl mx-auto transition-opacity duration-300",
+          className,
+          // until it arrives: a pulsing box at a typical screenshot ratio, not a zero-height gap.
+          // Last, so a caller's own background can't hide it.
+          !loaded && "aspect-[16/10] animate-pulse bg-muted text-transparent"
         )}
         onClick={() => setIsOpen(true)}
         whileTap={{ scale: 0.98, transition: { duration: 0.15 } }}

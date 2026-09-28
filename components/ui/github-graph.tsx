@@ -14,12 +14,28 @@ import { ScrollArea } from "./scroll-area";
 
 const githubTooltipHandle = TooltipCreateHandle<{ count: number; date: string }>();
 
+/** The calendar's own shape while its code loads: 53 weeks of 7 days. */
+const CalendarSkeleton = () => (
+  <div className="animate-pulse" style={{ width: 844 }} aria-label="Loading contributions">
+    <div className="mb-2 h-3 w-full rounded-sm bg-muted/60" />
+    <div className="grid grid-flow-col gap-1" style={{ gridTemplateRows: "repeat(7, 12px)", gridAutoColumns: "12px" }}>
+      {Array.from({ length: 53 * 7 }, (_, i) => (
+        <span key={i} className="rounded-[2px] bg-muted" />
+      ))}
+    </div>
+    <div className="mt-3 flex justify-between">
+      <span className="h-3 w-40 rounded-sm bg-muted/60" />
+      <span className="h-3 w-24 rounded-sm bg-muted/60" />
+    </div>
+  </div>
+);
+
 const GitHubCalendar = dynamic(
   () =>
     import("react-github-calendar").then((mod) => ({
       default: mod.GitHubCalendar,
     })),
-  { ssr: false }
+  { ssr: false, loading: CalendarSkeleton }
 );
 
 const GitHubGraph = ({

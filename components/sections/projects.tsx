@@ -1,5 +1,6 @@
 "use client";
 
+import type { CSSProperties } from "react";
 import userData from "@/config/userData";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useCallback } from "react";
@@ -40,12 +41,12 @@ const Projects = () => {
             value={activeTab}
             onValueChange={(value) => setTab(value as TabValue)}
           >
-            <TabsList className="w-fit">
+            <TabsList className="animate-enter w-fit">
               <TabsTab value="projects" className="uppercase">Projects</TabsTab>
               <TabsTab value="crafts" className="uppercase">Crafts</TabsTab>
             </TabsList>
             <TabsPanel value="projects">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 group/projects">
+              <div className="enter-list grid grid-cols-1 md:grid-cols-2 gap-4 group/projects" style={{ "--list-offset": 1 } as CSSProperties}>
                 {projects.map((project, index) => (
                   <ProjectCard
                     key={index}
@@ -62,7 +63,7 @@ const Projects = () => {
               </div>
             </TabsPanel>
             <TabsPanel value="crafts">
-              <div className="w-full font-inter flex flex-col gap-4 group/projects">
+              <div className="enter-list w-full font-inter flex flex-col gap-4 group/projects" style={{ "--list-offset": 1 } as CSSProperties}>
                 <ToastExample title="Toast Component" />
                 <TabsExample title="Tabs Component" />
                 <MenuExample title="Menu Component" />

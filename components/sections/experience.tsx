@@ -1,3 +1,4 @@
+import type { CSSProperties } from "react";
 import userData from "@/config/userData";
 import ExperienceCard from "../ui/experience-card";
 
@@ -7,12 +8,12 @@ const Experience = () => {
   return (
     <div>
       <div className="p-4 max-w-screen-xl w-full mx-auto space-y-4">
-        <div className="inline-flex items-center justify-center gap-1 font-normal tracking-tight text-xl">
+        <div className="animate-enter inline-flex items-center justify-center gap-1 font-normal tracking-tight text-xl">
           <h2 className="font-normal drop-shadow-xs text-xl text-muted-foreground">
             EXPERIENCE
           </h2>
         </div>
-        <div className="group/experience flex flex-col justify-center gap4">
+        <div className="enter-list group/experience flex flex-col justify-center gap4" style={{ "--list-offset": 1 } as CSSProperties}>
           {experience.map((exp, index) => (
             <ExperienceCard
               key={index}
