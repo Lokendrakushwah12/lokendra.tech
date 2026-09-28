@@ -25,7 +25,7 @@ Keychain is an ERP for food & beverage manufacturers. I ship features across the
 
 **The demo platform.** I own the sales demo environments: provisioning went from a full engineering day to under 30 minutes, I re-synced environments that had drifted ~2 months behind production, and caught a 40s+ Start Production regression by benchmarking accounts before it reached a live customer call.
 
-**Design work.** A full UI overhaul of the internal AI platform - 261 files, +9.2K/-2.5K LOC - putting a design token behind every colour utility, a shared Base UI component library, dagre-routed workflow graphs (18 edges, 0 crossings) and WCAG 4.5:1 text contrast.
+**The internal AI platform.** 105 commits across 434 files (+32.8K/-5.8K LOC), on both the UI and the workflow engine. The UI got a full overhaul: a design token behind every colour utility, a shared Base UI component library, dagre-routed workflow graphs (18 edges, 0 crossings) and WCAG 4.5:1 text contrast. On the engine I built a web-search step that untrusted text can't steer, CRM enrichment for pre-call sales briefs, and fixes to the gates that decide who a workflow is allowed to message.
 
 <TechStack items="Next.js, TypeScript, Tailwind CSS, Zustand, React Query, PostgreSQL, Trino, Metabase, Sentry, PostHog" />
 
