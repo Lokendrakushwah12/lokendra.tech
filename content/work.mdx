@@ -9,7 +9,15 @@ description: "A comprehensive overview of my professional journey and experience
 
 Keychain is an ERP for food & beverage manufacturers. I work on the internal AI agent platform and ship features across the frontend and the ERP data layer. I also run frontend releases and I'm on call, so performance work and production incidents are as much the job as the roadmap is.
 
-**The internal AI platform.** Keychain's internal agent answers questions across sales calls, the CRM and product analytics over MCP, and runs standing automations that act on what it finds, so most of the engineering is about what an agent is allowed to do. I built its web-search step, where the query is composed from a resolved customer and a closed topic so text on a web page can't steer it, and CRM enrichment for pre-call sales briefs. I also fixed the taint and reach gates that decide who a workflow may message, and added a scored golden set for the AI reviewer that checks every change. Alongside that, I did a full UI overhaul: a design token behind every colour utility, a shared Base UI component library and dagre-routed workflow graphs. 105 commits across 434 files, +32.8K/-5.8K LOC.
+**The internal AI platform.** Keychain's internal agent answers questions across sales calls, the CRM and product analytics over MCP, and runs standing automations that act on what it finds. Most of the engineering is about what an agent is allowed to do.
+
+- Built the web-search step: the query is composed from a resolved customer and a closed topic, so text on a web page can't steer it.
+- Built CRM enrichment for pre-call sales briefs.
+- Fixed the taint and reach gates that decide who a workflow may message.
+- Added a scored golden set for the AI reviewer that checks every change.
+- Did a full UI overhaul: a design token behind every colour utility, a shared Base UI component library and dagre-routed workflow graphs.
+
+105 commits across 434 files, +32.8K/-5.8K LOC.
 
 <GalaxyFlow />
 
