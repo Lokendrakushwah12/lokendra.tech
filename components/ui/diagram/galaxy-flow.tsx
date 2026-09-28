@@ -424,27 +424,15 @@ export const GalaxyFlow = () => {
         {scene.caption}
       </p>
 
-      <div className="mt-3 flex items-center gap-3">
-        <button
-          type="button"
-          onClick={() => setPlaying((v) => !v)}
-          aria-label={playing ? "Pause" : "Play"}
-          className="grid size-8 shrink-0 place-items-center rounded-full border border-border text-muted-foreground transition-colors hover:text-foreground"
-        >
-          {playing ? (
-            <svg viewBox="0 0 12 12" className="size-3 fill-current"><rect x="2" y="1.5" width="2.6" height="9" rx="0.8" /><rect x="7.4" y="1.5" width="2.6" height="9" rx="0.8" /></svg>
-          ) : (
-            <svg viewBox="0 0 12 12" className="size-3 fill-current"><path d="M3 1.8v8.4a.6.6 0 0 0 .9.5l6.6-4.2a.6.6 0 0 0 0-1L3.9 1.3a.6.6 0 0 0-.9.5z" /></svg>
-          )}
-        </button>
-        <div className="grid flex-1 grid-cols-6 gap-2">
+      <div className="mt-3">
+        <div className="grid grid-cols-6 gap-2">
           {SCENES.map((s, i) => (
             <button
               key={s.label}
               type="button"
               onClick={() => setStep(i)}
               aria-pressed={i === step}
-              className="group text-left"
+              className="group cursor-pointer text-left"
             >
               <span className="block h-[3px] overflow-hidden rounded-full bg-border">
                 <span
