@@ -18,7 +18,7 @@ import LinesBG from "@/components/ui/lines-bg";
 import RoleHeading from "@/components/ui/role-heading";
 import TechStack from "@/components/ui/tech-stack";
 import { slugify, tocFromMdx } from "@/lib/utils";
-import { DocsTableOfContents } from "@/components/ui/toc";
+import { DocsTableOfContents, DocsTocPill } from "@/components/ui/toc";
 import userData from "@/config/userData";
 import fs from "fs";
 import matter from "gray-matter";
@@ -181,18 +181,21 @@ export default async function WorkPage() {
       style={{ fontOpticalSizing: "none", fontVariationSettings: '"opsz" 32' }}
     >
       <AsciiDither />
+      {/* outside the z-10 wrapper, so it can sit above the layout's bottom blur */}
+      <DocsTocPill toc={toc} className="min-[1400px]:hidden" />
       <div className="max-w-4xl mx-auto p-4 relative z-10">
         <Enter stagger={1}>
           <BackHome current="proof-of-work" />
         </Enter>
 
-        {/* inline by default, pinned into the gutter once there is room */}
-        <Enter stagger={2}>
-          <DocsTableOfContents
-            toc={toc}
-            className="ps-0 mt-4 w-full min-[1400px]:fixed min-[1400px]:top-28 min-[1400px]:left-[calc(50%+28rem)] min-[1400px]:mt-0 min-[1400px]:max-h-[70vh] min-[1400px]:w-56 min-[1400px]:overflow-y-auto min-[1400px]:ps-6"
-          />
-        </Enter>
+        {/* pinned into the gutter once there is room, a bottom pill until then.
+            Not wrapped in <Enter>: a transformed ancestor would become the
+            containing block of this fixed element mid-animation, so each piece
+            staggers in on its own instead. */}
+        <DocsTableOfContents
+          toc={toc}
+          className="hidden min-[1400px]:flex fixed top-28 left-[calc(50%+28rem)] max-h-[70vh] w-56 overflow-y-auto ps-6"
+        />
 
         {/* Content */}
         <Enter stagger={3}>

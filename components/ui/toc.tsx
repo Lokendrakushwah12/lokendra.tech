@@ -194,10 +194,12 @@ export function DocsTableOfContents({
         className,
       )}
     >
-      <p className="flex h-7 items-center font-medium text-xs">On This Page</p>
+      <p className="animate-enter flex h-7 items-center font-medium text-xs" style={{ "--stagger": 2 } as React.CSSProperties}>
+        On This Page
+      </p>
       <div className="relative ms-3.5">
         {geometry ? (
-          <>
+          <div className="animate-enter" style={{ "--stagger": 3 } as React.CSSProperties}>
             <svg
               aria-hidden
               className="pointer-events-none absolute top-0 left-0 text-border"
@@ -228,14 +230,14 @@ export function DocsTableOfContents({
                 }}
               />
             </div>
-          </>
+          </div>
         ) : null}
 
         <div className="relative flex flex-col" ref={listRef}>
-          {toc.map((item) => (
+          {toc.map((item, i) => (
             <a
               className={cn(
-                "py-1 text-[.8125rem] leading-4.5 no-underline transition-colors",
+                "animate-enter py-1 text-[.8125rem] leading-4.5 no-underline transition-colors",
                 "text-muted-foreground hover:bg-transparent hover:text-foreground",
                 "data-[active=true]:bg-transparent data-[active=true]:text-foreground",
                 // one line per entry; the rail reads as a list, not a paragraph
@@ -246,12 +248,104 @@ export function DocsTableOfContents({
               data-depth={item.depth}
               href={item.url}
               key={item.url}
-              style={{ paddingInlineStart: railX(levelOf(item.depth)) + 11 }}
+              style={{ paddingInlineStart: railX(levelOf(item.depth)) + 11, "--stagger": 3 + i * 0.6 } as React.CSSProperties}
             >
               {item.title}
             </a>
           ))}
         </div>
+      </div>
+    </div>
+  );
+}
+
+/** Where the gutter has no room: one pill, pinned to the bottom, that
+ * names the section you are in and fills its ring as you read. It sits
+ * above the layout's bottom ProgressiveBlur (z-500), which would blur it. */
+export function DocsTocPill({ toc, className }: { toc: TocItem[]; className?: string }) {
+  const itemIds = React.useMemo(() => toc.map((item) => item.url.replace("#", "")), [toc]);
+  const activeHeading = useActiveItem(itemIds);
+  const [progress, setProgress] = React.useState(0);
+  const [open, setOpen] = React.useState(false);
+  const ref = React.useRef<HTMLDivElement>(null);
+
+  React.useEffect(() => {
+    const update = () => {
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      setProgress(max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0);
+    };
+    update();
+    window.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
+    return () => {
+      window.removeEventListener("scroll", update);
+      window.removeEventListener("resize", update);
+    };
+  }, []);
+
+  // a tap anywhere else closes the list
+  React.useEffect(() => {
+    if (!open) return;
+    const close = (e: PointerEvent) => {
+      if (!ref.current?.contains(e.target as Node)) setOpen(false);
+    };
+    document.addEventListener("pointerdown", close);
+    return () => document.removeEventListener("pointerdown", close);
+  }, [open]);
+
+  if (!toc?.length) return null;
+
+  const active = toc.find((item) => item.url === `#${activeHeading}`) ?? toc[0];
+  const r = 8;
+  const c = 2 * Math.PI * r;
+
+  return (
+    <div
+      ref={ref}
+      className={cn("fixed inset-x-0 bottom-4 z-[510] flex justify-center px-4 pointer-events-none", className)}
+    >
+      <div className="animate-enter pointer-events-auto relative max-w-full" style={{ "--stagger": 4 } as React.CSSProperties}>
+        {open ? (
+          <nav
+            aria-label="On this page"
+            className="absolute bottom-full left-1/2 mb-2 max-h-[60vh] w-[min(20rem,calc(100vw-2rem))] -translate-x-1/2 overflow-y-auto rounded-2xl border border-border bg-background/95 p-2 shadow-lg backdrop-blur"
+          >
+            {toc.map((item) => (
+              <a
+                key={item.url}
+                href={item.url}
+                onClick={() => setOpen(false)}
+                data-active={item.url === active.url}
+                className="block truncate rounded-lg px-2.5 py-1.5 text-[.8125rem] text-muted-foreground no-underline transition-colors hover:text-foreground data-[active=true]:bg-muted data-[active=true]:text-foreground"
+                style={{ paddingInlineStart: 10 + levelOf(item.depth) * 12 }}
+              >
+                {item.title}
+              </a>
+            ))}
+          </nav>
+        ) : null}
+        <button
+          type="button"
+          onClick={() => setOpen((v) => !v)}
+          aria-expanded={open}
+          className="flex max-w-full cursor-pointer items-center gap-2.5 rounded-full border border-border bg-background/85 py-2 ps-2.5 pe-4 text-[.8125rem] text-foreground shadow-lg backdrop-blur"
+        >
+          <svg viewBox="0 0 20 20" className="size-5 shrink-0 -rotate-90" aria-hidden>
+            <circle cx="10" cy="10" r={r} fill="none" strokeWidth="2" className="stroke-border" />
+            <circle
+              cx="10"
+              cy="10"
+              r={r}
+              fill="none"
+              strokeWidth="2"
+              strokeLinecap="round"
+              className="stroke-foreground transition-[stroke-dashoffset] duration-150"
+              strokeDasharray={c}
+              strokeDashoffset={c * (1 - progress)}
+            />
+          </svg>
+          <span className="truncate">{active.title}</span>
+        </button>
       </div>
     </div>
   );
