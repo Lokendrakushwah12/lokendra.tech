@@ -132,7 +132,7 @@ const Globe = ({ p, tint }: ObjProps) => {
 
 /** The model floats: it touches nothing, it has no tools. */
 const Leaf = ({ p, tint }: ObjProps) => {
-  const star = p(0, 0, 2.35);
+  const star = p(0, 0, 1.6);
   return (
     <g>
       <path
@@ -144,7 +144,7 @@ const Leaf = ({ p, tint }: ObjProps) => {
         ])}
         className="fill-none stroke-foreground/30 stroke-[1] [stroke-dasharray:2_3]"
       />
-      <Cuboid p={p} at={[-0.6, -0.6, 1.15]} size={[1.2, 1.2, 1.2]} tint={tint} />
+      <Cuboid p={p} at={[-0.6, -0.6, 0.4]} size={[1.2, 1.2, 1.2]} tint={tint} />
       <path
         d={`M${star[0]} ${star[1] - 4.5} Q${star[0]} ${star[1]} ${star[0] + 4.5} ${star[1]} Q${star[0]} ${star[1]} ${star[0]} ${star[1] + 4.5} Q${star[0]} ${star[1]} ${star[0] - 4.5} ${star[1]} Q${star[0]} ${star[1]} ${star[0]} ${star[1] - 4.5} Z`}
         className={tint === "bad" ? "fill-rose-500" : tint === "ok" ? "fill-current" : "fill-foreground/60"}
