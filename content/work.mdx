@@ -7,27 +7,29 @@ description: "A comprehensive overview of my professional journey and experience
 
 <RoleHeading title="Software Engineer at Keychain" date="Sep 2025 - Present" />
 
-Keychain is an ERP for food & beverage manufacturers. I ship features across the frontend and the ERP data layer, run frontend releases, and I'm on call - so performance work and production incidents are as much the job as the roadmap is.
+Keychain is an ERP for food & beverage manufacturers. I work on the internal AI agent platform and ship features across the frontend and the ERP data layer. I also run frontend releases and I'm on call, so performance work and production incidents are as much the job as the roadmap is.
 
-**Splitting the monolith.** I migrated operator-mode, workflow and production routes out of the monolithic dashboard app into a standalone Next.js app - 34 commits, new route groups, dashboard kept as a rollback target. CI build times went from 16-18 minutes down to 7-9.
+**The internal AI platform.** Keychain's internal agent answers questions across sales calls, the CRM and product analytics over MCP, and runs standing automations that act on what it finds, so most of the engineering is about what an agent is allowed to do. I built its web-search step, where the query is composed from a resolved customer and a closed topic so text on a web page can't steer it, and CRM enrichment for pre-call sales briefs. I also fixed the taint and reach gates that decide who a workflow may message, and added a scored golden set for the AI reviewer that checks every change. Alongside that, I did a full UI overhaul: a design token behind every colour utility, a shared Base UI component library, dagre-routed workflow graphs and WCAG 4.5:1 text contrast. 105 commits across 434 files, +32.8K/-5.8K LOC.
 
-<MonolithSplit />
-
-**Owning releases.** I run frontend releases end to end: sequencing dependent FE/BE merges across three services, resolving release-branch conflicts, verifying on production and writing the release notes. The largest shipped 10 features and fixes in a single release with zero rollbacks.
+<GalaxyFlow />
 
 **AI extraction.** I built Customer AI extraction - the shared platform data layer plus the review, approval and bulk error-resolution UI - and fixed false DUPLICATE flagging in document ingestion, load-tested against a 4,500-row customer file.
 
 <ExtractionPipeline />
 
+**Splitting the monolith.** I migrated operator-mode, workflow and production routes out of the monolithic dashboard app into a standalone Next.js app - 34 commits, new route groups, dashboard kept as a rollback target. CI build times went from 16-18 minutes down to 7-9.
+
+<MonolithSplit />
+
 **Root-cause work.** Traced 119 of 326 sales orders with null address foreign keys back to a single ERP migration batch. Bounded 11 vendor billing-address overwrites to one integration window using Postgres audit tables. Fixed multi-page dispatch PDFs rendering overlapping text, work-order quantities silently zeroed by 2-decimal rounding, and delivery dates shifting a day because date-only values were stored as epoch timestamps.
 
 <IncidentTrace />
 
+**Owning releases.** I run frontend releases end to end: sequencing dependent FE/BE merges across three services, resolving release-branch conflicts, verifying on production and writing the release notes. The largest shipped 10 features and fixes in a single release with zero rollbacks.
+
 **The demo platform.** I own the sales demo environments: provisioning went from a full engineering day to under 30 minutes, I re-synced environments that had drifted ~2 months behind production, and caught a 40s+ Start Production regression by benchmarking accounts before it reached a live customer call.
 
-**The internal AI platform.** 105 commits across 434 files (+32.8K/-5.8K LOC), on both the UI and the workflow engine. The UI got a full overhaul: a design token behind every colour utility, a shared Base UI component library, dagre-routed workflow graphs (18 edges, 0 crossings) and WCAG 4.5:1 text contrast. On the engine I built a web-search step that untrusted text can't steer, CRM enrichment for pre-call sales briefs, and fixes to the gates that decide who a workflow is allowed to message.
-
-<TechStack items="Next.js, TypeScript, Tailwind CSS, Zustand, React Query, PostgreSQL, Trino, Metabase, Sentry, PostHog" />
+<TechStack items="MCP, Claude Code, Next.js, TypeScript, Tailwind CSS, Zustand, React Query, PostgreSQL, Trino, Metabase, Sentry, PostHog" />
 
 <GitHubGraph username="lokendra-keychain" profileSrc="/experience/lokendra-keychain-gh.webp" scrollFade />
 

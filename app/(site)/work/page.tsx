@@ -11,6 +11,7 @@ import {
   IncidentTrace,
   MonolithSplit,
 } from "@/components/ui/diagram";
+import { GalaxyFlow } from "@/components/ui/diagram/galaxy-flow";
 import GitHubGraph from "@/components/ui/github-graph";
 import ImageModal from "@/components/ui/image-modal";
 import LinesBG from "@/components/ui/lines-bg";
@@ -121,6 +122,7 @@ const components = {
   ),
   hr: () => <hr className="my-8 border-t border-dashed border-border" />,
   ExtractionPipeline,
+  GalaxyFlow,
   GitHubGraph,
   IncidentTrace,
   LinesBG,

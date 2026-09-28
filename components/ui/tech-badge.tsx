@@ -4,6 +4,8 @@ import { getTechInfo } from "@/lib/utils";
 
 // one tint per tag, keyed by the normalised tag name
 const TAG_COLORS: Record<string, string> = {
+  mcp: "text-sky-700 bg-sky-100/70 dark:text-sky-300 dark:bg-sky-500/10",
+  claudecode: "text-orange-700 bg-orange-100/70 dark:text-orange-300 dark:bg-orange-500/10",
   nextjs: "text-stone-700 bg-stone-200/70 dark:text-stone-300 dark:bg-stone-500/15",
   typescript: "text-blue-700 bg-blue-100/70 dark:text-blue-300 dark:bg-blue-500/10",
   javascript: "text-yellow-700 bg-yellow-100/70 dark:text-yellow-300 dark:bg-yellow-500/10",

@@ -332,6 +332,16 @@ img {
   }
 }
 
+/* GalaxyFlow's scenario timeline */
+@keyframes galaxy-fill {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
+}
+
 /* `enter` is taken by tw-animate-css, whose version is a no-op by default */
 @keyframes stagger-enter {
   from {
