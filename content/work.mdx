@@ -9,15 +9,22 @@ description: "A comprehensive overview of my professional journey and experience
 
 Keychain is an ERP for food & beverage manufacturers. I work on the internal AI agent platform and ship features across the frontend and the ERP data layer. I also run frontend releases and I'm on call, so performance work and production incidents are as much the job as the roadmap is.
 
-**The internal AI platform.** Keychain's internal agent answers questions across sales calls, the CRM and product analytics over MCP, and runs standing automations that act on what it finds. Most of the engineering is about what an agent is allowed to do.
+**The internal AI platform.** Keychain's internal AI agent answers questions about our customers using sales calls, the CRM, email and our data warehouse. It also runs workflows that act on what they find, like a daily brief for each sales rep. Most of the work is deciding what the agent is allowed to see and do, and for whom.
 
-- Built the web-search step: the query is composed from a resolved customer and a closed topic, so text on a web page can't steer it.
-- Built CRM enrichment for pre-call sales briefs.
-- Fixed the taint and reach gates that decide who a workflow may message.
-- Added a scored golden set for the AI reviewer that checks every change.
-- Did a full UI overhaul: a design token behind every colour utility, a shared Base UI component library and dagre-routed workflow graphs.
+- Built access control: each person only sees the data they're allowed to, can ask for more from their profile, and admins approve it in one place.
+- Let people build their own workflows from SQL queries, AI steps and small bits of code. A workflow only sees what its owner can see, and its queries are checked before it can be turned on.
+- Built a chat where you describe a workflow in plain English and the agent builds or changes it for you.
+- Built a web search step that text on a web page can't take over, with a daily spending limit on every search and AI call.
+- Workflows can now make files (spreadsheets, PDFs, Word docs, slides), share report pages, send Slack messages with buttons and send email from the owner's own inbox. Docs they make can be edited, with full version history.
+- Built a daily meeting digest for sales reps, with a pre-call brief from the CRM and buttons to mark each meeting as held, no-show or rescheduled.
+- Fixed the safety checks that decide who a workflow may message, and added a scored test set for the AI that reviews every change.
+- Redesigned the whole UI on a shared component library, with live progress while a workflow runs and Cmd+K search.
 
-105 commits across 434 files, +32.8K/-5.8K LOC.
+211 PRs (167 merged, 44 open), +138.7K/-16.3K lines of code.
+
+#### Top 2 Contributor to the internal AI platform
+
+![The internal AI platform contributions - 972 commits, 168,192 additions, 25,292 deletions](/experience/lokendra-galaxy-contr.webp)
 
 <GalaxyFlow />
 
@@ -41,7 +48,9 @@ Keychain is an ERP for food & beverage manufacturers. I work on the internal AI 
 
 <GitHubGraph username="lokendra-keychain" profileSrc="/experience/lokendra-keychain-gh.webp" scrollFade />
 
-![Keychain contributions - 336 commits, 288,997 additions, 70,798 deletions](/experience/lokendra-keychain-contr.png)
+#### Top 6 Contributor to webapp-monorepo
+
+![webapp-monorepo contributions - 336 commits, 288,997 additions, 70,798 deletions](/experience/lokendra-keychain-contr.png)
 
 <LinesBG />
 
