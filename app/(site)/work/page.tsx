@@ -122,6 +122,12 @@ const components = {
     </blockquote>
   ),
   hr: () => <hr className="my-8 border-t border-dashed border-border" />,
+  // markdown images flowed into two balanced columns from sm up
+  ScreenshotGrid: ({ children }: { children: React.ReactNode }) => (
+    <div className="not-prose my-6 gap-3 sm:columns-2 [&_img]:my-0! [&>*]:mt-0! [&>*]:mb-3! [&>*]:break-inside-avoid">
+      {children}
+    </div>
+  ),
   ExtractionPipeline,
   GalaxyFlow,
   GitHubGraph,
