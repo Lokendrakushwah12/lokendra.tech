@@ -12,6 +12,7 @@ import {
   MonolithSplit,
 } from "@/components/ui/diagram";
 import { GalaxyFlow } from "@/components/ui/diagram/galaxy-flow";
+import FlowChart from "@/components/ui/flow-chart";
 import GitHubGraph from "@/components/ui/github-graph";
 import HashScroll from "@/components/ui/hash-scroll";
 import ImageModal from "@/components/ui/image-modal";
@@ -117,7 +118,7 @@ const components = {
     </code>
   ),
   blockquote: ({ children }: { children: React.ReactNode }) => (
-    <blockquote className="not-prose relative my-8 rounded-r-md border-l-2 border-foreground/25 bg-muted/40 py-4 pl-5 pr-4 text-[0.95rem] leading-relaxed text-foreground/75 [&_p]:m-0">
+    <blockquote className="not-prose relative my-8 flex flex-col gap-4 rounded-r-md border-l-2 border-foreground/25 bg-muted/40 py-4 pl-5 pr-4 text-[0.95rem] leading-relaxed text-foreground/75 sm:flex-row sm:items-center sm:gap-6 [&_p]:m-0">
       {children}
     </blockquote>
   ),
@@ -129,6 +130,7 @@ const components = {
     </div>
   ),
   ExtractionPipeline,
+  FlowChart,
   GalaxyFlow,
   GitHubGraph,
   IncidentTrace,
