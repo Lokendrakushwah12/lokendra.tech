@@ -13,6 +13,7 @@ import {
 } from "@/components/ui/diagram";
 import { GalaxyFlow } from "@/components/ui/diagram/galaxy-flow";
 import GitHubGraph from "@/components/ui/github-graph";
+import HashScroll from "@/components/ui/hash-scroll";
 import ImageModal from "@/components/ui/image-modal";
 import LinesBG from "@/components/ui/lines-bg";
 import RoleHeading from "@/components/ui/role-heading";
@@ -181,6 +182,7 @@ export default async function WorkPage() {
       style={{ fontOpticalSizing: "none", fontVariationSettings: '"opsz" 32' }}
     >
       <AsciiDither />
+      <HashScroll />
       {/* outside the z-10 wrapper, so it can sit above the layout's bottom blur */}
       <DocsTocPill toc={toc} className="min-[1400px]:hidden" />
       <div className="max-w-4xl mx-auto p-4 relative z-10">

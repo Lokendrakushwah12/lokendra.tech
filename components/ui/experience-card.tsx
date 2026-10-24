@@ -1,9 +1,9 @@
 "use client";
-import { cn } from "@/lib/utils";
+import { cn, slugify } from "@/lib/utils";
 import Link from "next/link";
 import { useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
-import { InducedAIIcon, KeychainIcon, SnipeIcon, UnoloIcon } from "../icons";
+import { ArrowUpRightIcon, InducedAIIcon, KeychainIcon, SnipeIcon, UnoloIcon } from "../icons";
 
 export enum Company {
   Keychain = "Keychain",
@@ -149,6 +149,14 @@ const ExperienceCard = ({
                 className="overflow-hidden"
               >
                 {renderDescription(description)}
+                {/* matches the RoleHeading id on /work */}
+                <Link
+                  href={`/work#${slugify(`${role} at ${companyName}`)}`}
+                  className="mt-3 border-b border-dashed border-foreground/60 text-sm text-foreground hover:text-primary transition-colors inline-flex items-center gap-0.5"
+                >
+                  View more
+                  <ArrowUpRightIcon className="size-2.5 shrink-0" />
+                </Link>
               </motion.div>
             )}
           </AnimatePresence>
