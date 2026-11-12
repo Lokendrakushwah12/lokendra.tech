@@ -63,6 +63,25 @@ const ExperienceCard = ({
     setIsOpen(!isOpen);
   };
 
+  // ponytail: one phrase gets a link; a markup format if more lines need them
+  const withInternalToolLink = (line: string) => {
+    const phrase = "Keychain's internal AI";
+    const at = line.indexOf(phrase);
+    if (at === -1) return line;
+    return (
+      <>
+        {line.slice(0, at)}
+        <Link
+          href="/internal-tool"
+          className="border-b border-dashed border-foreground/60 text-foreground hover:text-primary transition-colors"
+        >
+          {phrase}
+        </Link>
+        {line.slice(at + phrase.length)}
+      </>
+    );
+  };
+
   const renderDescription = (value: string) => {
     const lines = value
       .split("\n")
@@ -79,7 +98,7 @@ const ExperienceCard = ({
       return (
         <ul className="list-disc pl-4 text-sm text-muted-foreground space-y-1">
           {lines.map((line, index) => (
-            <li key={`exp-line-${index}`}>{line}</li>
+            <li key={`exp-line-${index}`}>{withInternalToolLink(line)}</li>
           ))}
         </ul>
       );

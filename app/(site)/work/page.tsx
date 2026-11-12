@@ -123,6 +123,14 @@ const components = {
     </blockquote>
   ),
   hr: () => <hr className="my-8 border-t border-dashed border-border" />,
+  a: ({ href = "", children }: { href?: string; children: React.ReactNode }) => (
+    <Link
+      href={href}
+      className="no-underline border-b border-dashed border-foreground/60 text-foreground hover:text-primary transition-colors"
+    >
+      {children}
+    </Link>
+  ),
   // markdown images flowed into two balanced columns from sm up
   ScreenshotGrid: ({ children }: { children: React.ReactNode }) => (
     <div className="not-prose my-6 gap-3 sm:columns-2 [&_img]:my-0! [&>*]:mt-0! [&>*]:mb-3! [&>*]:break-inside-avoid">
