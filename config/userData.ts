@@ -53,6 +53,16 @@ const userData: UserData = {
   ],
   projects: [
     {
+      title: "vivro",
+      description: "A personal page that tells your story — not a link in bio, not a blank canvas.",
+      tags: ["Next.js", "TypeScript", "PostgreSQL", "Drizzle ORM", "BetterAuth", "Tailwind CSS"],
+      Livelink: "https://www.vivro.xyz/?utm_source=lokendra.tech",
+      gitHubLink: null,
+      imageSrc: "/projects/vivro.webp",
+      date: "FEB 2026",
+      working: true,
+    },
+    {
       title: "Engg.space",
       description: "A space for engineers to browse their next job from recently funded startups. 50 daily active users.",
       tags: ["Next.js", "TypeScript", "Turso", "Drizzle ORM", "BetterAuth", "Cloudflare Workers", "Chrome Extension"],
