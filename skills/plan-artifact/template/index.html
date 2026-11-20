@@ -1,0 +1,563 @@
+<meta charset="utf-8">
+<title>Plan Title</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one serif prose column (36rem); numbered figure panels break out to 48rem; monospace chrome frames every figure. */
+:root {
+  --bg: #141413; --panel: #191918; --grid: #262624;
+  --ink: #ecebe6; --dim: #8e8d87; --faint: #45443f; --rule: #2c2b29;
+  --serif: "Crimson Pro", "Iowan Old Style", Georgia, serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  color-scheme: dark;
+}
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    --bg: #f2f2ef; --panel: #fafaf8; --grid: #e2e1dc;
+    --ink: #1c1c1a; --dim: #6b6a65; --faint: #bebdb7; --rule: #d9d8d2;
+    color-scheme: light;
+  }
+}
+:root[data-theme="light"] {
+  --bg: #f2f2ef; --panel: #fafaf8; --grid: #e2e1dc;
+  --ink: #1c1c1a; --dim: #6b6a65; --faint: #bebdb7; --rule: #d9d8d2;
+  color-scheme: light;
+}
+
+body { background: var(--bg); color: var(--ink); font: 400 1.1875rem/1.65 var(--serif); padding-inline: 16px; padding-block: 0 7rem; -webkit-font-smoothing: antialiased; }
+.col { max-width: 36rem; margin-inline: auto; }
+h1 { font-weight: 400; font-size: clamp(2.4rem, 7vw, 3.5rem); line-height: 1.05; letter-spacing: -0.015em; text-wrap: balance; margin: 5rem 0 1.1rem; }
+.dek { color: var(--dim); font-size: 1.3rem; line-height: 1.45; margin: 0 0 2.75rem; text-wrap: pretty; }
+hr { border: 0; border-top: 1px solid var(--rule); margin: 0 0 1.75rem; }
+h2 { font-weight: 400; font-size: 1.95rem; line-height: 1.2; text-wrap: balance; margin: 4.5rem 0 1rem; }
+p { margin: 0 0 1.15rem; text-wrap: pretty; }
+b, strong { font-weight: 600; }
+em { font-style: italic; }
+
+/* ---- figure panel ---- */
+.fig { max-width: 48rem; margin: 3rem auto; border: 1px solid var(--rule);
+  background: radial-gradient(circle, var(--grid) 0.8px, transparent 1.2px) 0 0 / 18px 18px, var(--panel); }
+.fig > header { display: flex; justify-content: space-between; gap: 1rem; padding: 0.9rem 1.1rem 0; font: 400 0.75rem/1.4 var(--mono); letter-spacing: 0.04em; color: var(--dim); }
+.fig > header span:first-child { color: var(--ink); }
+.stage { overflow-x: auto; }
+.stage svg { display: block; width: 100%; min-width: 34rem; height: auto; color: var(--ink);
+  fill: none; stroke: currentColor; stroke-width: 1.25; stroke-linecap: round; stroke-linejoin: round; }
+.stage svg * { vector-effect: non-scaling-stroke; }
+.stage svg text { fill: currentColor; stroke: none; font: 400 12px var(--mono); letter-spacing: 0.02em; }
+.stage svg .sub { fill: var(--dim); font-size: 11px; }
+.stage svg .solid { fill: var(--panel); }          /* hides the lines behind a part */
+.stage svg .ink { fill: currentColor; }
+.stage svg .hatch { fill: url(#hatch); }
+.stage svg .dots { fill: url(#dots); }
+.stage svg .dash { stroke-dasharray: 3 4; }
+.stage svg .guide { stroke: var(--faint); }
+.stage svg .grid { stroke: var(--rule); }          /* chart grid lines: quieter than guides */
+.stage svg .muted { opacity: 0.22; }
+.stage svg .fade { transition: opacity 0.45s ease; }
+.stage svg .idle { color: var(--dim); }             /* an iso part that is not the picked one */
+.stage svg .pick { transition: color 0.7s cubic-bezier(.32,.72,0,1), opacity 0.7s cubic-bezier(.32,.72,0,1); }
+@media (prefers-reduced-motion: reduce) { .stage svg * { transition: none !important; } }
+.fig > footer { border-top: 1px solid var(--rule); background: var(--panel); padding: 0.95rem 1.1rem 1.05rem; display: grid; gap: 0.95rem; }
+.cap { margin: 0; max-width: 34rem; font-size: 1rem; line-height: 1.5; color: var(--dim); }
+
+/* ---- controls: plain HTML, bound by data-k / data-o ---- */
+.ctl { display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem 1.5rem; font: 400 0.75rem/1 var(--mono); color: var(--dim); }
+.range { display: flex; align-items: center; gap: 0.75rem; white-space: nowrap; }
+.range input { appearance: none; -webkit-appearance: none; width: 9rem; min-width: 5rem; flex: 1 1 9rem; height: 1.25rem; margin: 0; background: transparent; cursor: pointer; }
+.range input::-webkit-slider-runnable-track { height: 1px; background: var(--dim); }
+.range input::-moz-range-track { height: 1px; background: var(--dim); }
+.range input::-webkit-slider-thumb { -webkit-appearance: none; width: 11px; height: 11px; margin-top: -5px; background: var(--panel); border: 1px solid var(--ink); }
+.range input::-moz-range-thumb { width: 9px; height: 9px; border-radius: 0; background: var(--panel); border: 1px solid var(--ink); }
+.seg { display: inline-flex; }
+.seg button { font: inherit; color: var(--ink); background: transparent; border: 1px solid var(--dim); padding: 0.5rem 0.75rem; cursor: pointer; }
+.seg button + button { border-left: 0; }
+.seg button[aria-pressed="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+@media (max-width: 30rem) { .seg button { padding-inline: 0.55rem; } }   /* six short options still fit a phone */
+.ctl :focus-visible { outline: 1px solid var(--ink); outline-offset: 3px; }
+.out { display: flex; flex-wrap: wrap; gap: 0.5rem 1.4rem; margin: 0 0 0 auto; }
+.out div { display: flex; gap: 0.5rem; }
+.out dd { margin: 0; color: var(--ink); font-variant-numeric: tabular-nums; }
+.hint { margin-left: auto; line-height: 1.4; }
+.stage svg .hot { cursor: help; }
+.defs { position: absolute; width: 0; height: 0; color: var(--ink); }
+.stage svg .fcell { fill: var(--faint); stroke: none; }
+.stage svg .fon { fill: currentColor; stroke: none; }
+.eyebrow { font: 400 0.72rem/1.4 var(--mono); letter-spacing: 0.06em; text-transform: uppercase; color: var(--dim); margin-top: 4.5rem; }
+.eyebrow + h1 { margin-top: 0.6rem; }
+.wide { max-width: 48rem; margin: 3.5rem auto 0; }
+.wide + .fig { margin-top: 1.25rem; }
+.fig + .wide { margin-top: 1.5rem; }
+h2.sec { display: flex; align-items: baseline; gap: 0.9rem; margin: 0 0 1.1rem; font-size: 1.75rem; }
+h2.sec span { font: 400 0.75rem/1 var(--mono); color: var(--dim); border: 1px solid var(--rule); padding: 0.3rem 0.45rem; }
+.note { color: var(--dim); font-size: 1.02rem; line-height: 1.55; max-width: 40rem; margin: 0.9rem 0 0; text-wrap: pretty; }
+.metrics { display: grid; grid-template-columns: repeat(auto-fit, minmax(10.5rem, 1fr)); border: 1px solid var(--rule); background: var(--panel); margin: 0; }
+.metrics div { padding: 0.9rem 1rem 1rem; border-right: 1px solid var(--rule); border-bottom: 1px solid var(--rule); margin: -0 -1px -1px 0; }
+.metrics dt { font: 400 0.7rem/1.3 var(--mono); color: var(--dim); text-transform: uppercase; letter-spacing: 0.05em; }
+.metrics dd { margin: 0.45rem 0 0; font: 400 0.95rem/1.2 var(--mono); color: var(--dim); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.metrics dd i { font-style: normal; color: var(--faint); margin: 0 0.15rem; }
+.metrics dd b { color: var(--ink); font-weight: 500; font-size: 1.2rem; }
+.phases { list-style: none; margin: 1.25rem 0 0; padding: 0; display: grid; gap: 0.75rem; }
+.phases li { border: 1px solid var(--rule); background: var(--panel); padding: 1rem 1.1rem 1.05rem; }
+.ph-h { display: flex; align-items: baseline; flex-wrap: wrap; gap: 0.4rem 0.8rem; margin-bottom: 0.7rem; }
+.ph-h .n { font: 500 0.75rem/1 var(--mono); background: var(--ink); color: var(--bg); padding: 0.3rem 0.5rem; }
+.ph-h b { font-weight: 600; font-size: 1.15rem; }
+.ph-h .when { font: 400 0.75rem/1 var(--mono); color: var(--dim); }
+.ph-h .st { margin-left: auto; font: 400 0.72rem/1 var(--mono); color: var(--dim); border: 1px dashed var(--faint); padding: 0.3rem 0.5rem; white-space: nowrap; }
+.ph-h .st.m { color: var(--ink); border: 1px solid var(--ink); }
+.phases dl { display: grid; grid-template-columns: 6.5rem 1fr; gap: 0.45rem 1rem; margin: 0; font-size: 1rem; line-height: 1.5; }
+.phases dt { font: 400 0.72rem/1.9 var(--mono); color: var(--dim); text-transform: uppercase; letter-spacing: 0.04em; }
+.phases dd { margin: 0; text-wrap: pretty; }
+@media (max-width: 34rem) { .phases dl { grid-template-columns: 1fr; gap: 0.1rem; } .phases dd { margin-bottom: 0.5rem; } .ph-h .st { margin-left: 0; } }
+code { font: 400 0.82em var(--mono); background: var(--grid); padding: 0.05rem 0.3rem; }
+.tw { overflow-x: auto; border: 1px solid var(--rule); background: var(--panel); }
+table { border-collapse: collapse; width: 100%; font: 400 0.8rem/1.4 var(--mono); }
+th, td { text-align: left; padding: 0.65rem 0.85rem; border-bottom: 1px solid var(--rule); white-space: nowrap; }
+th { color: var(--dim); font-weight: 400; text-transform: uppercase; letter-spacing: 0.05em; font-size: 0.68rem; }
+tr:last-child td { border-bottom: 0; }
+td.n { font-variant-numeric: tabular-nums; }
+td b { font-weight: 500; }
+ul.rules { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(19rem, 1fr)); gap: 0.75rem; }
+ul.rules li { border: 1px solid var(--rule); background: var(--panel); padding: 0.9rem 1rem; font-size: 1rem; line-height: 1.5; color: var(--dim); }
+ul.rules b { display: block; color: var(--ink); font-weight: 600; margin-bottom: 0.2rem; }
+details { max-width: 48rem; margin: 3rem auto 0; font: 400 0.8rem/1.65 var(--mono); color: var(--dim); }
+summary { cursor: pointer; }
+summary:focus-visible { outline: 1px solid var(--ink); outline-offset: 3px; }
+.outcome { display: grid; grid-template-columns: repeat(auto-fit, minmax(10.5rem, 1fr)); gap: 0; border: 1px solid var(--rule); background: var(--panel); margin: 0; }
+.outcome div { padding: 1.1rem 1.1rem 1.2rem; border-right: 1px solid var(--rule); margin-right: -1px; }
+.outcome dt { font: 400 0.7rem/1.3 var(--mono); color: var(--dim); text-transform: uppercase; letter-spacing: 0.05em; }
+.outcome dd { margin: 0.6rem 0 0; display: flex; flex-direction: column; gap: 0.15rem; font-variant-numeric: tabular-nums; }
+.outcome s { font: 400 0.85rem/1.2 var(--mono); color: var(--dim); text-decoration-thickness: 1px; }
+.outcome b { font: 500 2rem/1.05 var(--mono); letter-spacing: -0.03em; color: var(--ink); }
+.outcome span { font: 400 0.75rem/1.3 var(--mono); color: var(--dim); }
+.decision { margin-top: 1.25rem; border: 1px solid var(--ink); padding: 1rem 1.1rem; display: grid; gap: 0.4rem; }
+.decision .k { font: 500 0.7rem/1 var(--mono); text-transform: uppercase; letter-spacing: 0.08em; }
+.decision p { margin: 0; font-size: 1.05rem; line-height: 1.5; }
+h3.sub { font: 400 0.75rem/1.3 var(--mono); text-transform: uppercase; letter-spacing: 0.06em; color: var(--dim); margin: 2.25rem 0 0; }
+.tag { font: 400 0.68rem/1 var(--mono); border: 1px dashed var(--faint); color: var(--dim); padding: 0.25rem 0.45rem; }
+.tag.m { border: 1px solid var(--ink); color: var(--ink); }
+.tag.d { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+table.wrap td { white-space: normal; }
+.wide .tw + .note { margin-top: 0.6rem; }
+
+</style>
+
+<!-- shared patterns and arrowhead; reference as url(#hatch), url(#dots), marker-end="url(#arrow)" -->
+<svg class="defs" aria-hidden="true">
+  <defs>
+    <pattern id="hatch" width="4" height="4" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="4" stroke="currentColor" stroke-width="0.8"/>
+    </pattern>
+    <pattern id="dots" width="3" height="3" patternUnits="userSpaceOnUse">
+      <circle cx="1.5" cy="1.5" r="0.55" fill="currentColor"/>
+    </pattern>
+    <marker id="arrow" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L8 4 L0 8 z" fill="currentColor"/>
+    </marker>
+  </defs>
+</svg>
+
+<!-- EXAMPLE CONTENT: replace every word and number. Keep the section order (SKILL.md section 2). -->
+<article>
+  <div class="col">
+    <div class="eyebrow">proposal · &lt;system&gt; · &lt;scope&gt; · &lt;start&gt; → &lt;end&gt;</div>
+    <h1>Builds in under three minutes</h1>
+    <p class="dek">Every build waits about 5.5 minutes today. In two weeks we can bring that under three without skipping a single test.</p>
+  </div>
+
+  <section class="wide">
+    <div class="outcome">
+      <div><dt>median run</dt><dd><s>5.5 min</s><b>&lt;3 min</b></dd></div>
+      <div><dt>slowest 5% of runs</dt><dd><s>12 min</s><b>&lt;5 min</b></dd></div>
+      <div><dt>waiting removed</dt><dd><b>~200 h</b><span>a month</span></dd></div>
+      <div><dt>runner time</dt><dd><b>−60%</b><span>~9,000 min a month</span></dd></div>
+    </div>
+    <p class="note">The baseline is measured from N real runs (dates). Phase 1's saving is measured; the rest are estimates, and each is re-measured when it ships.</p>
+    <div class="decision">
+      <div class="k">decision needed</div>
+      <p><b>Approve X by &lt;date&gt;.</b> It is the only step with a new cost. Without it we land at about Ns.</p>
+    </div>
+  </section>
+
+  <section class="wide">
+    <h2 class="sec"><span>01</span>Where the time goes</h2>
+    <p class="note">One sentence naming the biggest bucket, and why it is that big.</p>
+  </section>
+  <figure class="fig" id="f1">
+    <header><span>FIG_001</span><span>[ one run, start to result ]</span></header>
+    <div class="stage"></div>
+    <footer>
+      <p class="cap">Medians from real runs, played 60× faster. Pick a phase to see the same run after it; the dashed outline is today.</p>
+      <div class="ctl">
+        <div class="seg" data-k="ph" aria-label="phase"><button value="0" aria-pressed="true">today</button><button value="1">1</button><button value="2">2</button><button value="3">3</button><button value="4">4</button></div>
+        <dl class="out"><div><dt>result at</dt><dd data-o="total">–</dd></div><div><dt>saved</dt><dd data-o="saved">–</dd></div></dl>
+        <span class="hint" data-o="status">–</span>
+      </div>
+    </footer>
+  </figure>
+
+  <section class="wide"><h2 class="sec"><span>02</span>Plan · ten working days</h2></section>
+  <figure class="fig" id="f2">
+    <header><span>FIG_002</span><span>[ ten working days ]</span></header>
+    <div class="stage"></div>
+    <footer>
+      <p class="cap">Drag through the days. Finished work fills in. Dashed rows run in the background from day 1.</p>
+      <div class="ctl">
+        <label class="range"><span>day 1</span><input type="range" id="f2-day" data-k="day" min="0" max="10" step="0.05" value="4" aria-label="working day"><span>day 10</span></label>
+        <dl class="out"><div><dt>median</dt><dd data-o="med">–</dd></div><div><dt>waiting removed</dt><dd data-o="hrs">–</dd></div></dl>
+      </div>
+    </footer>
+  </figure>
+
+  <section class="wide">
+    <div class="tw"><table>
+      <thead><tr><th>phase</th><th>median after</th><th>waiting removed / mo</th><th>saved / mo</th><th>status</th></tr></thead>
+      <tbody>
+        <tr><td>today</td><td class="n">330s</td><td class="n">–</td><td class="n">–</td><td>baseline</td></tr>
+        <tr><td><b>1</b> phase name</td><td class="n">275s</td><td class="n">46 h</td><td class="n">…</td><td><span class="tag m">measured</span></td></tr>
+        <tr><td><b>2</b> phase name</td><td class="n">210s</td><td class="n">100 h</td><td class="n">…</td><td><span class="tag">estimate</span></td></tr>
+        <tr><td><b>4</b> phase name</td><td class="n"><b>85s</b></td><td class="n"><b>204 h</b></td><td class="n">…</td><td><span class="tag d">needs approval</span></td></tr>
+      </tbody>
+    </table></div>
+    <p class="note">Define how the monthly figures are computed in one line.</p>
+    <h3 class="sub">What each phase ships, and how we'll know it worked</h3>
+    <ol class="phases">
+      <li>
+        <div class="ph-h"><span class="n">1</span><b>Phase name</b><span class="when">dates</span></div>
+        <dl>
+          <dt>change</dt><dd>What ships, in a sentence or two. Name files in <code>code</code>.</dd>
+          <dt>done when</dt><dd>check one · check two · check three</dd>
+          <dt>also day 1</dt><dd>Background work that must start early.</dd>
+        </dl>
+      </li>
+    </ol>
+  </section>
+
+  <section class="wide">
+    <h2 class="sec"><span>03</span>Risks and fallbacks</h2>
+    <div class="tw"><table class="wrap">
+      <thead><tr><th>if</th><th>then</th><th>we land at</th></tr></thead>
+      <tbody><tr><td>the approval doesn't come</td><td>stop after phase 3</td><td class="n">~Ns</td></tr></tbody>
+    </table></div>
+  </section>
+
+  <section class="wide">
+    <h2 class="sec"><span>04</span>Why not the alternatives</h2>
+    <p class="note">The evidence that ruled each alternative out. Add a figure where the reader can switch between options.</p>
+  </section>
+
+  <section class="wide">
+    <h2 class="sec"><span>05</span>Rules we keep</h2>
+    <ul class="rules">
+      <li><b>The full check guards main.</b> Selection only narrows feedback.</li>
+      <li><b>Never check less.</b> No rule or test switched off.</li>
+      <li><b>Old and new side by side.</b> Every switch runs next to the old way first.</li>
+      <li><b>One PR per phase.</b> Each lands with before/after numbers.</li>
+    </ul>
+  </section>
+
+  <details>
+    <summary>Where the numbers come from</summary>
+    <p>Sample size, date range, how each metric is timed, medians and p95s, and what every estimate is scaled from.</p>
+  </details>
+</article>
+
+<script>
+/* ===== helpers: keep, extend when a figure needs something reusable ===== */
+const NS = 'http://www.w3.org/2000/svg';
+function el(tag, a = {}, parent) {               // el('circle', {cx, cy, r, class: 'solid'}, g); a.text sets textContent
+  const n = document.createElementNS(NS, tag);
+  for (const k in a) k === 'text' ? (n.textContent = a[k]) : n.setAttribute(k, a[k]);
+  if (parent) parent.appendChild(n);
+  return n;
+}
+function set(n, a) { for (const k in a) k === 'text' ? (n.textContent = a[k]) : n.setAttribute(k, a[k]); return n; }
+const lerp = (a, b, t) => a + (b - a) * t;
+const clamp = (v, lo = 0, hi = 1) => Math.min(hi, Math.max(lo, v));
+const ease = t => t < 0.5 ? 2 * t * t : 1 - (-2 * t + 2) ** 2 / 2;        // in-out quad
+const rot = (x, y, cx, cy, deg) => { const r = deg * Math.PI / 180, c = Math.cos(r), s = Math.sin(r);
+  return [cx + (x - cx) * c - (y - cy) * s, cy + (x - cx) * s + (y - cy) * c]; };
+function phase(t, beats) {                         // where t sits in a looping sequence: phase(t, [1, .5, 2]) -> {i, p}
+  const T = beats.reduce((a, b) => a + b, 0); t = ((t % T) + T) % T; let i = 0;
+  while (i < beats.length - 1 && t > beats[i]) t -= beats[i++];
+  return { i, p: clamp(t / beats[i]) };
+}
+function label(g, text, sub, anchor = 'start') {   // build once; place with .at(px, py, tx, ty) (dot on the part, text position)
+  // the leader meets the side of the text that faces the part: anchor 'start' = text right of the part,
+  // 'end' = text left of it, 'middle' = text above or below it
+  const G = el('g', { class: 'hot' }, g), ln = el('line', { class: 'guide' }, G), dot = el('circle', { r: 2, class: 'ink' }, G);
+  const t1 = el('text', { 'text-anchor': anchor, text }, G);
+  const t2 = sub ? el('text', { 'text-anchor': anchor, class: 'sub', text: sub }, G) : null;
+  G.at = (px, py, tx, ty) => {
+    const [lx, ly] = anchor === 'start' ? [tx - 5, ty - 4] : anchor === 'end' ? [tx + 5, ty - 4]
+      : [tx, py < ty ? ty - 15 : ty + (sub ? 19 : 6)];
+    set(ln, { x1: px, y1: py, x2: lx, y2: ly }); set(dot, { cx: px, cy: py }); set(t1, { x: tx, y: ty });
+    if (t2) set(t2, { x: tx, y: ty + 14 });
+    return G;
+  };
+  return G;
+}
+function note(g, text, anchor = 'start') {        // a hand-style leader: curved, ending in the arrow. Build once; place with
+  // .at(tx, ty, px, py, bend) (text position, then the point it explains). .strike(true) crosses the words out and
+  // dims them: keep the wrong idea on the figure, struck, rather than deleting it
+  const G = el('g', {}, g), p = el('path', { class: 'guide', 'marker-end': 'url(#arrow)' }, G);
+  const t = el('text', { 'text-anchor': anchor, text }, G), x = el('line', { visibility: 'hidden' }, G), w = text.length * 7.4;
+  G.at = (tx, ty, px, py, bend = 0.3) => {
+    const l = anchor === 'start' ? tx : anchor === 'end' ? tx - w : tx - w / 2;
+    const [sx, sy] = px < l ? [l - 6, ty - 4] : px > l + w ? [l + w + 6, ty - 4] : [l + w / 2, py > ty ? ty + 6 : ty - 14];
+    const cx = (sx + px) / 2 - (py - sy) * bend, cy = (sy + py) / 2 + (px - sx) * bend;
+    set(p, { d: `M${sx} ${sy}Q${cx} ${cy} ${px} ${py}` }); set(t, { x: tx, y: ty });
+    set(x, { x1: l - 3, x2: l + w + 3, y1: ty - 4, y2: ty - 4 });
+    return G;
+  };
+  G.strike = on => { set(x, { visibility: on ? 'visible' : 'hidden' }); t.classList.toggle('muted', on); return G; };
+  return G;
+}
+function chart(g, { x0, x1, y0, y1, xd, yd, xt = [], yt = [], xf = String, yf = String, xl, yl }) {
+  // a plot frame, built once: grid lines only inside the plot, 3-5 ticks, mono tick labels, the axis titles written
+  // flat at the ends (no rotated text). Returns X, Y (domain -> viewBox) and line(fn, from, to): path data for y = fn(x),
+  // held inside the plot so an asymptote leaves through the top. Name each series at its end with label(), no legend
+  const X = v => x0 + (v - xd[0]) / (xd[1] - xd[0]) * (x1 - x0), Y = v => y0 - (v - yd[0]) / (yd[1] - yd[0]) * (y0 - y1);
+  for (const v of yt) {
+    if (v !== yd[0]) el('line', { x1: x0, x2: x1, y1: Y(v), y2: Y(v), class: 'grid' }, g);
+    el('text', { x: x0 - 8, y: Y(v) + 4, 'text-anchor': 'end', class: 'sub', text: yf(v) }, g);
+  }
+  for (const v of xt) el('text', { x: X(v), y: y0 + 16, 'text-anchor': 'middle', class: 'sub', text: xf(v) }, g);
+  el('path', { d: `M${x0} ${y1}V${y0}H${x1}` }, g);
+  if (xl) el('text', { x: x1, y: y0 + 32, 'text-anchor': 'end', class: 'sub', text: xl }, g);
+  if (yl) el('text', { x: x0, y: y1 - 10, class: 'sub', text: yl }, g);
+  const line = (fn, from = xd[0], to = xd[1], n = 96) => {
+    const top = y1 - 8, pts = [];
+    for (let i = 0; i <= n; i++) {
+      const v = from + (to - from) * i / n, x = X(v), y = Y(fn(v));
+      if (y < top) { const [px, py] = pts.at(-1) ?? [x, y]; pts.push([lerp(px, x, (py - top) / (py - y || 1)), top]); break; }
+      pts.push([x, y]);
+    }
+    return 'M' + pts.map(([x, y]) => `${x.toFixed(1)} ${y.toFixed(1)}`).join('L');
+  };
+  return { X, Y, line };
+}
+function pointer(svg, e) {                         // a mouse/touch event -> [x, y] in the svg's viewBox units
+  const p = new DOMPoint(e.clientX, e.clientY).matrixTransform(svg.getScreenCTM().inverse()); return [p.x, p.y];
+}
+
+/* ---- iso camera: the SVG twin of iso.js in type-film/template. World: x right and y down on the plan, z up.
+   el 30 = the 2:1 view, 35.26 = true isometric, 90 = the flat plan (lift() moves between them). Create each part's
+   paths once in build, then set their d in draw. Paint order is DOM order: far to near (depth), a stack bottom to top,
+   each guide line just before its plate. */
+function cam({ az = 45, el = 30, S = 1, ox = 0, oy = 0 } = {}) {
+  const a = az * Math.PI / 180, e = el * Math.PI / 180;
+  return { az, el, S, ox, oy, c: Math.cos(a), s: Math.sin(a), k: Math.sin(e), zf: Math.cos(e) };
+}
+const proj = (C, x, y, z = 0) => { const X = x * C.c - y * C.s, Y = x * C.s + y * C.c; return [C.ox + C.S * X, C.oy + C.S * (Y * C.k - z * C.zf)]; };
+const unproj = (C, sx, sy, z = 0) => { const X = (sx - C.ox) / C.S, Y = ((sy - C.oy) / C.S + z * C.zf) / C.k; return [X * C.c + Y * C.s, -X * C.s + Y * C.c]; };
+const depth = (C, x, y, z = 0) => (x * C.s + y * C.c) * C.zf + z * C.k;      // bigger = nearer = later in the DOM
+function lift(p, from = { az: 0, el: 90 }, to = { az: 45, el: 30 }, S = 1) {  // data -> world: p 0 = the plan, 1 = oblique
+  return cam({ az: lerp(from.az, to.az, p), el: lerp(from.el, to.el, p), S });
+}
+function rrectRing(x0, y0, x1, y1, r = 0, n = 4) {  // a rounded-rect footprint as ground points
+  r = Math.max(0, Math.min(r, (x1 - x0) / 2, (y1 - y0) / 2)); const out = [];
+  for (const [cx, cy, a0] of [[x1 - r, y1 - r, 0], [x0 + r, y1 - r, 90], [x0 + r, y0 + r, 180], [x1 - r, y0 + r, 270]])
+    for (let i = 0; i <= n; i++) { const a = (a0 + 90 * i / n) * Math.PI / 180; out.push([cx + r * Math.cos(a), cy + r * Math.sin(a)]); }
+  return out;
+}
+const circleRing = (cx, cy, R, n = 32) => Array.from({ length: n }, (_, i) => [cx + R * Math.cos(i / n * 2 * Math.PI), cy + R * Math.sin(i / n * 2 * Math.PI)]);
+function hull(pts) {                               // convex hull, monotone chain
+  const p = pts.slice().sort((a, b) => a[0] - b[0] || a[1] - b[1]), x = (o, a, b) => (a[0] - o[0]) * (b[1] - o[1]) - (a[1] - o[1]) * (b[0] - o[0]), lo = [], up = [];
+  for (const q of p) { while (lo.length > 1 && x(lo.at(-2), lo.at(-1), q) <= 0) lo.pop(); lo.push(q); }
+  for (const q of p.reverse()) { while (up.length > 1 && x(up.at(-2), up.at(-1), q) <= 0) up.pop(); up.push(q); }
+  lo.pop(); up.pop(); return lo.concat(up);
+}
+const pathD = pts => 'M' + pts.map(p => p[0].toFixed(1) + ' ' + p[1].toFixed(1)).join('L') + 'Z';
+// A solid from z0 to z1: { sil, top } path data. sil is the hull of the bottom and top rings, so no vertical corner
+// line is ever drawn; give sil and top the .solid fill and a stroke, add one crease (slabPaths(C, inner, z1, z1).top)
+// and stop. Pass a smaller `top` ring for a taper (a keycap, a frustum).
+function slabPaths(C, ring, z0, z1, top = ring) {
+  const T = top.map(([x, y]) => proj(C, x, y, z1)), B = ring.map(([x, y]) => proj(C, x, y, z0));
+  return { sil: pathD(hull(T.concat(B))), top: pathD(T) };
+}
+// Text or a decal flat on any world plane: set the returned string as the transform of a <g> drawn in plane units.
+// o = origin [x,y,z], U = reading direction, V = "down" on the plane. U x V must point at the camera, or the face is
+// turned away and this returns null (hide the group). Ground: U [1,0,0] V [0,1,0]. Wall facing +y: U [1,0,0] V [0,0,-1].
+// Strokes stay crisp (non-scaling-stroke); font sizes are in plane units, so divide px by C.S.
+function faceMatrix(C, o, U, V) {
+  const N = [U[1] * V[2] - U[2] * V[1], U[2] * V[0] - U[0] * V[2], U[0] * V[1] - U[1] * V[0]];
+  if (N[0] * C.s * C.zf + N[1] * C.c * C.zf + N[2] * C.k <= 1e-9) return null;
+  const p0 = proj(C, ...o), pu = proj(C, o[0] + U[0], o[1] + U[1], o[2] + U[2]), pv = proj(C, o[0] + V[0], o[1] + V[1], o[2] + V[2]);
+  return `matrix(${[pu[0] - p0[0], pu[1] - p0[1], pv[0] - p0[0], pv[1] - p0[1], p0[0], p0[1]].map(v => v.toFixed(4)).join(' ')})`;
+}
+function grid(C, x0, y0, x1, y1, step, z = 0) {    // a ground lattice as one path; give it .guide
+  let s = '';
+  for (let x = x0; x <= x1 + 1e-6; x += step) s += `M${proj(C, x, y0, z).map(v => v.toFixed(1))}L${proj(C, x, y1, z).map(v => v.toFixed(1))}`;
+  for (let y = y0; y <= y1 + 1e-6; y += step) s += `M${proj(C, x0, y, z).map(v => v.toFixed(1))}L${proj(C, x1, y, z).map(v => v.toFixed(1))}`;
+  return s;
+}
+const ISO_TRUE = cam({ el: Math.asin(1 / Math.sqrt(3)) * 180 / Math.PI, S: Math.sqrt(1.5) });
+const iso = (x, y, z) => proj(ISO_TRUE, x, z, y);   // the old helper (x and z on the floor, y up), kept for old figures
+
+/* ---- the two clocks. WHERE a thing is (a gap, a camera, a scrub) chases its target on a spring: it settles in about
+   0.7 s and never jumps when the target moves again. WHICH thing is chosen (a picked part, a mode) changes on a 700 ms
+   tween on ease.lift; colour and opacity changes get it free from the .pick class. Call both from tick. ---- */
+function bezier(x1, y1, x2, y2) {
+  const f = (a, b, t) => 3 * a * t * (1 - t) ** 2 + 3 * b * t * t * (1 - t) + t ** 3;
+  return p => { if (p <= 0) return 0; if (p >= 1) return 1; let lo = 0, hi = 1, t = p; for (let i = 0; i < 32; i++) { t = (lo + hi) / 2; f(x1, x2, t) < p ? (lo = t) : (hi = t); } return f(y1, y2, t); };
+}
+ease.lift = bezier(0.32, 0.72, 0, 1);
+function spring(s, k, target, dt, K = 100, D = 18) {   // s[k] chases target; velocity lives in s[k + 'V']
+  if (STILL.matches) return (s[k] = target);
+  const n = Math.ceil(dt / 0.004), h = dt / (n || 1); let x = s[k] ?? target, v = s[k + 'V'] || 0;
+  for (let i = 0; i < n; i++) { v += (K * (target - x) - D * v) * h; x += v * h; }
+  s[k + 'V'] = v; return (s[k] = x);
+}
+function tween(s, k, dt, dur = 0.7) {              // a discrete s[k] -> { from, to, p }, p easing 0 -> 1 over dur
+  const m = s['_' + k] ||= { from: s[k], to: s[k], t: dur };
+  if (m.to !== s[k]) { m.from = m.to; m.to = s[k]; m.t = 0; }
+  m.t += dt; return { from: m.from, to: m.to, p: STILL.matches ? 1 : ease.lift(clamp(m.t / dur)) };
+}
+
+/* fig(id, { w, h, s, build(svg, s, out) -> refs, draw(refs, s, out), tick(s, dt) })
+   - s holds the state. Put the opening still in it (e.g. s.t at a key moment); it beats the HTML control values.
+   - footer controls bind by data-k: <input type=range data-k> -> number; <div class=seg data-k> -> the clicked button's
+     value, as a number when it looks like one
+   - controls follow s after every draw, so tick may drive them (autoplay, a step list) until the reader
+     takes over: any control the reader touches sets s.touched = true
+   - out('name', text) fills every [data-o="name"] inside the figure
+   - a pointer handler attached in build sets s (and s.touched) and calls this.redraw()
+   - tick runs only while the figure is on screen and the reader allows motion; STILL.matches is true for
+     reduced-motion readers, so check it in draw before animating a one-off transition */
+const FIGS = [], STILL = matchMedia('(prefers-reduced-motion: reduce)');
+const IO = new IntersectionObserver(es => es.forEach(e => { const f = FIGS.find(f => f.root === e.target); if (f) f.on = e.isIntersecting; }), { rootMargin: '80px' });
+const num = v => v !== '' && !isNaN(v) ? +v : v;
+function fig(id, o) {
+  const root = document.getElementById(id), s = o.s || {};
+  const svg = el('svg', { viewBox: `0 0 ${o.w} ${o.h}`, role: 'img', 'aria-label': root.querySelector('header span:last-child')?.textContent.replace(/[\[\]]/g, '').trim() || id }, root.querySelector('.stage'));
+  const out = (k, v) => root.querySelectorAll(`[data-o="${k}"]`).forEach(n => n.textContent = v);
+  const ins = [...root.querySelectorAll('input[data-k]')];
+  const settle = () => { if (STILL.matches && o.tick) o.tick(s, 0); };   // reduced motion: springs and tweens snap to their targets
+  const segs = [...root.querySelectorAll('.seg[data-k]')].map(g => ({ k: g.dataset.k, bs: [...g.querySelectorAll('button')] }));
+  ins.forEach(i => {
+    const k = i.dataset.k; if (!(k in s)) s[k] = +i.value;
+    i.addEventListener('input', () => { s[k] = +i.value; s.touched = true; settle(); draw(); });
+  });
+  segs.forEach(({ k, bs }) => {
+    if (!(k in s)) s[k] = num((bs.find(b => b.getAttribute('aria-pressed') === 'true') || bs[0]).value);
+    bs.forEach(b => b.addEventListener('click', () => { s[k] = num(b.value); s.touched = true; settle(); draw(); }));
+  });
+  const sync = () => {
+    for (const i of ins) if (i !== document.activeElement && +i.value !== s[i.dataset.k]) i.value = s[i.dataset.k];
+    for (const { k, bs } of segs) for (const b of bs) b.setAttribute('aria-pressed', num(b.value) === s[k]);
+  };
+  const refs = o.build(svg, s, out);
+  const draw = () => { o.draw(refs, s, out); sync(); };
+  o.redraw = draw;                                  // for pointer handlers made in build: this.redraw()
+  draw();
+  const f = { root, o, s, draw, on: false };
+  if (o.tick) { FIGS.push(f); IO.observe(root); }
+  return f;
+}
+let LAST = 0;
+requestAnimationFrame(function loop(t) {
+  const dt = Math.min(0.05, (t - LAST) / 1000 || 0); LAST = t;
+  if (!STILL.matches) for (const f of FIGS) if (f.on) { f.o.tick(f.s, dt); f.draw(); }
+  requestAnimationFrame(loop);
+});
+
+/* ===== PLAN DATA: edit only this block. Every figure, readout and label is computed from it. ===== */
+// STAGES: the parts one run is split into, in order. style: 'dots' waiting, 'solid' plain, 'hatch' work, 'ink' the hot spot.
+const STAGES = [
+  ['queue', 'queue', 'dots'], ['setup', 'setup', 'solid'], ['test', 'tests', 'hatch'], ['lint', 'lint', 'ink'], ['other', 'overhead', 'solid'],
+];
+// PHASES: seconds per stage today (index 0, measured) and after each phase (cumulative).
+const PHASES = [
+  { queue: 40, setup: 90, test: 120, lint: 60, other: 20 },   // today (EXAMPLE)
+  { queue: 40, setup: 90, test: 120, lint: 5, other: 20 },    // 1
+  { queue: 40, setup: 25, test: 120, lint: 5, other: 20 },    // 2
+  { queue: 40, setup: 25, test: 45, lint: 5, other: 20 },     // 3
+  { queue: 5, setup: 15, test: 45, lint: 5, other: 15 },      // 4
+];
+const LANES = ['job a', 'job b'];            // parallel jobs that run the same stages; the result is when the slowest ends
+const RUNS_PER_MONTH = 3000;                 // for "waiting removed / month"
+// PLAN: [label, startDay, endDay, phaseIndex or null for a background row]
+const DAYS = ['M 1', 'T 2', 'W 3', 'T 4', 'F 5', 'M 8', 'T 9', 'W 10', 'T 11', 'F 12'];
+const PLAN = [
+  ['1 · lint changed files', 0, 2, 1], ['2 · cache dependencies', 2, 4, 2], ['3 · shard tests', 4, 6, 3],
+  ['approval for runners', 0, 7, null], ['4 · warm runners', 7, 10, 4],
+];
+/* ===== end of plan data ===== */
+
+const total = p => STAGES.reduce((a, [k]) => a + p[k], 0);
+const TODAY = total(PHASES[0]);
+
+fig('f1', {
+  w: 720, h: 80 + LANES.length * 62 + 60, s: { ph: 0, t: TODAY * 0.6 },
+  build(svg) {
+    const H = 80 + LANES.length * 62 + 60, X0 = 140, X1 = 650, MAX = Math.ceil(TODAY / 30) * 30 + 10;
+    const X = t => X0 + t * (X1 - X0) / MAX, r = { X, H };
+    const yb = H - 50;
+    for (let t = 0; t <= MAX - 10; t += Math.max(30, Math.ceil(MAX / 300) * 30)) {
+      el('line', { x1: X(t), x2: X(t), y1: 30, y2: yb, class: 'grid' }, svg);
+      el('text', { x: X(t), y: yb + 20, 'text-anchor': 'middle', class: 'sub', text: t + 's' }, svg);
+    }
+    r.names = STAGES.map(([, n]) => el('text', { y: 44, 'text-anchor': 'middle', class: 'sub', text: n }, svg));
+    r.lanes = LANES.map((name, i) => {
+      const y = 80 + i * 62;
+      el('text', { x: 20, y: y + 5, text: name }, svg);
+      const ghost = el('rect', { y: y - 13, height: 26, class: 'guide dash' }, svg);
+      const parts = STAGES.map(([k, , cls]) => ({ k, b: el('rect', { y: y - 13, height: 26, class: 'solid' }, svg), f: el('rect', { y: y - 13, height: 26, class: cls }, svg), o: el('rect', { y: y - 13, height: 26 }, svg) }));
+      return { ghost, parts };
+    });
+    r.res = el('line', { y1: 30, y2: yb, 'stroke-width': 1.5 }, svg);
+    r.resL = el('text', { y: H - 8, 'text-anchor': 'middle' }, svg);
+    r.head = el('line', { y1: 30, y2: yb, class: 'dash' }, svg);
+    return r;
+  },
+  draw(r, s, out) {
+    const P = PHASES[s.ph], X = r.X, w = k => s['w_' + k] ?? P[k], xs = {};
+    let t = 0; for (const [k] of STAGES) { xs[k] = [t, t + w(k)]; t += w(k); }
+    r.lanes.forEach(({ ghost, parts }) => {
+      set(ghost, { x: X(0), width: X(TODAY) - X(0), opacity: s.ph ? 1 : 0 });
+      parts.forEach(({ k, b, f, o }) => { const [a, z] = xs[k], wd = Math.max(0, X(z) - X(a)); for (const n of [b, f, o]) set(n, { x: X(a), width: wd, opacity: wd < 1 ? 0 : 1 }); });
+    });
+    r.names.forEach((n, i) => { const [a, z] = xs[STAGES[i][0]]; set(n, { x: (X(a) + X(z)) / 2, opacity: X(z) - X(a) > 34 ? 1 : 0 }); });
+    set(r.res, { x1: X(t), x2: X(t) }); set(r.resL, { x: X(t), text: 'result · ' + Math.round(t) + 's' });
+    set(r.head, { x1: X(Math.min(s.t, t)), x2: X(Math.min(s.t, t)) });
+    const T = total(P); out('total', T + 's'); out('saved', s.ph ? (TODAY - T) + 's per run' : '–');
+    let st = 'done', acc = 0; for (const [k, n] of STAGES) { acc += P[k]; if (s.t < acc) { st = 'in ' + n; break; } }
+    out('status', st);
+  },
+  tick(s, dt) {
+    const P = PHASES[s.ph]; for (const [k] of STAGES) spring(s, 'w_' + k, P[k], dt);
+    s.t += dt * 60;
+    if (s.t > total(P) + 100) { s.t = 0; if (!s.touched) s.ph = (s.ph + 1) % PHASES.length; }
+  },
+});
+
+fig('f2', {
+  w: 720, h: 70 + PLAN.length * 34, s: { day: 4, t: 0 },
+  build(svg) {
+    const N = DAYS.length, X0 = 200, DW = Math.floor(470 / N), X = d => X0 + d * DW, r = { X, DW }, H = 70 + PLAN.length * 34;
+    DAYS.forEach((d, i) => { el('text', { x: X(i) + DW / 2, y: 26, 'text-anchor': 'middle', class: 'sub', text: d }, svg); el('line', { x1: X(i), x2: X(i), y1: 36, y2: H - 10, class: 'grid' }, svg); });
+    el('line', { x1: X(N), x2: X(N), y1: 36, y2: H - 10, class: 'grid' }, svg);
+    r.bars = PLAN.map(([n, a, b, ph], i) => {
+      const y = 58 + i * 34, bg = ph === null;
+      el('text', { x: 20, y: y + 5, text: n, class: bg ? 'sub' : '' }, svg);
+      el('rect', { x: X(a) + 2, y: y - 11, width: (b - a) * DW - 4, height: 22, class: bg ? 'guide dash' : 'solid' }, svg);
+      const fill = el('rect', { x: X(a) + 2, y: y - 11, height: 22, class: bg ? 'dots' : 'ink' }, svg);
+      const m = bg ? null : total(PHASES[ph]);
+      const lab = m ? el('text', { x: X(b) + 6, y: y + 4, class: 'sub', text: m + 's' }, svg) : null;
+      return { a, b, fill, lab, m };
+    });
+    r.head = el('line', { y1: 36, y2: H - 10, class: 'dash' }, svg);
+    return r;
+  },
+  draw(r, s, out) {
+    r.bars.forEach(({ a, b, fill, lab }) => { const p = clamp((s.day - a) / (b - a)); set(fill, { width: Math.max(0, p * ((b - a) * r.DW - 4)) }); if (lab) set(lab, { opacity: p >= 1 ? 1 : 0.3 }); });
+    set(r.head, { x1: r.X(s.day), x2: r.X(s.day) });
+    let med = TODAY; for (const { b, m } of r.bars) if (m && s.day >= b) med = m;
+    out('med', med + 's'); out('hrs', med === TODAY ? '–' : '~' + Math.round((TODAY - med) * RUNS_PER_MONTH / 3600) + ' h a month');
+  },
+  tick(s, dt) { s.t += dt; if (!s.touched) s.day = Math.min(DAYS.length, (s.t % 14) * 0.9); },
+});
+
+</script>

@@ -102,6 +102,11 @@ export const skills: Skill[] = [
     ["amv-edit", "Cuts an anime music video"],
     ["archive-footage", "Finds public-domain film"],
     ["x-video-frames", "Pulls frames from a video link"],
+    [
+      "plan-artifact",
+      "Builds a decision-ready plan page",
+      "https://github.com/Lokendrakushwah12/lokendra.tech/tree/main/skills/plan-artifact",
+    ],
   ]),
   ...by("arlan", [
     ["design-system-boss", "Runs the others"],
