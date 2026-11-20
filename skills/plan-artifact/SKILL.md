@@ -85,25 +85,33 @@ title block.
 
 ## 4. Figures
 
-Use the `explorable-explainer` skill's figure system (its template supplies `fig()`, `label()`,
-`chart()`, `spring()` and the chrome) for every figure. In a plan page:
+**Take the techniques, not the figures.** `reference/example.html` is one finished page, kept to
+show the section order, the hierarchy and how data drives a figure. It is not a template. A plan
+for a migration, a cost cut or a launch that comes out looking like that CI page has failed.
 
-- **Two figures are standard:** a replay of today's breakdown with a phase selector, and the
-  timeline with a day scrubber. Add one or two topic-specific figures for section 04.
-- One claim, one control and at most three readouts per figure. Each opens on a still frame that
-  makes sense on its own, autoplays until the reader touches a control, and respects
-  `prefers-reduced-motion`.
+From the reference, reuse only the mechanics: the `fig()` / `spring()` / `label()` helpers, which
+come from the `explorable-explainer` skill, the pattern of one data block at the top of the script
+that every readout is computed from, and the outcome / decision / phase-card markup. Then:
+
+- **Invent every figure from this plan's own parts and units.** Draw the thing the plan changes:
+  a request path, a cost curve, a schema moving between databases, a rollout across regions. A
+  stacked-time replay and a day Gantt fit only when the problem really is time through a pipeline
+  on a calendar. For anything else, find the shape that this topic has and others don't.
+- Two or three figures are usually enough: what it looks like today, what changes over the plan,
+  and the evidence against the alternatives. Each makes one claim, has one control and at most
+  three readouts, opens on a still frame that makes sense on its own, autoplays until the reader
+  touches it, and respects `prefers-reduced-motion`.
 - Captions say how to read the figure and which numbers in it are measured.
-- `template/index.html` holds both standard figures, driven only by the `STAGES`, `PHASES` and
-  `PLAN` arrays at the top of its script. Change the data, and the labels and headers follow.
 
 ## 5. Look and copy
 
-- **Default theme:** the template's monochrome, which is dark-first with a light theme, serif prose
-  and mono chrome. Pick a theme to suit the subject only when the user asks for one, and keep the
-  structure when you do.
-- **Hierarchy:** the outcome numbers are the biggest text on the page after the h1, and the
-  decision box is the only element with an ink border. Phase numbers are small ink-filled chips.
+- **The look follows the subject.** Pick the palette, type pairing and figure style from what the
+  plan is about and who reads it (an infra plan, a product launch, a finance case), using the
+  `artifact-design` guidance. Do not reuse the reference's colours or fonts by default. When the
+  user names a theme or a past page to match, follow them exactly.
+- **Hierarchy holds whatever the look:** the outcome numbers are the biggest text after the h1, the
+  decision box is the most prominent element on the page, and nothing above the outcome strip
+  but the title block.
 - **Copy:** short declarative sentences. No hype, no "let's dive in", no em-dash asides, no recap
   paragraph at the end. Sections are a figure or a table plus at most two short paragraphs.
 - **When the user asks only for UI changes, change only the UI.** Keep every section, sentence and
