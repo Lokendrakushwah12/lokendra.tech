@@ -1,0 +1,64 @@
+{
+  "skill_name": "blog-engine",
+  "evals": [
+    {
+      "id": 0,
+      "name": "sanity-slack-audit",
+      "prompt": "our company blog is on sanity (next.js frontend, about 80 posts) and honestly nobody has touched most of them in a year. i have search console api access and we live in slack. i want a weekly job that tells us which old posts are worth updating and suggests the actual fix, but i do NOT want an llm editing our site on its own. can you build that",
+      "expected_output": "A weekly audit that pulls 28-day and previous-28-day search data, scores each post by opportunity (recover / ctr / rank) rather than age, drafts one-swap edits, posts Approve/Edit/Skip cards to Slack, and applies approved edits through a separate handler that holds the Sanity write token and re-validates before writing.",
+      "files": [],
+      "assertions": [
+        "Ranks posts by estimated click headroom, not by age or last-modified date",
+        "Scores each post on three distinct levers (lost clicks, page-one click-through gap, page-two rank gap) and uses the largest to choose the kind of fix",
+        "Uses an expected click-through-by-position curve to estimate the click-through gap",
+        "Drops or separately labels posts with too few impressions instead of ranking them by click-through rate",
+        "A measured traffic loss requires both an absolute and a proportional drop",
+        "The agent or LLM step has no CMS write access; a separate handler performs the write after a human approves",
+        "The approve handler re-validates the stored suggestion (for example that the original text is still present) before writing",
+        "Suggested edits are limited to SEO title, SEO description, or a single exact phrase or link swap",
+        "Approval is locked so two clicks cannot both publish",
+        "Refuses to publish when the post has an unsaved draft in Sanity",
+        "Fixes the before-snapshot's date window at the moment an approved edit goes live (numbers fetched then, or later for those stored dates), not from the time a later job runs",
+        "Records blog-wide numbers for the same dates as a control"
+      ]
+    },
+    {
+      "id": 1,
+      "name": "mdx-git-solo",
+      "prompt": "solo dev here. my blog is just mdx files in my next.js repo, deployed on vercel, maybe 25 posts. no slack, no cms. i exported my search console data as csv (queries.csv and pages.csv in ./data). i rank for a bunch of stuff around position 8-15 but get basically no clicks. what should i fix and what should i write next? set up something i can rerun every week",
+      "expected_output": "A rerunnable script working from the CSV exports that scores posts by opportunity and lists near-miss queries with no dedicated post, with thresholds scaled to a small blog; suggestions arrive as pull requests (one per suggestion) so merging is the approval, and a table or file records before-snapshots for later readings. No Slack or CMS is introduced.",
+      "files": [],
+      "assertions": [
+        "Works from the CSV exports without requiring Search Console API access",
+        "Does not require Slack or a CMS; uses pull requests or an equivalent git-native review step as the approval surface",
+        "Scores posts by click headroom using position and impressions, not by age",
+        "Scales the impression and drop thresholds down for a small blog, or tells the user to",
+        "Identifies near-miss queries (meaningful impressions, roughly positions 5-20, no dedicated post) as the source of new post topics",
+        "Checks new topics against existing posts so a new post does not compete with one the site already ranks with",
+        "Presents the opportunity number as an ordering estimate, not a traffic forecast",
+        "Sets up a way to compare a changed post against the rest of the blog over the same dates",
+        "Keeps each suggestion small enough to review (one change per pull request or equivalent)"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "generator-gates-and-measurement",
+      "prompt": "we already have a script that drafts blog posts from keyword ideas with claude and pushes them to contentful as drafts. two problems: (1) last month it published a post with a code sample that doesn't exist in our sdk, and another that's basically a duplicate of a post we already rank #4 for. (2) my boss wants to know if any of the 30 seo edits we made in q3 actually worked and i have no idea how to answer. how do i fix the pipeline and how should we be measuring this",
+      "expected_output": "Automated gates in front of the CMS write (code provenance requiring a docs URL per snippet, cannibalization against existing ranking posts, plus strategy and structure), a bounded redraft limit, cannibalization treated as non-retryable and handed to the audit; and a measurement design with before-snapshots, a blog-wide control over the same dates, 28 and 56 day readings and a cooldown, with an honest note that past edits without snapshots can only be reconstructed approximately.",
+      "files": [],
+      "assertions": [
+        "Adds a code check that runs before the draft is saved: every snippet must carry the docs URL it was copied from, or be compiled or type-checked against the real SDK, or both",
+        "Adds a cannibalization gate that checks target queries against posts the site already ranks with",
+        "On a cannibalization failure the pipeline does not rephrase and retry; it identifies the existing post and routes it to an edit instead",
+        "Limits redraft attempts to a small fixed number, then stops without saving a draft",
+        "Gates run before anything is written to Contentful",
+        "Keeps subjective writing quality out of the hard gates (a checklist or review step instead)",
+        "Measurement compares each edited post with blog-wide numbers over the same dates, not only with its own before/after",
+        "Uses two follow-up readings (around 28 and 56 days) rather than one",
+        "Adds a cooldown that blocks (not merely warns about) a second edit to a post inside its measurement window",
+        "Says that the Q3 edits can only be assessed approximately, because no before-snapshot or control was recorded at the time",
+        "Warns against reading percentage changes on small click counts"
+      ]
+    }
+  ]
+}

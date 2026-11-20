@@ -107,6 +107,11 @@ export const skills: Skill[] = [
       "Builds a decision-ready plan page",
       "https://github.com/Lokendrakushwah12/lokendra.tech/tree/main/skills/plan-artifact",
     ],
+    [
+      "blog-engine",
+      "Builds an SEO/AEO blog engine",
+      "https://github.com/Lokendrakushwah12/lokendra.tech/tree/main/skills/blog-engine",
+    ],
   ]),
   ...by("arlan", [
     ["design-system-boss", "Runs the others"],
