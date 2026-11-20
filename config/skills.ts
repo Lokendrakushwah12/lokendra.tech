@@ -63,7 +63,6 @@ export const creators = {
   ryan: { name: "Ryan", url: "https://skills.wheresryan.sh/anatomy", repo: "" },
   anshu: { name: "Anshu Chimala", url: "https://anshu.dev", repo: "" },
   rea: { name: "REA", url: "https://rea.tools", repo: "" },
-  tobi: { name: "Tobi", url: "https://x.com/tobiadonadon_", repo: "" },
 } as const;
 
 export type CreatorId = keyof typeof creators;
@@ -111,6 +110,11 @@ export const skills: Skill[] = [
       "blog-engine",
       "Builds an SEO/AEO blog engine",
       "https://github.com/Lokendrakushwah12/lokendra.tech/tree/main/skills/blog-engine",
+    ],
+    [
+      "un-slop",
+      "Redesigns apps that look AI-made",
+      "https://github.com/Lokendrakushwah12/lokendra.tech/tree/main/skills/un-slop",
     ],
   ]),
   ...by("arlan", [
@@ -211,12 +215,4 @@ export const skills: Skill[] = [
     ],
   ]),
   ...by("rea", [["rea", "Reverse engineers anything", "https://rea.tools"]]),
-  // given out by DM, so there is no repo to link and "un-slop" is my label for it
-  ...by("tobi", [
-    [
-      "un-slop",
-      "Redesigns apps that look AI-made",
-      "https://x.com/tobiadonadon_/status/2106432288686850124",
-    ],
-  ]),
 ];

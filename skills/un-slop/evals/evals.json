@@ -1,0 +1,59 @@
+{
+  "skill_name": "un-slop",
+  "evals": [
+    {
+      "id": 0,
+      "name": "sleep-app-home",
+      "prompt": "i'm building a sleep tracking app in react native (expo). the home screen right now is a greeting, three stat cards and a list, and honestly it looks like every other ai-generated app. redesign the home screen so it has an actual identity. the data on it: last night's sleep (7h 12m), bedtime 23:40, wake 06:52, a 7-day history, and a wind-down button",
+      "expected_output": "Several concrete concept candidates from the world of sleep, three genuinely different directions of the same home screen built as HTML and rendered at phone resolution, a reasoned choice, a critique of the rendered image with findings, at least one refine pass, and the chosen design described as tokens for React Native. All five data items remain on the screen.",
+      "files": [],
+      "assertions": [
+        "Proposes at least five concept candidates, each a concrete noun-like thing rather than adjectives such as clean, minimal or premium",
+        "States for the chosen concept what it decides for typography, layout, colour, illustration or material, and motion",
+        "Produces three directions of the same screen that differ in layout and typography, not only in colour",
+        "Renders the directions to images at phone resolution and compares them before choosing",
+        "Gives explicit reasons for the chosen direction",
+        "Critiques the rendered image (not just the code) and lists specific findings tied to elements",
+        "Makes at least one revision in response to the critique and renders again",
+        "The final screen keeps all five pieces of data the user listed",
+        "The final screen is not a greeting, a row of equal stat cards and a list of cards",
+        "Uses no indigo/purple gradient, gradient text or emoji icons in the final screen",
+        "Gives the result as tokens or a spec for React Native rather than pasting the HTML sketch into the app"
+      ]
+    },
+    {
+      "id": 1,
+      "name": "existing-web-dashboard",
+      "prompt": "here's my invoice dashboard (next.js + tailwind, app/dashboard/page.tsx). it works fine but a friend said it 'screams chatgpt'. can you tell me exactly why and fix the look without changing what's on the page or how it works",
+      "expected_output": "A scan of the existing source that names specific tells with file and line, a critique of a render of the current page, a concept for an invoicing tool, a redesign that keeps the same information and actions, and a re-scan and re-render showing what changed.",
+      "files": [],
+      "assertions": [
+        "Identifies specific tells in the existing page (for example uniform rounded cards, tinted icon chips, equal stat tiles, stock copy) rather than giving general advice",
+        "Runs or reproduces a source scan and reports hits by pattern",
+        "Keeps every piece of information and every action that was on the original page",
+        "Bases the redesign on a stated concrete concept relevant to invoicing or the user's business",
+        "Explores more than one direction before settling",
+        "Renders the redesigned page and reviews the image",
+        "Reports which tells were removed and which, if any, were kept deliberately and why",
+        "Does not sacrifice text contrast or target sizes for the concept"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "paywall-with-brand",
+      "prompt": "design a paywall screen for my italian learning app (swiftui). brand colour is #1F6F54 and i have a logo, those stay. everything else is open. i don't want the standard gradient card with three checkmarks and a big rounded button",
+      "expected_output": "Concept candidates drawn from Italian material culture or the act of learning, with the fixed brand colour and logo respected; three directions of the paywall; a rendered comparison; a critique and refine; and a SwiftUI-oriented spec. The price, plan choice, restore and close affordances are present.",
+      "files": [],
+      "assertions": [
+        "Keeps the brand colour #1F6F54 and the logo, and says what remains open for the concept to decide",
+        "Concept candidates are specific artefacts or places, not a national cliche or a mood word",
+        "Produces three directions that differ in layout and typography",
+        "Renders and compares them before choosing",
+        "The final paywall is not a gradient card with a checkmark list and one large rounded button",
+        "The final paywall still has plan and price, a purchase action, restore purchases, and a way to close",
+        "Notes where the concept gave way to legibility or touch-target requirements, or states that it did not need to",
+        "Gives the result in terms usable for SwiftUI (tokens, layout description), not web-only code"
+      ]
+    }
+  ]
+}
