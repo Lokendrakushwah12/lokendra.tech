@@ -26,11 +26,13 @@
       "name": "existing-web-dashboard",
       "prompt": "here's my invoice dashboard (next.js + tailwind, app/dashboard/page.tsx). it works fine but a friend said it 'screams chatgpt'. can you tell me exactly why and fix the look without changing what's on the page or how it works",
       "expected_output": "A scan of the existing source that names specific tells with file and line, a critique of a render of the current page, a concept for an invoicing tool, a redesign that keeps the same information and actions, and a re-scan and re-render showing what changed.",
-      "files": [],
+      "files": [
+        "evals/files/app/dashboard/page.tsx"
+      ],
       "assertions": [
         "Identifies specific tells in the existing page (for example uniform rounded cards, tinted icon chips, equal stat tiles, stock copy) rather than giving general advice",
         "Runs or reproduces a source scan and reports hits by pattern",
-        "Keeps every piece of information and every action that was on the original page",
+        "Leaves the page's text, data, controls and their order as they were; copy or content it would change (stock slogans, emoji in headings) is flagged and proposed, not applied",
         "Bases the redesign on a stated concrete concept relevant to invoicing or the user's business",
         "Explores more than one direction before settling",
         "Renders the redesigned page and reviews the image",
@@ -51,7 +53,7 @@
         "Renders and compares them before choosing",
         "The final paywall is not a gradient card with a checkmark list and one large rounded button",
         "The final paywall still has plan and price, a purchase action, restore purchases, and a way to close",
-        "Notes where the concept gave way to legibility or touch-target requirements, or states that it did not need to",
+        "Every tappable control in the delivered SwiftUI has its own minimum 44pt target (on the control, not only on its container), and any claim about target size or contrast matches the code",
         "Gives the result in terms usable for SwiftUI (tokens, layout description), not web-only code"
       ]
     }

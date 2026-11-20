@@ -27,8 +27,18 @@ faster.
 
 For a redesign, read the existing screens and note what must not change: the
 information on each screen, the actions available, the navigation. This skill
-changes the visual language, not what the app does. Then find out, from the
-code or by asking once:
+changes the visual language, not what the app does or says.
+
+**The words are content.** Headings, labels, button text, the order of items
+and which icons appear are part of what is on the page, and a request to "fix
+the look" does not cover them. The critique will flag stock copy and emoji as
+tells, and it is tempting to fix them in passing. Do not. Report each one,
+propose the replacement, and leave the original in place until the user says
+yes. This holds twice over when the user said not to change what is on the
+page. Pure decoration (a gradient, a shadow, a tinted chip behind an icon) is
+look, and is yours to change.
+
+Then find out, from the code or by asking once:
 
 - what the app is *for* and the moment someone opens it (on a run, in bed, at a
   shop counter);
@@ -92,7 +102,8 @@ Now carry the chosen direction across the real screens.
 - **Usability does not bend.** Text contrast, 44pt touch targets, readable body
   size, a visible focus and pressed state, and the platform's standard
   navigation gestures all stay. If the concept fights one of these, the
-  concept gives way.
+  concept gives way. These are checked in the built code, not asserted; see
+  "Then build it".
 
 ## 4. Render
 
@@ -175,6 +186,14 @@ paste the HTML sketch into a native app. Run it, screenshot it at device size,
 and put it through steps 4 and 5 once more, because fonts, safe areas and real
 data change things.
 
+**Check every touch target on the control itself.** The minimum size has to be
+on the element that receives the tap: the button's own frame, its hit slop, or
+its content shape. A 44pt minimum on the row that contains three buttons makes
+the row tall and leaves each button the size of its text. Go through the
+tappable elements one by one in the code you wrote and confirm each. Only
+report a target size, a contrast ratio or a passing check that you have
+actually verified; if you could not check something, say so.
+
 ## What to show the user
 
 1. The concept in one sentence, and the two it beat with one line each on why.
@@ -183,6 +202,9 @@ data change things.
 4. What the critique found and what changed because of it.
 5. Anything left that you would still fix, and anything the concept gave up to
    usability.
+6. Every change that went beyond look: copy you propose to reword, an icon or
+   label you would add or drop, an order you would change. List these as
+   proposals, not as done.
 
 ## Reference files
 

@@ -75,4 +75,23 @@ privately and I have not seen it. This is an independent implementation written
 from that public description; the concept tests, the catalogue of tells and both
 scripts are mine.
 
-The eval prompts in `evals/` have not been run.
+## Evaluation
+
+Three tasks (a sleep app's home screen, restyling a generic invoice dashboard,
+a paywall with a fixed brand colour) were run once with the skill and once
+without, and graded on 27 assertions: **25/27 with the skill, 13/27 without**,
+at about 46% more tokens and twice the time.
+
+Most of that gap is process. Without the skill every run designed one direction
+and never compared alternatives, and those steps are what the assertions check,
+so that part is circular. Asked separately which final image looked less
+generated, the graders picked the with-skill screen in all three tasks, but
+that was one grader per task and not blind. One run per configuration.
+
+Two revisions came from reading the runs. On the dashboard the with-skill run
+rewrote the banner copy after being told not to change what was on the page,
+where the run without the skill left it and proposed a replacement; the skill
+now treats words, order and icons as content. On the paywall it claimed 44pt
+touch targets that its SwiftUI did not deliver; the skill now asks for each
+control to be checked in the built code. The skill has not been re-run since.
+The prompts and the dashboard fixture are in `evals/`.

@@ -51,6 +51,10 @@ doing there. If the answer is "nothing in particular", remove it.
 
 ## Copy
 
+Copy is content, not look. In a redesign, report these and propose a
+replacement; do not rewrite the user's words unless they asked for that. The
+same goes for removing an icon that carries meaning or reordering items.
+
 | Tell | Why | Instead |
 |---|---|---|
 | "Welcome back, Alex", with a wave emoji (**scan**) | The stock opener | Start with the content, or say something only this app would say |
