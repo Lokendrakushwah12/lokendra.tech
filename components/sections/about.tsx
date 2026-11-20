@@ -1,12 +1,40 @@
 import Link from "next/link";
 import TechBadge from "../ui/tech-badge";
-import { ArrowUpRightIcon, HBIcon, InducedAIIcon, KeychainIcon, UnoloIcon, XIcon } from "../icons";
+import { FileTextIcon, PenToolIcon } from "lucide-react";
+import { ArrowUpRightIcon, HBIcon, InducedAIIcon, KeychainIcon, TrophyIcon, UnoloIcon, XIcon } from "../icons";
 import {
   Tooltip,
   TooltipPopup,
   TooltipProvider,
   TooltipTrigger,
 } from "../ui/tooltip";
+
+const pages = [
+  {
+    href: "/work",
+    title: "Proof of Work",
+    description: "What I built at Keychain, Induced AI and Unolo",
+    icon: <TrophyIcon className="size-4" />,
+  },
+  {
+    href: "/humanbehavior-work",
+    title: "Human Behavior",
+    description: "Revamping the whole dashboard with Amogh",
+    icon: <HBIcon className="size-4" />,
+  },
+  {
+    href: "/design",
+    title: "Design Work",
+    description: "Selected design and frontend work",
+    icon: <PenToolIcon className="size-4" />,
+  },
+  {
+    href: "/skills",
+    title: "Skills",
+    description: "Agent skills I use, mine and other creators'",
+    icon: <FileTextIcon className="size-4" />,
+  },
+];
 
 const About = () => {
 
@@ -57,21 +85,6 @@ const About = () => {
             </div>
           </div>
 
-          {/* proof of work */}
-          <div className="mt-6">
-            <div className="text-muted-foreground leading-relaxed">
-              Checkout my&nbsp;
-              {/* Proof of Work */}
-              <Link
-                href="/work"
-                rel="noopener noreferrer"
-                className="border-b cursor-pointer border-dashed border-foreground/60 text-foreground hover:text-primary transition-colors inline-flex items-center gap-0.5"
-              >
-                Proof of Work
-                <ArrowUpRightIcon className="size-2.5 shrink-0" />
-              </Link>
-            </div>
-          </div>
           {/* whom i have worked with */}
           <div className="mt-6">
             <div className="text-muted-foreground leading-relaxed">
@@ -123,32 +136,28 @@ const About = () => {
                   </TooltipPopup>
                 </Tooltip>
               </TooltipProvider>
-              .&nbsp;Check the whole work&nbsp;
-              <Link
-                href="/humanbehavior-work"
-                rel="noopener noreferrer"
-                className="border-b cursor-pointer border-dashed border-foreground/60 text-foreground hover:text-primary transition-colors inline-flex items-center gap-0.5"
-              >
-                here
-                <ArrowUpRightIcon className="size-2.5 shrink-0" />
-              </Link>
               .
             </div>
           </div>
-          {/* design work */}
-          <div className="mt-6">
-            <div className="text-muted-foreground leading-relaxed">
-              Checkout my&nbsp;
-              <Link
-                href="/design"
-                rel="noopener noreferrer"
-                className="border-b cursor-pointer border-dashed border-foreground/60 text-foreground hover:text-primary transition-colors inline-flex items-center gap-0.5"
-              >
-                Design Work.
-                <ArrowUpRightIcon className="size-2.5 shrink-0" />
-              </Link>
-            </div>
-          </div>
+          {/* pages */}
+          <ul className="mt-8 border-t border-dashed">
+            {pages.map(({ href, title, description, icon }) => (
+              <li key={href} className="border-b border-dashed">
+                <Link href={href} className="group flex items-center gap-3 py-3">
+                  <span className="flex size-10 shrink-0 items-center justify-center rounded-md border border-dashed bg-white text-muted-foreground shadow-xs transition-colors group-hover:text-foreground dark:bg-background/50">
+                    {icon}
+                  </span>
+                  <span className="flex min-w-0 flex-col">
+                    <span className="leading-snug text-foreground">{title}</span>
+                    <span className="truncate text-sm text-muted-foreground">
+                      {description}
+                    </span>
+                  </span>
+                  <ArrowUpRightIcon className="ml-auto size-3 shrink-0 -translate-x-1 text-muted-foreground opacity-0 transition-all group-hover:translate-x-0 group-hover:opacity-100" />
+                </Link>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </div>
