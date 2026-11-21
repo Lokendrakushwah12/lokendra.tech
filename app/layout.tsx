@@ -6,6 +6,7 @@ import { SoundProvider } from "@/components/sound-provider";
 import { ThemeProvider } from "@/providers/theme-provider";
 import type { Metadata } from "next";
 import Script from "next/script";
+import { ImageGalleryProvider } from "@/components/ui/image-modal";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -85,7 +86,7 @@ export default function RootLayout({
           >
             <SoundProvider>
             <ToastProvider position="top-right">
-              {children}
+              <ImageGalleryProvider>{children}</ImageGalleryProvider>
             </ToastProvider>
             </SoundProvider>
           </ThemeProvider>
