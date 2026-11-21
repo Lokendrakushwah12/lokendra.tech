@@ -13,25 +13,17 @@ const Header = () => {
     <div className="w-full lg:max-w-4xl">
       <div className="p-4 pt-12 w-full mx-auto">
         <div className="flex items-center gap-4 justify-between">
-          <Link href="/" className="flex flex-col items-start gap-2 justify-center">
-            <div className="relative size-20 shrink-0">
-              <div className="size-20 rounded-md absolute inset-0 ring-[0.6px] ring-inset ring-black/10 dark:ring-white/15" />
-              <Image
-                src="/pfp.png"
-                alt="logo"
-                width={104}
-                height={104}
-                className="size-20 object-cover rounded-md select-none"
-                loading="lazy"
-              />
-            </div>
-            <div className="flex flex-col items-start justify-start font-medium tracking-tight text-sm">
-              <h1 className="text-base tracking-tight text-foreground">{name}</h1>
-
-              <span className="text-sm -mt-1 font-normal text-muted-foreground">
-                {profession}
-              </span>
-            </div>
+          {/* ponytail: avatar shares the row with the icons so the name below gets full width */}
+          <Link href="/" tabIndex={-1} aria-hidden className="relative size-20 shrink-0">
+            <div className="size-20 rounded-md absolute inset-0 ring-[0.6px] ring-inset ring-black/10 dark:ring-white/15" />
+            <Image
+              src="/pfp.png"
+              alt="logo"
+              width={104}
+              height={104}
+              className="size-20 object-cover rounded-md select-none"
+              loading="lazy"
+            />
           </Link>
           <div className="flex items-center">
             <Button variant="ghost" size="icon" asChild>
@@ -48,6 +40,10 @@ const Header = () => {
             <ThemeToggle />
           </div>
         </div>
+        <Link href="/" className="mt-2 flex flex-col items-start justify-start font-medium tracking-tight text-sm">
+          <h1 className="text-base tracking-tight text-foreground">{name}</h1>
+          <span className="text-sm -mt-1 font-normal text-muted-foreground">{profession}</span>
+        </Link>
       </div>
     </div>
   );
